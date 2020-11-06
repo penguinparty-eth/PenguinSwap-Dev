@@ -16,7 +16,7 @@ const MEDIA_WIDTHS = {
   upToExtraSmall: 500,
   upToSmall: 720,
   upToMedium: 960,
-  upToLarge: 1280
+  upToLarge: 2000
 }
 
 const mediaWidthTemplates: { [width in keyof typeof MEDIA_WIDTHS]: typeof css } = Object.keys(MEDIA_WIDTHS).reduce(
@@ -41,11 +41,11 @@ export function colors(darkMode: boolean): Colors {
     black,
 
     // text
-    text1: darkMode ? '#FFFFFF' : '#000000',
-    text2: darkMode ? '#C3C5CB' : '#565A69',
-    text3: darkMode ? '#6C7284' : '#888D9B',
-    text4: darkMode ? '#565A69' : '#C3C5CB',
-    text5: darkMode ? '#2C2F36' : '#EDEEF2',
+    text1: darkMode ? '#000000' : '#000000',
+    text2: darkMode ? '#000000' : '#000000',
+    text3: darkMode ? '#000000' : '#000000',
+    text4: darkMode ? '#000000' : '#000000',
+    text5: darkMode ? '#000000' : '#000000',
 
     // backgrounds / greys
     bg1: darkMode ? '#212429' : '#FFFFFF',
@@ -217,16 +217,18 @@ html {
 
 export const ThemedGlobalStyle = createGlobalStyle`
 html {
-  color: ${({ theme }) => theme.text1};
-  background-color: ${({ theme }) => theme.bg2};
-}
-
-body {
-  min-height: 100vh;
-  background-position: 0 -30vh;
+  background-position: 0;
   background-repeat: no-repeat;
   background-image: url('https://cdna.artstation.com/p/assets/images/images/020/346/796/original/hortense-frouin-anim-tiplouf.gif?1567436683');
   background-attachment: fixed;
+  height:100%;
+  width:100%;
+  background-size:cover;
+  background-color:#9999FF;
+}
+
+body {
+
 }
 .originalBackground{
   background-image: ${({ theme }) =>

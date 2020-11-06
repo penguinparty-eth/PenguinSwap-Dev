@@ -187,7 +187,7 @@ export default function SettingsTab() {
         {expertMode ? (
           <EmojiWrapper>
             <span role="img" aria-label="wizard-icon">
-              🧙
+              🐧
             </span>
           </EmojiWrapper>
         ) : null}

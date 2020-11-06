@@ -204,7 +204,7 @@ const StyledNavLink = styled(NavLink).attrs({
 })`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: left;
-  border-radius: 3rem;
+  border-radius: 2rem;
   outline: none;
   cursor: pointer;
   text-decoration: none;
@@ -222,7 +222,7 @@ const StyledNavLink = styled(NavLink).attrs({
 
   :hover,
   :focus {
-    color: ${({ theme }) => darken(0.1, theme.text1)};
+    color: ${({ theme }) => darken(0.2, theme.text1)};
   }
 `
 
@@ -294,13 +294,14 @@ export default function Header() {
       <HeaderRow>
         <Title href=".">
           <UniIcon>
-            <img width={'24px'} src={isDark ? LogoDark : Logo} alt="logo" />
+            <img width={'45px'} src={isDark ? LogoDark : Logo} alt="logo" />
           </UniIcon>
         </Title>
         <HeaderLinks>
           <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
-            {t('swap')}
+            🔄{t('swap')}🔄
           </StyledNavLink>
+          <tr>
           <StyledNavLink
             id={`pool-nav-link`}
             to={'/pool'}
@@ -312,17 +313,40 @@ export default function Header() {
               pathname.startsWith('/find')
             }
           >
-            {t('pool')}
+            🌊{t('pool')}🌊
           </StyledNavLink>
+
           <StyledNavLink id={`stake-nav-link`} to={'/uni'}>
-            UNI
+            ⛏Staking⛏
           </StyledNavLink>
           <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
-            Vote
+            🦄Uniswap Voting🦄
+          </StyledNavLink>
+          <StyledNavLink id={`stake-nav-link`} to={'https://snapshot.page/#/penguin-party/community'}>
+            🐧Penguin Party Voting🐧
           </StyledNavLink>
           <StyledExternalLink id={`stake-nav-link`} href={'https://uniswap.info'}>
-            Charts <span style={{ fontSize: '11px' }}>↗</span>
+            📊Charts📊 <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
+          <StyledExternalLink id={`stake-nav-link`} href={'https://unigov.eth.link'}>
+            🏛UniGov dApp🏛<span style={{ fontSize: '11px' }}>↗</span>
+          </StyledExternalLink>
+          <StyledExternalLink id={`stake-nav-link`} href={'https://hiturunk.medium.com'}>
+            📄News📄 <span style={{ fontSize: '11px' }}>↗</span>
+          </StyledExternalLink>
+          <StyledExternalLink id={`stake-nav-link`} href={'https://discord.gg/pkmBgQr'}>
+            🎤Discord🎤 <span style={{ fontSize: '11px' }}>↗</span>
+          </StyledExternalLink>
+          <StyledExternalLink id={`stake-nav-link`} href={'https://github.com/penguinparty-eth/'}>
+            💾Github💾 <span style={{ fontSize: '11px' }}>↗</span>
+          </StyledExternalLink>
+          <StyledExternalLink id={`stake-nav-link`} href={'https://open.codecks.io/-penguinparty/'}>
+            🎴Codecks🎴 <span style={{ fontSize: '11px' }}>↗</span>
+          </StyledExternalLink>
+          <StyledExternalLink id={`stake-nav-link`} href={'https://open.codecks.io/-penguinparty/'}>
+            💰Penguin Party Treasury💰 <span style={{ fontSize: '11px' }}>↗</span>
+          </StyledExternalLink>
+          </tr>
         </HeaderLinks>
       </HeaderRow>
       <HeaderControls>
@@ -336,7 +360,7 @@ export default function Header() {
             <UNIWrapper onClick={toggleClaimModal}>
               <UNIAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
                 <TYPE.white padding="0 2px">
-                  {claimTxn && !claimTxn?.receipt ? <Dots>Claiming UNI</Dots> : 'Claim UNI'}
+                  {claimTxn && !claimTxn?.receipt ? <Dots>Claiming 🐟</Dots> : 'Claim 🐟'}
                 </TYPE.white>
               </UNIAmount>
               <CardNoise />
@@ -363,7 +387,7 @@ export default function Header() {
                     </TYPE.white>
                   </HideSmall>
                 )}
-                UNI
+                🐟
               </UNIAmount>
               <CardNoise />
             </UNIWrapper>
