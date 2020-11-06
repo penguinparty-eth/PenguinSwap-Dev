@@ -52,7 +52,7 @@ const Proposal = styled(Button)`
 `
 
 const ProposalNumber = styled.span`
-  opacity: 0.6;
+  opacity: 1;
 `
 
 const ProposalTitle = styled.span`
@@ -100,6 +100,7 @@ const EmptyProposals = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color:white;
 `
 
 export default function Vote() {
@@ -228,7 +229,7 @@ export default function Vote() {
           )
         })}
       </TopSection>
-      <TYPE.subHeader color="text3">
+      <TYPE.subHeader color="yellow">
         A minimum threshhold of 1% of the total UNI supply is required to submit proposals
       </TYPE.subHeader>
     </PageWrapper>
