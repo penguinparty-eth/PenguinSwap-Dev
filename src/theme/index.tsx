@@ -226,6 +226,7 @@ body {
   background-position: 0 -30vh;
   background-repeat: no-repeat;
   background-image: url('https://cdna.artstation.com/p/assets/images/images/020/346/796/original/hortense-frouin-anim-tiplouf.gif?1567436683');
+  background-attachment: fixed;
 }
 .originalBackground{
   background-image: ${({ theme }) =>
