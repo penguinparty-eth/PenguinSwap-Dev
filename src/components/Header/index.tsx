@@ -343,7 +343,7 @@ export default function Header() {
           <StyledExternalLink id={`stake-nav-link`} href={'https://open.codecks.io/-penguinparty/'}>
             🎴Codecks🎴 <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://open.codecks.io/-penguinparty/'}>
+          <StyledExternalLink id={`stake-nav-link`} href={'https://gnosis-safe.io/app/#/safes/0x686B4535FF6573cef3FF37419A4fc6Ac775Ec7ea/balances'}>
             💰Penguin Party Treasury💰 <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
           </tr>
