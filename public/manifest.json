@@ -1,6 +1,9 @@
 {
-  "short_name": "Uniswap",
-  "name": "Uniswap",
+  "short_name": "Penguinswap",
+  "name": "Penguinswap",
+  "start_url": "/",
+  "display": "fullscreen",
+  "scope": ".",
   "icons": [
     {
       "src": "./images/192x192_App_Icon.png",
@@ -16,7 +19,6 @@
     }
   ],
   "orientation": "portrait",
-  "display": "standalone",
   "theme_color": "#ff007a",
   "background_color": "#fff"
 }
