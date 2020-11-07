@@ -34,7 +34,6 @@ import usePrevious from '../../hooks/usePrevious'
 const HeaderFrame = styled.div`
   display: grid;
   grid-template-columns: 1fr 120px;
-  align-items: center;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
@@ -44,7 +43,7 @@ const HeaderFrame = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1rem;
   z-index: 2;
-  ${({ theme }) => theme.mediaWidth.upToMedium`
+  ${({ theme }) => theme.mediaWidth.upToSmall`
     grid-template-columns: 1fr;
     padding: 0 1rem;
     width: calc(100%);
@@ -58,9 +57,10 @@ const HeaderFrame = styled.div`
 
 const HeaderControls = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-self: flex-end;
+  overflow:auto;
 
   ${({ theme }) => theme.mediaWidth.upToMedium`
     flex-direction: row;
@@ -84,7 +84,7 @@ const HeaderElement = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-
+  margin: 1rem 1rem 1rem 1rem;
   ${({ theme }) => theme.mediaWidth.upToMedium`
    flex-direction: row-reverse;
     align-items: center;
@@ -97,14 +97,14 @@ const HeaderElementWrap = styled.div`
 `
 
 const HeaderRow = styled(RowFixed)`
-  ${({ theme }) => theme.mediaWidth.upToMedium`
+  ${({ theme }) => theme.mediaWidth.upToSmall`
    width: 100%;
   `};
 `
 
 const HeaderLinks = styled(Row)`
   justify-content: center;
-  ${({ theme }) => theme.mediaWidth.upToMedium`
+  ${({ theme }) => theme.mediaWidth.upToSmall`
     padding: 1rem 0 1rem 1rem;
     justify-content: flex-end;
 `};
@@ -209,10 +209,11 @@ const StyledNavLink = styled(NavLink).attrs({
   cursor: pointer;
   text-decoration: none;
   color: ${({ theme }) => theme.text2};
-  font-size: 1rem;
+  font-size: 0.9rem;
   width: fit-content;
-  margin: 0 12px;
-  font-weight: 500;
+  margin: 1rem 1rem 1rem 1rem;
+  font-weight: 750;
+  background-color:white;
 
   &.${activeClassName} {
     border-radius: 12px;
@@ -223,6 +224,9 @@ const StyledNavLink = styled(NavLink).attrs({
   :hover,
   :focus {
     color: ${({ theme }) => darken(0.2, theme.text1)};
+    border-style: solid;
+    border-color:gold;
+    border-width:1px;
   }
 `
 
@@ -231,15 +235,16 @@ const StyledExternalLink = styled(ExternalLink).attrs({
 })<{ isActive?: boolean }>`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: left;
-  border-radius: 3rem;
+  border-radius: 2rem;
   outline: none;
   cursor: pointer;
   text-decoration: none;
   color: ${({ theme }) => theme.text2};
-  font-size: 1rem;
+  font-size: 0.9rem;
   width: fit-content;
-  margin: 0 12px;
-  font-weight: 500;
+  margin: 1rem 1rem 1rem 1rem;
+  font-weight: 750;
+  background-color:white;
 
   &.${activeClassName} {
     border-radius: 12px;
@@ -250,6 +255,9 @@ const StyledExternalLink = styled(ExternalLink).attrs({
   :hover,
   :focus {
     color: ${({ theme }) => darken(0.1, theme.text1)};
+    border-style: solid;
+    border-color:gold;
+    border-width:1px;
   }
 
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
@@ -315,38 +323,45 @@ export default function Header() {
           >
             🌊{t('pool')}🌊
           </StyledNavLink>
-
           <StyledNavLink id={`stake-nav-link`} to={'/uni'}>
             ⛏Staking⛏
           </StyledNavLink>
+          </tr>
+          <tr>
           <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
             🦄Uniswap Voting🦄
           </StyledNavLink>
           <StyledNavLink id={`stake-nav-link`} to={'https://snapshot.page/#/penguin-party/community'}>
             🐧Penguin Party Voting🐧
           </StyledNavLink>
+          </tr>
+          <tr>
           <StyledExternalLink id={`stake-nav-link`} href={'https://uniswap.info'}>
             📊Charts📊 <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
           <StyledExternalLink id={`stake-nav-link`} href={'https://unigov.eth.link'}>
             🏛UniGov dApp🏛<span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
+          </tr>
+          <tr>
           <StyledExternalLink id={`stake-nav-link`} href={'https://hiturunk.medium.com'}>
             📄News📄 <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
           <StyledExternalLink id={`stake-nav-link`} href={'https://discord.gg/pkmBgQr'}>
             🎤Discord🎤 <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
+          </tr>
+          <tr>
           <StyledExternalLink id={`stake-nav-link`} href={'https://github.com/penguinparty-eth/'}>
             💾Github💾 <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
           <StyledExternalLink id={`stake-nav-link`} href={'https://open.codecks.io/-penguinparty/'}>
             🎴Codecks🎴 <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://gnosis-safe.io/app/#/safes/0x686B4535FF6573cef3FF37419A4fc6Ac775Ec7ea/balances'}>
-            💰Penguin Party Treasury💰 <span style={{ fontSize: '11px' }}>↗</span>
-          </StyledExternalLink>
           </tr>
+          <StyledExternalLink id={`stake-nav-link`} href={'https://gnosis-safe.io/app/#/safes/0x686B4535FF6573cef3FF37419A4fc6Ac775Ec7ea/balances'}>
+            💰 Treasury💰 <span style={{ fontSize: '11px' }}>↗</span>
+          </StyledExternalLink>
         </HeaderLinks>
       </HeaderRow>
       <HeaderControls>
