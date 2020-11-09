@@ -64,7 +64,7 @@ export const ButtonPrimary = styled(Base)`
 `
 
 export const ButtonLight = styled(Base)`
-  background-color: ${({ theme }) => theme.primary5};
+  background-color: ${({ theme }) => theme.primary1};
   color: ${({ theme }) => theme.primaryText1};
   font-size: 16px;
   font-weight: 500;
@@ -92,7 +92,7 @@ export const ButtonLight = styled(Base)`
 `
 
 export const ButtonGray = styled(Base)`
-  background-color: ${({ theme }) => theme.bg3};
+  background-color: ${({ theme }) => theme.bg1};
   color: ${({ theme }) => theme.text2};
   font-size: 16px;
   font-weight: 500;
@@ -112,7 +112,7 @@ export const ButtonGray = styled(Base)`
 export const ButtonSecondary = styled(Base)`
   border: 1px solid ${({ theme }) => theme.primary4};
   color: ${({ theme }) => theme.primary1};
-  background-color: transparent;
+  background-color: white;
   font-size: 16px;
   border-radius: 12px;
   padding: ${({ padding }) => (padding ? padding : '10px')};
@@ -161,7 +161,7 @@ export const ButtonPink = styled(Base)`
 
 export const ButtonOutlined = styled(Base)`
   border: 1px solid ${({ theme }) => theme.bg2};
-  background-color: transparent;
+  background-color: white;
   color: ${({ theme }) => theme.text1};
 
   &:focus {
@@ -180,7 +180,7 @@ export const ButtonOutlined = styled(Base)`
 `
 
 export const ButtonEmpty = styled(Base)`
-  background-color: transparent;
+  background-color: white;
   color: ${({ theme }) => theme.primary1};
   display: flex;
   justify-content: center;

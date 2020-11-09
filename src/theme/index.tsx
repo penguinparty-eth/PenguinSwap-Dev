@@ -48,35 +48,35 @@ export function colors(darkMode: boolean): Colors {
     text5: darkMode ? '#000000' : '#000000',
 
     // backgrounds / greys
-    bg1: darkMode ? '#212429' : '#FFFFFF',
-    bg2: darkMode ? '#2C2F36' : '#F7F8FA',
-    bg3: darkMode ? '#40444F' : '#EDEEF2',
-    bg4: darkMode ? '#565A69' : '#CED0D9',
-    bg5: darkMode ? '#6C7284' : '#888D9B',
+    bg1: darkMode ? '#FFFFFF' : '#FFFFFF',
+    bg2: darkMode ? '#F7F8FA' : '#F7F8FA',
+    bg3: darkMode ? '#EDEEF2' : '#EDEEF2',
+    bg4: darkMode ? '#CED0D9' : '#CED0D9',
+    bg5: darkMode ? '#888D9B' : '#888D9B',
 
     //specialty colors
-    modalBG: darkMode ? 'rgba(0,0,0,.425)' : 'rgba(0,0,0,0.3)',
+    modalBG: darkMode ? 'rgba(0,0,0,.5)' : 'rgba(0,0,0,0.3)',
     advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.6)',
 
     //primary colors
     primary1: darkMode ? '#9999FF' : '#9999FF',
     primary2: darkMode ? '#9999FF' : '#9999FF',
-    primary3: darkMode ? '#4D8FEA' : '#FF99C9',
-    primary4: darkMode ? '#376bad70' : '#F6DDE8',
-    primary5: darkMode ? '#153d6f70' : '#FDEAF1',
+    primary3: darkMode ? '#FF99C9' : '#FF99C9',
+    primary4: darkMode ? '#F6DDE8' : '#F6DDE8',
+    primary5: darkMode ? '#FDEAF1' : '#FDEAF1',
 
     // color text
-    primaryText1: darkMode ? '#6da8ff' : '#ff007a',
+    primaryText1: darkMode ? '#ff007a' : '#ff007a',
 
     // secondary colors
-    secondary1: darkMode ? '#2172E5' : '#ff007a',
-    secondary2: darkMode ? '#17000b26' : '#F6DDE8',
-    secondary3: darkMode ? '#17000b26' : '#FDEAF1',
+    secondary1: darkMode ? '#ff007a' : '#ff007a',
+    secondary2: darkMode ? '#F6DDE8' : '#F6DDE8',
+    secondary3: darkMode ? '#FDEAF1' : '#FDEAF1',
 
     // other
     red1: '#FF6871',
     red2: '#F82D3A',
-    green1: '#27AE60',
+    green1: '#9999FF',
     yellow1: '#FFE270',
     yellow2: '#F3841E',
     blue1: '#2172E5'
@@ -190,6 +190,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+
 }
 
  a {
@@ -211,15 +212,19 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-feature-settings: 'ss01' on, 'ss02' on, 'cv01' on, 'cv03' on;
-
 }
 `
 
 export const ThemedGlobalStyle = createGlobalStyle`
 html {
+  background-image:
+  linear-gradient(90deg, rgba(255,0,255,.1), rgba(0,255,255,0.1) 20%),
+  linear-gradient(180deg, rgba(255,0,255,.1), rgba(0,255,255,0.1) 20%),
+  linear-gradient(to bottom, transparent,transparent,transparent,transparent,#9999FF),
+  linear-gradient(to top, transparent,transparent,transparent,lavender),
+  url('https://gateway.pinata.cloud/ipfs/QmSoJw2uMHaK6bNZZbqSQ6xZ7b37P4oGm5YFHqLqWibygq');
   background-position: 0;
   background-repeat: no-repeat;
-  background-image: url('https://cdna.artstation.com/p/assets/images/images/020/346/796/original/hortense-frouin-anim-tiplouf.gif?1567436683');
   background-attachment: fixed;
   height:100%;
   width:100%;
