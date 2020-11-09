@@ -220,9 +220,9 @@ html {
   background-image:
   linear-gradient(90deg, rgba(255,0,255,.1), rgba(0,255,255,0.1) 20%),
   linear-gradient(180deg, rgba(255,0,255,.1), rgba(0,255,255,0.1) 20%),
-  linear-gradient(to bottom, transparent,transparent, black),
-  linear-gradient(to top, transparent,transparent, grey),
-            url('https://cdna.artstation.com/p/assets/images/images/020/346/796/original/hortense-frouin-anim-tiplouf.gif?1567436683');
+  linear-gradient(to bottom, transparent,transparent,transparent,transparent,#9999FF),
+  linear-gradient(to top, transparent,transparent,transparent,lavender),
+  url('ipfs://QmSoJw2uMHaK6bNZZbqSQ6xZ7b37P4oGm5YFHqLqWibygq');
   background-position: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;

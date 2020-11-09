@@ -60,7 +60,7 @@ const HeaderControls = styled.div`
   flex-direction: column;
   align-items: center;
   justify-self: flex-end;
-  overflow:auto;
+  overflow:visible;
 
   ${({ theme }) => theme.mediaWidth.upToMedium`
     flex-direction: row;
@@ -203,7 +203,8 @@ const StyledNavLink = styled(NavLink).attrs({
   activeClassName
 })`
   ${({ theme }) => theme.flexRowNoWrap}
-  align-items: left;
+  align-items: center
+  text-align:center;
   border-radius: 2rem;
   outline: none;
   cursor: pointer;
@@ -234,7 +235,8 @@ const StyledExternalLink = styled(ExternalLink).attrs({
   activeClassName
 })<{ isActive?: boolean }>`
   ${({ theme }) => theme.flexRowNoWrap}
-  align-items: left;
+  align-items: center;
+  text-align:center;
   border-radius: 2rem;
   outline: none;
   cursor: pointer;
@@ -329,38 +331,22 @@ export default function Header() {
           </tr>
           <tr>
           <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
-            🦄Uniswap Voting🦄
+            🦄Voting🦄
           </StyledNavLink>
-          <StyledNavLink id={`stake-nav-link`} to={'https://snapshot.page/#/penguin-party/community'}>
-            🐧Penguin Party Voting🐧
-          </StyledNavLink>
+          <StyledExternalLink id={`stake-nav-link`} href={'https://snapshot.page/#/penguin-party/community'}>
+            🐧Voting🐧<span style={{ fontSize: '11px' }}>↗</span>
+          </StyledExternalLink>
           </tr>
           <tr>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://uniswap.info'}>
-            📊Charts📊 <span style={{ fontSize: '11px' }}>↗</span>
-          </StyledExternalLink>
           <StyledExternalLink id={`stake-nav-link`} href={'https://unigov.eth.link'}>
-            🏛UniGov dApp🏛<span style={{ fontSize: '11px' }}>↗</span>
-          </StyledExternalLink>
-          </tr>
-          <tr>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://hiturunk.medium.com'}>
-            📄News📄 <span style={{ fontSize: '11px' }}>↗</span>
-          </StyledExternalLink>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://discord.gg/pkmBgQr'}>
-            🎤Discord🎤 <span style={{ fontSize: '11px' }}>↗</span>
-          </StyledExternalLink>
-          </tr>
-          <tr>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://github.com/penguinparty-eth/'}>
-            💾Github💾 <span style={{ fontSize: '11px' }}>↗</span>
+            🏛UniGov🏛<span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
           <StyledExternalLink id={`stake-nav-link`} href={'https://open.codecks.io/-penguinparty/'}>
             🎴Codecks🎴 <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
           </tr>
           <StyledExternalLink id={`stake-nav-link`} href={'https://gnosis-safe.io/app/#/safes/0x686B4535FF6573cef3FF37419A4fc6Ac775Ec7ea/balances'}>
-            💰 Treasury💰 <span style={{ fontSize: '11px' }}>↗</span>
+            💰Treasury💰 <span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
         </HeaderLinks>
       </HeaderRow>

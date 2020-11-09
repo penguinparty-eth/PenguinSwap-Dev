@@ -1,5 +1,5 @@
 // the Uniswap Default token list lives here
-export const DEFAULT_TOKEN_LIST_URL = 'https://ipfs.io/ipfs/QmdJdmLEwEhQwvbJFbHr2H8L44j7RTRnMdrZ2x6uDuB6we'
+export const DEFAULT_TOKEN_LIST_URL = 'tokenlist.penguinparty.eth'
 
 export const DEFAULT_LIST_OF_LISTS: string[] = [
   DEFAULT_TOKEN_LIST_URL,
