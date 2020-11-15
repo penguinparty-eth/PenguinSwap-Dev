@@ -333,7 +333,7 @@ export default function Header() {
           <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
             🦄Voting🦄
           </StyledNavLink>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://snapshot.page/#/penguin-party/community'}>
+          <StyledExternalLink id={`stake-nav-link`} href={'https://snapshot.page/#/penguin-party'}>
             🐧Voting🐧<span style={{ fontSize: '11px' }}>↗</span>
           </StyledExternalLink>
           </tr>
