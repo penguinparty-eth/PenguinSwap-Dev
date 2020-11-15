@@ -119,6 +119,7 @@
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@metamask/legacy-web3": "^1.0.2",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.3",
     "workbox-broadcast-update": "^5.1.3",

@@ -22,8 +22,10 @@ export const WBTC = new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C
 export const FISH = new Token(ChainId.MAINNET, '0x30bcd71b8d21fe830e493b30e90befba29de9114', 18, '🐟', 'Penguin Party Fish')
 export const CRAB = new Token(ChainId.MAINNET, '0x8669fA2B06829aa5FaBC47b5E5d0e66b85F1522E', 18, '🦀', 'Penguin Party Crab')
 export const SHRIMP = new Token(ChainId.MAINNET, '0x5a43589fe110bb355ba4a90a9c01476d87e68de8', 18, '🦐', 'Penguin Party Shrimp')
+export const TORI = new Token(ChainId.MAINNET, '0x26780078e07cc33f0323df626f42fa92971561d4', 18, '⛩️', 'Penguin Party Tori')
 export const UNITOKEN = new Token(ChainId.MAINNET, '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984', 18, 'UNI', 'Uniswap Token')
-export const SLP = new Token(ChainId.MAINNET, '0x37236cd05b34cc79d3715af2383e96dd7443dcf1', 18, 'SLP', 'Small Love Potion')
+export const AXS = new Token(ChainId.MAINNET, '0xf5d669627376ebd411e34b98f19c868c8aba5ada', 18, 'AXS', 'Axie Infinity Shard')
+export const BUIDL = new Token(ChainId.MAINNET, '0x7b123f53421b1bF8533339BFBdc7C98aA94163db', 18, 'BUIDL', 'DFOHub BUIDL')
 export const ADAI = new Token(ChainId.MAINNET, '0xfC1E690f61EFd961294b3e1Ce3313fBD8aa4f85d', 18, 'aDAI', 'Aave Interest bearing DAI')
 export const AETH = new Token(ChainId.MAINNET, '0x3a3A65aAb0dd2A17E3F1947bA16138cd37d08c04', 18, 'aETH', 'Aave Interest bearing ETH')
 export const LINK = new Token(ChainId.MAINNET, '0x514910771AF9Ca656af840dff83E8264EcF986CA', 18, 'LINK', 'ChainLink Token')
@@ -68,7 +70,7 @@ const WETH_ONLY: ChainTokenList = {
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,MKR,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR]
 }
 
 /**
@@ -84,13 +86,13 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,WBTC,USDC,FISH,UNITOKEN,CRAB,SHRIMP]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,WBTC,USDC,FISH,UNITOKEN,CRAB,SHRIMP,TORI,BUIDL,AXS]
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,MKR,WBTC,COMP,FISH,UNITOKEN,CRAB,SHRIMP,LINK]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR]
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
