@@ -32,8 +32,8 @@ const Tag = styled.div`
   background-color: ${({ theme }) => theme.bg3};
   color: ${({ theme }) => theme.text2};
   font-size: 14px;
-  border-radius: 4px;
-  padding: 0.25rem 0.3rem 0.25rem 0.3rem;
+  border-radius: 2px;
+  padding: 0.1rem 0.3rem 0.1rem 0.3rem;
   max-width: 6rem;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -112,14 +112,14 @@ function CurrencyRow({
       disabled={isSelected}
       selected={otherSelected}
     >
-      <CurrencyLogo currency={currency} size={'50px'} />
+      <CurrencyLogo currency={currency} size={'20px'} />
       <Column>
-        <Text title={currency.name} fontWeight={500}>
+        <Text title={currency.name} fontWeight={250}>
           {currency.name}
         </Text>
         <FadedSpan>
           {!isOnSelectedList && customAdded ? (
-            <TYPE.main fontWeight={500}>
+            <TYPE.main fontWeight={250}>
               Added by user
               <LinkStyledButton
                 onClick={event => {
@@ -132,7 +132,7 @@ function CurrencyRow({
             </TYPE.main>
           ) : null}
           {!isOnSelectedList && !customAdded ? (
-            <TYPE.main fontWeight={500}>
+            <TYPE.main fontWeight={250}>
               Found by address
               <LinkStyledButton
                 onClick={event => {
@@ -201,7 +201,7 @@ export default function CurrencyList({
       width="100%"
       itemData={itemData}
       itemCount={itemData.length}
-      itemSize={75}
+      itemSize={50}
       itemKey={itemKey}
     >
       {Row}
