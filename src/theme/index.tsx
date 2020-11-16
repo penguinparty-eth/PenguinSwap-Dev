@@ -222,7 +222,7 @@ html {
   linear-gradient(180deg, rgba(255,0,255,.1), rgba(0,255,255,0.1) 20%),
   linear-gradient(to bottom, transparent,transparent,transparent,transparent,#9999FF),
   linear-gradient(to top, transparent,transparent,transparent,lavender),
-  url('/images/penguini-snow.jpg');
+  url('/images/background.jpg');
   background-position: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
