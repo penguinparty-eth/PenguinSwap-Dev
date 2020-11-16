@@ -1,9 +1,9 @@
 {
-  "short_name": "Penguinswap",
-  "name": "Penguinswap",
+  "short_name": "Penguinswap v2",
+  "name": "Penguinswap v2",
   "start_url": "/",
   "display": "fullscreen",
-  "scope": "/",
+  "scope": ".",
   "icons": [
     {
       "src": "./images/192x192_App_Icon.png",
