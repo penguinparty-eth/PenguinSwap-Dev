@@ -315,10 +315,10 @@ export default function Header() {
           </UniIcon>
         </Title>
         <HeaderLinks>
+        <tr>
           <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
             🔄{t('swap')}🔄
           </StyledNavLink>
-          <tr>
           <StyledNavLink
             id={`pool-nav-link`}
             to={'/pool'}
@@ -341,20 +341,26 @@ export default function Header() {
             🦄Voting🦄
           </StyledNavLink>
           <StyledExternalLink id={`stake-nav-link`} href={'https://snapshot.page/#/penguin-party'}>
-            🐧Voting🐧<span style={{ fontSize: '11px' }}>↗</span>
+            🐧Voting🐧<span style={{ fontSize: '11px' }}></span>
+          </StyledExternalLink>
+          <StyledExternalLink id={`stake-nav-link`} href={'https://unigov.eth.link'}>
+            🏛UniGov🏛<span style={{ fontSize: '11px' }}></span>
           </StyledExternalLink>
           </tr>
           <tr>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://unigov.eth.link'}>
-            🏛UniGov🏛<span style={{ fontSize: '11px' }}>↗</span>
-          </StyledExternalLink>
           <StyledExternalLink id={`stake-nav-link`} href={'https://open.codecks.io/-penguinparty/'}>
-            🎴Codecks🎴 <span style={{ fontSize: '11px' }}>↗</span>
+            🎴Codecks🎴 <span style={{ fontSize: '11px' }}></span>
+          </StyledExternalLink>
+          <StyledExternalLink id={`stake-nav-link`} href={'https://gnosis-safe.io/app/#/safes/0x686B4535FF6573cef3FF37419A4fc6Ac775Ec7ea/balances'}>
+            💰Treasury💰 <span style={{ fontSize: '11px' }}></span>
+          </StyledExternalLink>
+          <StyledExternalLink id={`stake-nav-link`} href={'https://dapp.dfohub.com/'}>
+            👻Dfohub👻 <span style={{ fontSize: '11px' }}></span>
           </StyledExternalLink>
           </tr>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://gnosis-safe.io/app/#/safes/0x686B4535FF6573cef3FF37419A4fc6Ac775Ec7ea/balances'}>
-            💰Treasury💰 <span style={{ fontSize: '11px' }}>↗</span>
-          </StyledExternalLink>
+          <tr>
+
+          </tr>
         </HeaderLinks>
       </HeaderRow>
       <HeaderControls>
@@ -412,6 +418,9 @@ export default function Header() {
         <HeaderElementWrap>
           <Settings />
           <Menu />
+          <StyledExternalLink id={`stake-nav-link`} href={'https://swap.ethitem.com/#/swap'}>
+            🛸DFOHub-Itemswap🛸 <span style={{ fontSize: '11px' }}></span>
+          </StyledExternalLink>
         </HeaderElementWrap>
       </HeaderControls>
     </HeaderFrame>
