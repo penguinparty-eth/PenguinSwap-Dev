@@ -3,7 +3,7 @@
   "name": "Penguinswap",
   "start_url": "/",
   "display": "fullscreen",
-  "scope": "/",
+  "scope": ".",
   "icons": [
     {
       "src": "./images/192x192_App_Icon.png",
