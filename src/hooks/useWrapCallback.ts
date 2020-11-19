@@ -4,8 +4,9 @@ import { tryParseAmount } from '../state/swap/hooks'
 import { useTransactionAdder } from '../state/transactions/hooks'
 import { useCurrencyBalance } from '../state/wallet/hooks'
 import { useActiveWeb3React } from './index'
-import { useWETHContract, useWUNIContract } from './useContract'
+import { useWETHContract, useWUNIContract, useUniContract } from './useContract'
 import { SHRIMP, UNITOKEN} from '../constants/index'
+
 export enum WrapType {
   NOT_APPLICABLE,
   WRAP,
@@ -26,6 +27,7 @@ export default function useWrapCallback(
   const { chainId, account } = useActiveWeb3React()
   const wethContract = useWETHContract()
   const wuniContract = useWUNIContract()
+  const uniContract = useUniContract()
   const balance = useCurrencyBalance(account ?? undefined, inputCurrency)
   // we can always parse the amount typed as the input currency, since wrapping is 1:1
   const inputAmount = useMemo(() => tryParseAmount(typedValue, inputCurrency), [inputCurrency, typedValue])
@@ -69,14 +71,16 @@ export default function useWrapCallback(
         inputError: sufficientBalance ? undefined : 'Insufficient WETH balance'
       }
     }
-    else if (inputCurrency === UNITOKEN && currencyEquals(SHRIMP, outputCurrency)) {
+    else if (currencyEquals(inputCurrency,UNITOKEN) && currencyEquals(SHRIMP, outputCurrency)) {
       return {
         wrapType: WrapType.WRAP,
         execute:
           sufficientBalance && inputAmount
             ? async () => {
                 try {
-                  const txReceipt = await wuniContract.wrap({ value: `0x${inputAmount.raw.toString(16)}` })
+                  const txReceipt1 = await uniContract.approve(SHRIMP.address,`0x${inputAmount.raw.toString(16)}`)
+                  addTransaction(txReceipt1, { summary: `Approve ${inputAmount.toSignificant(6)} Uni to 🦐` })
+                  const txReceipt = await wuniContract.wrap(`0x${inputAmount.raw.toString(16)}`)
                   addTransaction(txReceipt, { summary: `Wrap ${inputAmount.toSignificant(6)} Uni to 🦐` })
                 } catch (error) {
                   console.error('Could not deposit', error)
@@ -85,7 +89,7 @@ export default function useWrapCallback(
             : undefined,
         inputError: sufficientBalance ? undefined : 'Insufficient UNI balance'
       }
-    } else if (currencyEquals(SHRIMP, inputCurrency) && outputCurrency === UNITOKEN) {
+    } else if (currencyEquals(SHRIMP, inputCurrency) && currencyEquals(outputCurrency,UNITOKEN)) {
       return {
         wrapType: WrapType.UNWRAP,
         execute:
@@ -99,7 +103,7 @@ export default function useWrapCallback(
                 }
               }
             : undefined,
-        inputError: sufficientBalance ? undefined : 'Insufficient WETH balance'
+        inputError: sufficientBalance ? undefined : 'Insufficient 🦐 balance'
       }
     }
 
