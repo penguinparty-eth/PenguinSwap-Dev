@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { TokenAmount } from '@uniswap/sdk'
 import React, { useEffect } from 'react'
 import { X } from 'react-feather'

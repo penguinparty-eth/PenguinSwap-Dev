@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { UNI } from './../../constants/index'
 import { TokenAmount } from '@uniswap/sdk'
 import { isAddress } from 'ethers/lib/utils'

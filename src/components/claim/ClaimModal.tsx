@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { JSBI, TokenAmount } from '@uniswap/sdk'
 import { isAddress } from 'ethers/lib/utils'
 import React, { useEffect, useState } from 'react'
