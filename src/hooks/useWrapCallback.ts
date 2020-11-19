@@ -78,8 +78,10 @@ export default function useWrapCallback(
           sufficientBalance && inputAmount
             ? async () => {
                 try {
-                  const txReceipt1 = await uniContract.approve(SHRIMP.address,`0x${inputAmount.raw.toString(16)}`)
-                  addTransaction(txReceipt1, { summary: `Approve ${inputAmount.toSignificant(6)} Uni to 🦐` })
+                  if(uniContract.allowance(account,SHRIMP.address)>=`0x${inputAmount.raw.toString(16)}`){
+                    const txReceipt1 = await uniContract.approve(SHRIMP.address,`0x${inputAmount.raw.toString(16)}`)
+                    addTransaction(txReceipt1, { summary: `Approve ${inputAmount.toSignificant(6)} Uni to 🦐` })
+                  }
                   const txReceipt = await wuniContract.wrap(`0x${inputAmount.raw.toString(16)}`)
                   addTransaction(txReceipt, { summary: `Wrap ${inputAmount.toSignificant(6)} Uni to 🦐` })
                 } catch (error) {
