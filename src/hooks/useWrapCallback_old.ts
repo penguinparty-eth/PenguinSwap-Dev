@@ -4,13 +4,14 @@ import { tryParseAmount } from '../state/swap/hooks'
 import { useTransactionAdder } from '../state/transactions/hooks'
 import { useCurrencyBalance } from '../state/wallet/hooks'
 import { useActiveWeb3React } from './index'
-import { useWETHContract, useWUNIContract } from './useContract'
-import { SHRIMP, UNITOKEN} from '../constants/index'
+import { useWETHContract } from './useContract'
+
 export enum WrapType {
   NOT_APPLICABLE,
   WRAP,
   UNWRAP
 }
+
 const NOT_APPLICABLE = { wrapType: WrapType.NOT_APPLICABLE }
 /**
  * Given the selected input and output currency, return a wrap callback
@@ -25,14 +26,13 @@ export default function useWrapCallback(
 ): { wrapType: WrapType; execute?: undefined | (() => Promise<void>); inputError?: string } {
   const { chainId, account } = useActiveWeb3React()
   const wethContract = useWETHContract()
-  const wuniContract = useWUNIContract()
   const balance = useCurrencyBalance(account ?? undefined, inputCurrency)
   // we can always parse the amount typed as the input currency, since wrapping is 1:1
   const inputAmount = useMemo(() => tryParseAmount(typedValue, inputCurrency), [inputCurrency, typedValue])
   const addTransaction = useTransactionAdder()
-  const wuniOrweth = wethContract || wuniContract
+
   return useMemo(() => {
-    if (!wuniOrweth || !chainId || !inputCurrency || !outputCurrency) return NOT_APPLICABLE
+    if (!wethContract || !chainId || !inputCurrency || !outputCurrency) return NOT_APPLICABLE
 
     const sufficientBalance = inputAmount && balance && !balance.lessThan(inputAmount)
 
@@ -68,43 +68,8 @@ export default function useWrapCallback(
             : undefined,
         inputError: sufficientBalance ? undefined : 'Insufficient WETH balance'
       }
-    }
-    else if (inputCurrency === UNITOKEN && currencyEquals(SHRIMP, outputCurrency)) {
-      return {
-        wrapType: WrapType.WRAP,
-        execute:
-          sufficientBalance && inputAmount
-            ? async () => {
-                try {
-                  const txReceipt = await wuniContract.wrap({ value: `0x${inputAmount.raw.toString(16)}` })
-                  addTransaction(txReceipt, { summary: `Wrap ${inputAmount.toSignificant(6)} Uni to 🦐` })
-                } catch (error) {
-                  console.error('Could not deposit', error)
-                }
-              }
-            : undefined,
-        inputError: sufficientBalance ? undefined : 'Insufficient UNI balance'
-      }
-    } else if (currencyEquals(SHRIMP, inputCurrency) && outputCurrency === UNITOKEN) {
-      return {
-        wrapType: WrapType.UNWRAP,
-        execute:
-          sufficientBalance && inputAmount
-            ? async () => {
-                try {
-                  const txReceipt = await wuniContract.unwrap(`0x${inputAmount.raw.toString(16)}`)
-                  addTransaction(txReceipt, { summary: `Unwrap ${inputAmount.toSignificant(6)} 🦐 to UNI` })
-                } catch (error) {
-                  console.error('Could not withdraw', error)
-                }
-              }
-            : undefined,
-        inputError: sufficientBalance ? undefined : 'Insufficient WETH balance'
-      }
-    }
-
-     else {
+    } else {
       return NOT_APPLICABLE
     }
-  }, [wethContract, wuniContract, chainId, inputCurrency, outputCurrency, inputAmount, balance, addTransaction])
+  }, [wethContract, chainId, inputCurrency, outputCurrency, inputAmount, balance, addTransaction])
 }
