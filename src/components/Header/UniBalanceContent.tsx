@@ -3,7 +3,7 @@ import React from 'react'
 import { X } from 'react-feather'
 import styled from 'styled-components'
 import tokenLogo from '../../assets/images/token-logo.png'
-import { FISH } from '../../constants'
+import { FISH,SHRIMP } from '../../constants'
 import { useTotalSupply } from '../../data/TotalSupply'
 import { useActiveWeb3React } from '../../hooks'
 import { useTotalUniEarned } from '../../state/stake/hooks'
@@ -40,7 +40,8 @@ const StyledClose = styled(X)`
 export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowUniBalanceModal: any }) {
   const { account, chainId } = useActiveWeb3React()
   const uni = chainId ? FISH : undefined
-
+  const shrimp = chainId ? SHRIMP : undefined
+  const totalSupplyShrimp: TokenAmount | undefined = useTotalSupply(shrimp)
   const total = useAggregateUniBalance()
   const uniBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, uni)
   const uniToClaim: TokenAmount | undefined = useTotalUniEarned()
@@ -100,8 +101,15 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
               <TYPE.white color="white">Total Supply</TYPE.white>
               <TYPE.white color="white">{totalSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
             </RowBetween>
+            <RowBetween>
+              <TYPE.white color="white">Uniswap POWER</TYPE.white>
+              <TYPE.white color="white">🦐{totalSupplyShrimp?.toFixed(0, { groupSeparator: ',' })}🦐</TYPE.white>
+            </RowBetween>
             {uni && uni.chainId === ChainId.MAINNET ? (
               <ExternalLink href={`https://uniswap.info/token/${uni.address}`}>View 🐟 Analytics</ExternalLink>
+            ) : null}
+            {shrimp && shrimp.chainId === ChainId.MAINNET ? (
+              <ExternalLink href={`https://uniswap.info/token/${shrimp.address}`}>View 🦐 Analytics</ExternalLink>
             ) : null}
           </AutoColumn>
         </CardSection>
