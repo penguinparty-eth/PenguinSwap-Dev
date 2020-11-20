@@ -3,11 +3,11 @@ import React from 'react'
 import { X } from 'react-feather'
 import styled from 'styled-components'
 import tokenLogo from '../../assets/images/token-logo.png'
-import { FISH,SHRIMP } from '../../constants'
+import { FISH, SHRIMP, TORI, CRAB } from '../../constants'
 import { useTotalSupply } from '../../data/TotalSupply'
 import { useActiveWeb3React } from '../../hooks'
 import { useTotalUniEarned } from '../../state/stake/hooks'
-import { useAggregateUniBalance, useTokenBalance } from '../../state/wallet/hooks'
+import { useTokenBalance } from '../../state/wallet/hooks'
 import { ExternalLink, StyledInternalLink, TYPE, UniTokenAnimated } from '../../theme'
 import useUSDCPrice from '../../utils/useUSDCPrice'
 import { AutoColumn } from '../Column'
@@ -41,13 +41,20 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
   const { account, chainId } = useActiveWeb3React()
   const uni = chainId ? FISH : undefined
   const shrimp = chainId ? SHRIMP : undefined
+  const crab = chainId ? CRAB : undefined
+  const tori = chainId ? TORI : undefined
   const totalSupplyShrimp: TokenAmount | undefined = useTotalSupply(shrimp)
-  const total = useAggregateUniBalance()
+  const totalSupplyCrab: TokenAmount | undefined = useTotalSupply(crab)
+  const totalSupplyTori: TokenAmount | undefined = useTotalSupply(tori)
+  const total = useTokenBalance()
   const uniBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, uni)
   const uniToClaim: TokenAmount | undefined = useTotalUniEarned()
 
   const totalSupply: TokenAmount | undefined = useTotalSupply(uni)
   const uniPrice = useUSDCPrice(uni)
+  const shrimpPrice = useUSDCPrice(shrimp)
+  const crabPrice = useUSDCPrice(crab)
+  const toriPrice = useUSDCPrice(tori)
 
   return (
     <ContentWrapper gap="lg">
@@ -76,7 +83,7 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
                   <TYPE.white color="white">{uniBalance?.toFixed(2, { groupSeparator: ',' })}</TYPE.white>
                 </RowBetween>
                 <RowBetween>
-                  <TYPE.white color="white">Unclaimed:</TYPE.white>
+                  <TYPE.white color="white">Unclaimed UNI:</TYPE.white>
                   <TYPE.white color="white">
                     {uniToClaim?.toFixed(4, { groupSeparator: ',' })}{' '}
                     {uniToClaim && uniToClaim.greaterThan('0') && (
@@ -103,13 +110,27 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
             </RowBetween>
             <RowBetween>
               <TYPE.white color="white">Uniswap POWER</TYPE.white>
-              <TYPE.white color="white">🦐{totalSupplyShrimp?.toFixed(0, { groupSeparator: ',' })}🦐</TYPE.white>
+              <TYPE.white color="white">🦐{totalSupplyShrimp?.toFixed(0, { groupSeparator: ',' })}🦐 - ${shrimpPrice?.toFixed(2) ?? '-'} / 🦐</TYPE.white>
+            </RowBetween>
+            <RowBetween>
+              <TYPE.white color="white">Compound.Finance POWER</TYPE.white>
+              <TYPE.white color="white">🦀{totalSupplyCrab?.toFixed(0, { groupSeparator: ',' })}🦀 - ${crabPrice?.toFixed(2) ?? '-'} / 🦀</TYPE.white>
+            </RowBetween>
+            <RowBetween>
+              <TYPE.white color="white">ADAI POWER</TYPE.white>
+              <TYPE.white color="white">⛩{totalSupplyTori?.toFixed(0, { groupSeparator: ',' })}⛩ - ${toriPrice?.toFixed(2) ?? '-'} / ⛩</TYPE.white>
             </RowBetween>
             {uni && uni.chainId === ChainId.MAINNET ? (
               <ExternalLink href={`https://uniswap.info/token/${uni.address}`}>View 🐟 Analytics</ExternalLink>
             ) : null}
             {shrimp && shrimp.chainId === ChainId.MAINNET ? (
               <ExternalLink href={`https://uniswap.info/token/${shrimp.address}`}>View 🦐 Analytics</ExternalLink>
+            ) : null}
+            {crab && crab.chainId === ChainId.MAINNET ? (
+              <ExternalLink href={`https://uniswap.info/token/${crab.address}`}>View 🦀 Analytics</ExternalLink>
+            ) : null}
+            {tori && tori.chainId === ChainId.MAINNET ? (
+              <ExternalLink href={`https://uniswap.info/token/${tori.address}`}>View ⛩ Analytics</ExternalLink>
             ) : null}
           </AutoColumn>
         </CardSection>

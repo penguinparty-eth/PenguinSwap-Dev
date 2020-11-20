@@ -4,8 +4,9 @@ import { tryParseAmount } from '../state/swap/hooks'
 import { useTransactionAdder } from '../state/transactions/hooks'
 import { useCurrencyBalance } from '../state/wallet/hooks'
 import { useActiveWeb3React } from './index'
-import { useWETHContract, useWUNIContract, useUniContract } from './useContract'
-import { SHRIMP, UNITOKEN} from '../constants/index'
+import { useWETHContract, useWUNIContract, useUniContract, useWCOMPContract, useCOMPContract, useTORIContract, useADAIContract } from './useContract'
+import { SHRIMP, UNITOKEN, CRAB, COMP, TORI, ADAI} from '../constants/index'
+const BN = require('bn.js')
 
 export enum WrapType {
   NOT_APPLICABLE,
@@ -28,13 +29,17 @@ export default function useWrapCallback(
   const wethContract = useWETHContract()
   const wuniContract = useWUNIContract()
   const uniContract = useUniContract()
+  const crabContract = useWCOMPContract()
+  const compContract = useCOMPContract()
+  const toriContract = useTORIContract()
+  const adaiContract = useADAIContract()
   const balance = useCurrencyBalance(account ?? undefined, inputCurrency)
   // we can always parse the amount typed as the input currency, since wrapping is 1:1
   const inputAmount = useMemo(() => tryParseAmount(typedValue, inputCurrency), [inputCurrency, typedValue])
   const addTransaction = useTransactionAdder()
-  const wuniOrweth = wethContract || wuniContract
+  const ourTokens = wethContract || wuniContract || crabContract
   return useMemo(() => {
-    if (!wuniOrweth || !chainId || !inputCurrency || !outputCurrency) return NOT_APPLICABLE
+    if (!ourTokens || !chainId || !inputCurrency || !outputCurrency) return NOT_APPLICABLE
 
     const sufficientBalance = inputAmount && balance && !balance.lessThan(inputAmount)
 
@@ -78,7 +83,7 @@ export default function useWrapCallback(
           sufficientBalance && inputAmount
             ? async () => {
                 try {
-                  if(uniContract.allowance(account,SHRIMP.address)<=`0x${inputAmount.raw.toString(16)}`){
+                  if((await uniContract.allowance(account,SHRIMP.address)).lte(new BN(inputAmount.raw.toString(16), 16))){
                     const txReceipt1 = await uniContract.approve(SHRIMP.address,`0x${inputAmount.raw.toString(16)}`)
                     addTransaction(txReceipt1, { summary: `Approve ${inputAmount.toSignificant(6)} Uni to 🦐` })
                   }
@@ -108,7 +113,80 @@ export default function useWrapCallback(
         inputError: sufficientBalance ? undefined : 'Insufficient 🦐 balance'
       }
     }
-
+    else if (currencyEquals(inputCurrency,COMP) && currencyEquals(CRAB, outputCurrency)) {
+      return {
+        wrapType: WrapType.WRAP,
+        execute:
+          sufficientBalance && inputAmount
+            ? async () => {
+                try {
+                  if((await uniContract.allowance(account,CRAB.address)).lte(new BN(inputAmount.raw.toString(16), 16))){
+                    const txReceipt1 = await compContract.approve(CRAB.address,`0x${inputAmount.raw.toString(16)}`)
+                    addTransaction(txReceipt1, { summary: `Approve ${inputAmount.toSignificant(6)} COMP to 🦀` })
+                  }
+                  const txReceipt = await crabContract.wrap(`0x${inputAmount.raw.toString(16)}`)
+                  addTransaction(txReceipt, { summary: `Wrap ${inputAmount.toSignificant(6)} COMP to 🦀` })
+                } catch (error) {
+                  console.error('Could not deposit', error)
+                }
+              }
+            : undefined,
+        inputError: sufficientBalance ? undefined : 'Insufficient COMP balance'
+      }
+    } else if (currencyEquals(SHRIMP, inputCurrency) && currencyEquals(outputCurrency,UNITOKEN)) {
+      return {
+        wrapType: WrapType.UNWRAP,
+        execute:
+          sufficientBalance && inputAmount
+            ? async () => {
+                try {
+                  const txReceipt = await crabContract.unwrap(`0x${inputAmount.raw.toString(16)}`)
+                  addTransaction(txReceipt, { summary: `Unwrap ${inputAmount.toSignificant(6)} 🦀 to COMP` })
+                } catch (error) {
+                  console.error('Could not withdraw', error)
+                }
+              }
+            : undefined,
+        inputError: sufficientBalance ? undefined : 'Insufficient 🦀 balance'
+      }
+    }
+    else if (currencyEquals(inputCurrency,ADAI) && currencyEquals(TORI, outputCurrency)) {
+      return {
+        wrapType: WrapType.WRAP,
+        execute:
+          sufficientBalance && inputAmount
+            ? async () => {
+                try {
+                  if((await adaiContract.allowance(account,TORI.address)).lte(new BN(inputAmount.raw.toString(16), 16))){
+                    const txReceipt1 = await adaiContract.approve(TORI.address,`0x${inputAmount.raw.toString(16)}`)
+                    addTransaction(txReceipt1, { summary: `Approve ${inputAmount.toSignificant(6)} ADAI to ⛩` })
+                  }
+                  const txReceipt = await toriContract.wrap(`0x${inputAmount.raw.toString(16)}`)
+                  addTransaction(txReceipt, { summary: `Wrap ${inputAmount.toSignificant(6)} ADAI to ⛩` })
+                } catch (error) {
+                  console.error('Could not deposit', error)
+                }
+              }
+            : undefined,
+        inputError: sufficientBalance ? undefined : 'Insufficient ADAI balance'
+      }
+    } else if (currencyEquals(TORI, inputCurrency) && currencyEquals(outputCurrency,ADAI)) {
+      return {
+        wrapType: WrapType.UNWRAP,
+        execute:
+          sufficientBalance && inputAmount
+            ? async () => {
+                try {
+                  const txReceipt = await toriContract.unwrap(`0x${inputAmount.raw.toString(16)}`)
+                  addTransaction(txReceipt, { summary: `Unwrap ${inputAmount.toSignificant(6)} ⛩ to ADAI` })
+                } catch (error) {
+                  console.error('Could not withdraw', error)
+                }
+              }
+            : undefined,
+        inputError: sufficientBalance ? undefined : 'Insufficient ⛩ balance'
+      }
+    }
      else {
       return NOT_APPLICABLE
     }
