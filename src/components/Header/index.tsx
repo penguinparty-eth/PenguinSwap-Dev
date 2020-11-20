@@ -112,7 +112,7 @@ const HeaderRow = styled(RowFixed)`
 const HeaderLinks = styled(Row)`
   justify-content: center;
   ${({ theme }) => theme.mediaWidth.upToSmall`
-    padding: 1rem 0 1rem 1rem;
+    padding: 1rem 1rem 1rem 1rem;
     justify-content: flex-end;
 `};
 `
@@ -212,16 +212,20 @@ const StyledNavLink = styled(NavLink).attrs({
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: center
   text-align:center;
+  border-style: solid;
+  border-color: white;
   border-radius: 2rem;
+  border-width:1px;
   outline: none;
   cursor: pointer;
   text-decoration: none;
   color: ${({ theme }) => theme.text2};
   font-size: 0.9rem;
   width: fit-content;
-  margin: 1rem 1rem 1rem 1rem;
+  margin: 0.75rem 0.75rem 0.75rem 0.75rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   font-weight: 750;
-  background-color:white;
+  background-color:rgba(255, 255, 255, 0.3);
 
   &.${activeClassName} {
     border-radius: 12px;
@@ -244,16 +248,20 @@ const StyledExternalLink = styled(ExternalLink).attrs({
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: center;
   text-align:center;
+  border-style: solid;
+  border-color: white;
   border-radius: 2rem;
+  border-width: 1px;
   outline: none;
   cursor: pointer;
   text-decoration: none;
   color: ${({ theme }) => theme.text2};
   font-size: 0.9rem;
   width: fit-content;
-  margin: 1rem 1rem 1rem 1rem;
+  margin: 0.75em 0.75rem 0.75rem 0.75rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   font-weight: 750;
-  background-color:white;
+  background-color:rgba(255, 255, 255, 0.3);
 
   &.${activeClassName} {
     border-radius: 12px;
@@ -315,10 +323,10 @@ export default function Header() {
           </UniIcon>
         </Title>
         <HeaderLinks>
+        <tr>
           <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
-            🔄{t('swap')}🔄
+            🔄 {t('swap')} 🔄
           </StyledNavLink>
-          <tr>
           <StyledNavLink
             id={`pool-nav-link`}
             to={'/pool'}
@@ -330,34 +338,43 @@ export default function Header() {
               pathname.startsWith('/find')
             }
           >
-            🌊{t('pool')}🌊
+            🌊 {t('pool')} 🌊
           </StyledNavLink>
           <StyledNavLink id={`stake-nav-link`} to={'/uni'}>
-            ⛏Staking⛏
+            ⛏ Staking ⛏
           </StyledNavLink>
           </tr>
           <tr>
           <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
-            🦄Voting🦄
+            🦄 Voting 🦄
           </StyledNavLink>
           <StyledExternalLink id={`stake-nav-link`} href={'https://snapshot.page/#/penguin-party'}>
-            🐧Voting🐧<span style={{ fontSize: '11px' }}>↗</span>
+            🐧 Voting 🐧<span style={{ fontSize: '11px' }}></span>
+          </StyledExternalLink>
+          <StyledExternalLink id={`stake-nav-link`} href={'https://unigov.eth.link'}>
+            🏛 UniGov 🏛<span style={{ fontSize: '11px' }}></span>
           </StyledExternalLink>
           </tr>
           <tr>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://unigov.eth.link'}>
-            🏛UniGov🏛<span style={{ fontSize: '11px' }}>↗</span>
-          </StyledExternalLink>
           <StyledExternalLink id={`stake-nav-link`} href={'https://open.codecks.io/-penguinparty/'}>
-            🎴Codecks🎴 <span style={{ fontSize: '11px' }}>↗</span>
+            🎴 Codecks 🎴 <span style={{ fontSize: '11px' }}></span>
+          </StyledExternalLink>
+          <StyledExternalLink id={`stake-nav-link`} href={'https://gnosis-safe.io/app/#/safes/0x686B4535FF6573cef3FF37419A4fc6Ac775Ec7ea/balances'}>
+            💰 Treasury 💰 <span style={{ fontSize: '11px' }}></span>
+          </StyledExternalLink>
+          <StyledExternalLink id={`stake-nav-link`} href={'https://dapp.dfohub.com/'}>
+            👻 Dfohub 👻 <span style={{ fontSize: '11px' }}></span>
           </StyledExternalLink>
           </tr>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://gnosis-safe.io/app/#/safes/0x686B4535FF6573cef3FF37419A4fc6Ac775Ec7ea/balances'}>
-            💰Treasury💰 <span style={{ fontSize: '11px' }}>↗</span>
-          </StyledExternalLink>
+          <tr>
+
+          </tr>
         </HeaderLinks>
       </HeaderRow>
       <HeaderControls>
+      <StyledExternalLink id={`stake-nav-link`} href={'https://swap.ethitem.com/#/swap'}>
+        🛸DFOHub-Itemswap🛸 <span style={{ fontSize: '11px' }}></span>
+      </StyledExternalLink>
         <HeaderElement>
           <HideSmall>
             {chainId && NETWORK_LABELS[chainId] && (
@@ -368,7 +385,7 @@ export default function Header() {
             <UNIWrapper onClick={toggleClaimModal}>
               <UNIAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
                 <TYPE.white padding="0 2px">
-                  {claimTxn && !claimTxn?.receipt ? <Dots>Claiming 🐟</Dots> : 'Claim 🐟'}
+                  {claimTxn && !claimTxn?.receipt ? <Dots>Claiming UNI</Dots> : 'Claim UNI'}
                 </TYPE.white>
               </UNIAmount>
               <CardNoise />

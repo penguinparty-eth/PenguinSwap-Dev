@@ -222,7 +222,7 @@ html {
   linear-gradient(180deg, rgba(255,0,255,.1), rgba(0,255,255,0.1) 20%),
   linear-gradient(to bottom, transparent,transparent,transparent,transparent,#9999FF),
   linear-gradient(to top, transparent,transparent,transparent,lavender),
-  url('/images/background.jpg');
+  url('https://ipfs.io/ipfs/QmSoJw2uMHaK6bNZZbqSQ6xZ7b37P4oGm5YFHqLqWibygq');
   background-position: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
