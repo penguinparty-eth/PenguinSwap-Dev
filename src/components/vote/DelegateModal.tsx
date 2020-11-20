@@ -98,7 +98,7 @@ export default function DelegateModal({ isOpen, onDismiss, title }: VoteModalPro
             </RowBetween>
             <TYPE.body>Earned UNI tokens represent voting shares in Uniswap governance.</TYPE.body>
             <TYPE.body>
-              You can either vote on each proposal yourself or delegate your votes to a third party.
+              You can either vote on each proposal yourself or delegate your votes to a third party such as PenguinParty.eth .
             </TYPE.body>
             {usingDelegate && <AddressInputPanel value={typed} onChange={handleRecipientType} />}
             <ButtonPrimary disabled={!isAddress(parsedAddress ?? '')} onClick={onDelegate}>
