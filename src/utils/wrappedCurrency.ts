@@ -8,9 +8,6 @@ export function wrappedCurrency(currency: Currency | undefined, chainId: ChainId
   if(chainId && currency === ETHER) {
   return WETH[chainId]
 }
-  if(chainId && currency === UNITOKEN){
-  return SHRIMP
-}
 else {
   if(currency instanceof Token) {
     return currency;
@@ -30,7 +27,6 @@ export function wrappedCurrencyAmount(
 
 export function unwrappedToken(token: Token): Currency {
   if (token.equals(WETH[token.chainId])) return ETHER
-  if (token.equals(SHRIMP)) return UNITOKEN
   return token
 }
 export function unwrappedUniToken(token: Token): Currency {
