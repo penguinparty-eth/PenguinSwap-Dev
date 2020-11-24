@@ -1,4 +1,4 @@
-import { FISH } from './../../constants/index'
+import { FISH, UNITOKEN, SOCKS } from './../../constants/index'
 import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount } from '@uniswap/sdk'
 import { useMemo } from 'react'
 import ERC20_INTERFACE from '../../constants/abis/erc20'
@@ -138,7 +138,45 @@ export function useAllTokenBalances(): { [tokenAddress: string]: TokenAmount | u
 export function useAggregateUniBalance(): TokenAmount | undefined {
   const { account, chainId } = useActiveWeb3React()
 
+  const uni = chainId ? UNITOKEN : undefined
+
+  const uniBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, uni)
+  const uniUnclaimed: TokenAmount | undefined = useUserUnclaimedAmount(account)
+  const uniUnHarvested: TokenAmount | undefined = useTotalUniEarned()
+
+  if (!uni) return undefined
+
+  return new TokenAmount(
+    uni,
+    JSBI.add(
+      JSBI.add(uniBalance?.raw ?? JSBI.BigInt(0), uniUnclaimed?.raw ?? JSBI.BigInt(0)),
+      uniUnHarvested?.raw ?? JSBI.BigInt(0)
+    )
+  )
+}
+export function useAggregateFishBalance(): TokenAmount | undefined {
+  const { account, chainId } = useActiveWeb3React()
+
   const uni = chainId ? FISH : undefined
+
+  const uniBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, uni)
+  const uniUnclaimed: TokenAmount | undefined = useUserUnclaimedAmount(account)
+  const uniUnHarvested: TokenAmount | undefined = useTotalUniEarned()
+
+  if (!uni) return undefined
+
+  return new TokenAmount(
+    uni,
+    JSBI.add(
+      JSBI.add(uniBalance?.raw ?? JSBI.BigInt(0), uniUnclaimed?.raw ?? JSBI.BigInt(0)),
+      uniUnHarvested?.raw ?? JSBI.BigInt(0)
+    )
+  )
+}
+export function useAggregateSocksBalance(): TokenAmount | undefined {
+  const { account, chainId } = useActiveWeb3React()
+
+  const uni = chainId ? SOCKS : undefined
 
   const uniBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, uni)
   const uniUnclaimed: TokenAmount | undefined = useUserUnclaimedAmount(account)

@@ -18,7 +18,7 @@ import Logo from '../../assets/svg/logo.svg'
 import LogoDark from '../../assets/svg/logo_white.svg'
 import { useActiveWeb3React } from '../../hooks'
 import { useDarkModeManager } from '../../state/user/hooks'
-import { useETHBalances, useAggregateUniBalance } from '../../state/wallet/hooks'
+import { useETHBalances, useAggregateFishBalance, useAggregateSocksBalance } from '../../state/wallet/hooks'
 import { CardNoise } from '../earn/styled'
 import { CountUp } from 'use-count-up'
 import { TYPE, ExternalLink } from '../../theme'
@@ -36,6 +36,7 @@ import { useUserHasSubmittedClaim } from '../../state/transactions/hooks'
 import { Dots } from '../swap/styleds'
 import Modal from '../Modal'
 import UniBalanceContent from './UniBalanceContent'
+import SocksBalanceContent from './SocksBalanceContent'
 import usePrevious from '../../hooks/usePrevious'
 
 const HeaderFrame = styled.div`
@@ -302,19 +303,26 @@ export default function Header() {
 
   const { claimTxn } = useUserHasSubmittedClaim(account ?? undefined)
 
-  const aggregateBalance: TokenAmount | undefined = useAggregateUniBalance()
+  const aggregateFishBalance: TokenAmount | undefined = useAggregateFishBalance()
+  const aggregateSocksBalance: TokenAmount | undefined = useAggregateSocksBalance()
 
   const [showUniBalanceModal, setShowUniBalanceModal] = useState(false)
+  const [showSocksBalanceModal, setShowSocksBalanceModal] = useState(false)
   const showClaimPopup = useShowClaimPopup()
 
-  const countUpValue = aggregateBalance?.toFixed(0) ?? '0'
-  const countUpValuePrevious = usePrevious(countUpValue) ?? '0'
+  const countUpFishValue = aggregateFishBalance?.toFixed(0) ?? '0'
+  const countUpFishValuePrevious = usePrevious(countUpFishValue) ?? '0'
+  const countUpSocksValue = aggregateSocksBalance?.toFixed(0) ?? '0'
+  const countUpSocksValuePrevious = usePrevious(countUpSocksValue) ?? '0'
 
   return (
     <HeaderFrame>
       <ClaimModal />
       <Modal isOpen={showUniBalanceModal} onDismiss={() => setShowUniBalanceModal(false)}>
         <UniBalanceContent setShowUniBalanceModal={setShowUniBalanceModal} />
+      </Modal>
+      <Modal isOpen={showSocksBalanceModal} onDismiss={() => setShowSocksBalanceModal(false)}>
+        <SocksBalanceContent setShowSocksBalanceModal={setShowSocksBalanceModal} />
       </Modal>
       <HeaderRow>
         <Title href=".">
@@ -323,7 +331,6 @@ export default function Header() {
           </UniIcon>
         </Title>
         <HeaderLinks>
-        <tr>
           <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
             🔄 {t('swap')} 🔄
           </StyledNavLink>
@@ -343,38 +350,12 @@ export default function Header() {
           <StyledNavLink id={`stake-nav-link`} to={'/uni'}>
             ⛏ Staking ⛏
           </StyledNavLink>
-          </tr>
-          <tr>
           <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
             🦄 Voting 🦄
           </StyledNavLink>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://snapshot.page/#/penguin-party'}>
-            🐧 Voting 🐧<span style={{ fontSize: '11px' }}></span>
-          </StyledExternalLink>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://unigov.eth.link'}>
-            🏛 UniGov 🏛<span style={{ fontSize: '11px' }}></span>
-          </StyledExternalLink>
-          </tr>
-          <tr>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://open.codecks.io/-penguinparty/'}>
-            🎴 Codecks 🎴 <span style={{ fontSize: '11px' }}></span>
-          </StyledExternalLink>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://gnosis-safe.io/app/#/safes/0x686B4535FF6573cef3FF37419A4fc6Ac775Ec7ea/balances'}>
-            💰 Treasury 💰 <span style={{ fontSize: '11px' }}></span>
-          </StyledExternalLink>
-          <StyledExternalLink id={`stake-nav-link`} href={'https://dapp.dfohub.com/'}>
-            👻 Dfohub 👻 <span style={{ fontSize: '11px' }}></span>
-          </StyledExternalLink>
-          </tr>
-          <tr>
-
-          </tr>
         </HeaderLinks>
       </HeaderRow>
       <HeaderControls>
-      <StyledExternalLink id={`stake-nav-link`} href={'https://swap.ethitem.com/#/swap'}>
-        🛸DFOHub-Itemswap🛸 <span style={{ fontSize: '11px' }}></span>
-      </StyledExternalLink>
         <HeaderElement>
           <HideSmall>
             {chainId && NETWORK_LABELS[chainId] && (
@@ -391,7 +372,7 @@ export default function Header() {
               <CardNoise />
             </UNIWrapper>
           )}
-          {!availableClaim && aggregateBalance && (
+          {!availableClaim && aggregateFishBalance && (
             <UNIWrapper onClick={() => setShowUniBalanceModal(true)}>
               <UNIAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
                 {account && (
@@ -402,10 +383,10 @@ export default function Header() {
                       }}
                     >
                       <CountUp
-                        key={countUpValue}
+                        key={countUpFishValue}
                         isCounting
-                        start={parseFloat(countUpValuePrevious)}
-                        end={parseFloat(countUpValue)}
+                        start={parseFloat(countUpFishValuePrevious)}
+                        end={parseFloat(countUpFishValue)}
                         thousandsSeparator={','}
                         duration={1}
                       />
@@ -413,6 +394,32 @@ export default function Header() {
                   </HideSmall>
                 )}
                 🐟
+              </UNIAmount>
+              <CardNoise />
+            </UNIWrapper>
+          )}
+          {!availableClaim && aggregateSocksBalance && (
+            <UNIWrapper onClick={() => setShowSocksBalanceModal(true)}>
+              <UNIAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
+                {account && (
+                  <HideSmall>
+                    <TYPE.white
+                      style={{
+                        paddingRight: '.4rem'
+                      }}
+                    >
+                      <CountUp
+                        key={countUpSocksValue}
+                        isCounting
+                        start={parseFloat(countUpSocksValuePrevious)}
+                        end={parseFloat(countUpSocksValue)}
+                        thousandsSeparator={','}
+                        duration={1}
+                      />
+                    </TYPE.white>
+                  </HideSmall>
+                )}
+                🧦
               </UNIAmount>
               <CardNoise />
             </UNIWrapper>
@@ -427,8 +434,11 @@ export default function Header() {
           </AccountElement>
         </HeaderElement>
         <HeaderElementWrap>
-          <Settings />
           <Menu />
+          <Settings />
+          <StyledExternalLink id={`stake-nav-link`} href={'https://swap.ethitem.com/#/swap'}>
+            🛸Itemswap🛸 <span style={{ fontSize: '10px' }}></span>
+          </StyledExternalLink>
         </HeaderElementWrap>
       </HeaderControls>
     </HeaderFrame>
