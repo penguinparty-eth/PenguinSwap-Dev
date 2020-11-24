@@ -1,13 +1,11 @@
 import React, { useRef } from 'react'
 import { BookOpen, Code, Info, MessageCircle, PieChart } from 'react-feather'
 import styled from 'styled-components'
-import { useActiveWeb3React } from '../../hooks'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import { ApplicationModal } from '../../state/application/actions'
 import { useModalOpen, useToggleModal } from '../../state/application/hooks'
 
 import { ExternalLink } from '../../theme'
-import { ButtonPrimary } from '../Button'
 
 
 
@@ -58,7 +56,7 @@ const MenuFlyout = styled.span`
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
-  font-size: 1rem;
+  font-size: 0.75rem;
   position: absolute;
   top: 4rem;
   right: 0rem;
@@ -71,12 +69,13 @@ const MenuFlyout = styled.span`
 
 const MenuItem = styled(ExternalLink)`
   flex: 1;
-  padding: 0.5rem 0.5rem;
+  padding: 0.25rem 0.25rem;
   color: ${({ theme }) => theme.text2};
   :hover {
     color: ${({ theme }) => theme.text1};
     cursor: pointer;
     text-decoration: none;
+    border: 1px solid gold;
   }
   > svg {
     margin-right: 8px;
@@ -86,13 +85,10 @@ const MenuItem = styled(ExternalLink)`
 const CODE_LINK = 'https://github.com/penguinparty-eth'
 
 export default function Menu() {
-  const { account } = useActiveWeb3React()
-
   const node = useRef<HTMLDivElement>()
   const open = useModalOpen(ApplicationModal.MENU)
   const toggle = useToggleModal(ApplicationModal.MENU)
   useOnClickOutside(node, open ? toggle : undefined)
-  const openClaimModal = useToggleModal(ApplicationModal.ADDRESS_CLAIM)
 
   return (
     // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451
@@ -138,11 +134,6 @@ export default function Menu() {
             <PieChart size={14} />
             Analytics
           </MenuItem>
-          {account && (
-            <ButtonPrimary onClick={openClaimModal} padding="8px 16px" width="100%" borderRadius="12px" mt="0.5rem">
-              Claim UNI
-            </ButtonPrimary>
-          )}
         </MenuFlyout>
       )}
     </StyledMenu>
