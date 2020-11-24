@@ -29,6 +29,9 @@ export const BUIDL = new Token(ChainId.MAINNET, '0x7b123f53421b1bF8533339BFBdc7C
 export const ADAI = new Token(ChainId.MAINNET, '0xfC1E690f61EFd961294b3e1Ce3313fBD8aa4f85d', 18, 'aDAI', 'Aave Interest bearing DAI')
 export const AETH = new Token(ChainId.MAINNET, '0x3a3A65aAb0dd2A17E3F1947bA16138cd37d08c04', 18, 'aETH', 'Aave Interest bearing ETH')
 export const LINK = new Token(ChainId.MAINNET, '0x514910771AF9Ca656af840dff83E8264EcF986CA', 18, 'LINK', 'ChainLink Token')
+export const SOCKS = new Token(ChainId.MAINNET, '0x23b608675a2b2fb1890d3abbd85c5775c51691d5', 18, '🧦', 'Uniswap SOCKS')
+export const DFOUSD = new Token(ChainId.MAINNET, '0x44086035439e676c02d411880fccb9837ce37c57', 18, 'uSD', 'DFOHub StableDollar')
+export const ZEROXBTC = new Token(ChainId.MAINNET, '0xb6ed7644c69416d67b522e20bc294a9a9b405b31', 18, '0xBTC', '0xBitcoin')
 
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 14
@@ -70,7 +73,7 @@ const WETH_ONLY: ChainTokenList = {
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR,SOCKS,DFOUSD,ZEROXBTC]
 }
 
 /**
@@ -86,13 +89,13 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,WBTC,USDC,FISH,UNITOKEN,CRAB,SHRIMP,TORI,BUIDL,AXS]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,WBTC,USDC,FISH,UNITOKEN,CRAB,SHRIMP,TORI,BUIDL,AXS,SOCKS]
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR,SOCKS,DFOUSD]
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {

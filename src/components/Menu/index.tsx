@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 import { BookOpen, Code, Info, MessageCircle, PieChart } from 'react-feather'
 import styled from 'styled-components'
-import { ReactComponent as MenuIcon } from '../../assets/images/menu.svg'
 import { useActiveWeb3React } from '../../hooks'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import { ApplicationModal } from '../../state/application/actions'
@@ -10,11 +9,7 @@ import { useModalOpen, useToggleModal } from '../../state/application/hooks'
 import { ExternalLink } from '../../theme'
 import { ButtonPrimary } from '../Button'
 
-const StyledMenuIcon = styled(MenuIcon)`
-  path {
-    stroke: ${({ theme }) => theme.text1};
-  }
-`
+
 
 const StyledMenuButton = styled.button`
   width: 100%;
@@ -24,8 +19,11 @@ const StyledMenuButton = styled.button`
   margin: 0;
   padding: 0;
   height: 35px;
-  background-color: ${({ theme }) => theme.bg3};
-
+  background-color:rgba(255, 255, 255, 0.3);
+  border-style: solid;
+  border-color: white;
+  border-radius: 2rem;
+  border-width:1px;
   padding: 0.15rem 0.5rem;
   border-radius: 0.5rem;
 
@@ -100,7 +98,7 @@ export default function Menu() {
     // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451
     <StyledMenu ref={node as any}>
       <StyledMenuButton onClick={toggle}>
-        <StyledMenuIcon />
+        🔥 Main Menu 🔥
       </StyledMenuButton>
 
       {open && (
@@ -120,6 +118,21 @@ export default function Menu() {
           <MenuItem id="link" href="https://discord.gg/pkmBgQr">
             <MessageCircle size={14} />
             Discord
+          </MenuItem>
+          <MenuItem id="link" href="https://dapp.dfohub.com">
+            👻Dfohub
+          </MenuItem>
+          <MenuItem id="link" href="https://gnosis-safe.io/app/#/safes/0x686B4535FF6573cef3FF37419A4fc6Ac775Ec7ea/balances">
+            💰Treasury
+          </MenuItem>
+          <MenuItem id="link" href="https://open.codecks.io/-penguinparty/">
+            🎴 Codecks
+          </MenuItem>
+          <MenuItem id="link" href="https://unigov.eth.link">
+            🏛 UniGov
+          </MenuItem>
+          <MenuItem id="link" href="https://snapshot.page/#/penguin-party">
+            🐧 Voting
           </MenuItem>
           <MenuItem id="link" href="https://uniswap.info/">
             <PieChart size={14} />
