@@ -21,7 +21,7 @@ import { useDarkModeManager } from '../../state/user/hooks'
 import { useETHBalances, useAggregateFishBalance, useAggregateSocksBalance } from '../../state/wallet/hooks'
 import { CardNoise } from '../earn/styled'
 import { CountUp } from 'use-count-up'
-import { TYPE, ExternalLink } from '../../theme'
+import { TYPE } from '../../theme'
 
 import { YellowCard } from '../Card'
 import Settings from '../Settings'
@@ -243,46 +243,6 @@ const StyledNavLink = styled(NavLink).attrs({
   }
 `
 
-const StyledExternalLink = styled(ExternalLink).attrs({
-  activeClassName
-})<{ isActive?: boolean }>`
-  ${({ theme }) => theme.flexRowNoWrap}
-  align-items: center;
-  text-align:center;
-  border-style: solid;
-  border-color: white;
-  border-radius: 2rem;
-  border-width: 1px;
-  outline: none;
-  cursor: pointer;
-  text-decoration: none;
-  color: ${({ theme }) => theme.text2};
-  font-size: 0.9rem;
-  width: fit-content;
-  margin: 0.75em 0.75rem 0.75rem 0.75rem;
-  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-  font-weight: 750;
-  background-color:rgba(255, 255, 255, 0.3);
-
-  &.${activeClassName} {
-    border-radius: 12px;
-    font-weight: 600;
-    color: ${({ theme }) => theme.text1};
-  }
-
-  :hover,
-  :focus {
-    color: ${({ theme }) => darken(0.1, theme.text1)};
-    border-style: solid;
-    border-color:gold;
-    border-width:1px;
-  }
-
-  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
-      display: none;
-`}
-`
-
 const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
   [ChainId.RINKEBY]: 'Rinkeby',
   [ChainId.ROPSTEN]: 'Ropsten',
@@ -436,9 +396,6 @@ export default function Header() {
         <HeaderElementWrap>
           <Menu />
           <Settings />
-          <StyledExternalLink id={`stake-nav-link`} href={'https://swap.ethitem.com/#/swap'}>
-            🛸Itemswap🛸 <span style={{ fontSize: '10px' }}></span>
-          </StyledExternalLink>
         </HeaderElementWrap>
       </HeaderControls>
     </HeaderFrame>
