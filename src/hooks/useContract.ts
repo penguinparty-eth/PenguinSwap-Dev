@@ -21,11 +21,12 @@ import WETH_ABI from '../constants/abis/weth.json'
 import SHRIMP_ABI from '../constants/abis/wuni.json'
 import CRAB_ABI from '../constants/abis/wcomp.json'
 import TORI_ABI from '../constants/abis/wadai.json'
+import COMMONWEALTH_ABI from '../constants/abis/CommonWealth.json'
 import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../constants/multicall'
 import { V1_EXCHANGE_ABI, V1_FACTORY_ABI, V1_FACTORY_ADDRESSES } from '../constants/v1'
 import { getContract } from '../utils'
 import { useActiveWeb3React } from './index'
-import { SHRIMP, CRAB, COMP, ADAI, TORI } from '../constants'// returns null on errors
+import { SHRIMP, CRAB, COMP, ADAI, TORI, COMMONWEALTH } from '../constants'// returns null on errors
 function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {
   const { library, account } = useActiveWeb3React()
 
@@ -80,6 +81,10 @@ export function useADAIContract(withSignerIfPossible?: boolean): Contract | null
 export function useTORIContract(withSignerIfPossible?: boolean): Contract | null {
   const { chainId } = useActiveWeb3React()
   return useContract(chainId ? TORI.address : undefined, TORI_ABI, withSignerIfPossible)
+}
+export function useCOMMONWEALTHContract(withSignerIfPossible?: boolean): Contract | null {
+  const { chainId } = useActiveWeb3React()
+  return useContract(chainId ? COMMONWEALTH.address : undefined, COMMONWEALTH_ABI, withSignerIfPossible)
 }
 
 export function useArgentWalletDetectorContract(): Contract | null {

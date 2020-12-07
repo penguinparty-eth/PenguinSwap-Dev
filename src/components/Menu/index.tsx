@@ -115,9 +115,6 @@ export default function Menu() {
             <MessageCircle size={14} />
             Discord
           </MenuItem>
-          <MenuItem id="link" href="https://dapp.dfohub.com">
-            👻Dfohub
-          </MenuItem>
           <MenuItem id="link" href="https://gnosis-safe.io/app/#/safes/0x686B4535FF6573cef3FF37419A4fc6Ac775Ec7ea/balances">
             💰Treasury
           </MenuItem>
