@@ -1,11 +1,11 @@
 // the Uniswap Default token list lives here
 // export const DEFAULT_TOKEN_LIST_URL = 'https://gateway.pinata.cloud/ipfs/QmUPRJphaELm7JY2PLTtziN5PSrWpw692TY4DUsoL8KEb3'
 // cid or hashid is usable... a CID is added to ens, and becomes the hashid...
-export const DEFAULT_TOKEN_LIST_URL = 'https://gateway.pinata.cloud/ipfs/QmaeHMDeAsznYV97sjCLpSpBJf7tQxmHqZACXrD7x1oEmW'
+export const DEFAULT_TOKEN_LIST_URL = 'https://ipfs.io/ipfs/QmNZp9JC33BDYkfmwNcVrb59HfmLjgKGiKkstGgdYw4eWv'
 
 export const DEFAULT_LIST_OF_LISTS: string[] = [
   DEFAULT_TOKEN_LIST_URL,
-  'tokenlist.penguinparty.eth',
+  'tokenlist.penguinswap.eth',
   't2crtokens.eth', // kleros
   'tokens.1inch.eth', // 1inch
   'synths.snx.eth',
