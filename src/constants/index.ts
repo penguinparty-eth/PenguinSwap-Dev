@@ -3,7 +3,7 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 
 import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
 
-export const ROUTER_ADDRESS = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'
+export const ROUTER_ADDRESS = '0xc9F8878ebBA65Ab04743f374f57fB652981e222c'
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 export { PRELOADED_PROPOSALS } from './proposals'
@@ -36,6 +36,7 @@ export const SOCKS = new Token(ChainId.MAINNET, '0x23b608675a2b2fb1890d3abbd85c5
 export const DFOUSD = new Token(ChainId.MAINNET, '0x44086035439e676c02d411880fccb9837ce37c57', 18, 'uSD', 'DFOHub StableDollar')
 export const ZEROXBTC = new Token(ChainId.MAINNET, '0xb6ed7644c69416d67b522e20bc294a9a9b405b31', 18, '0xBTC', '0xBitcoin')
 export const LIDTOKEN = new Token(ChainId.MAINNET, '0x0417912b3a7AF768051765040A55BB0925D4DDcF', 18, 'LID', 'Liquidity Dividends Protocol')
+export const XETH = new Token(ChainId.MAINNET, '0x29B109625ac15BC4577d0b70ACB9e4E27F7C07E8', 18, 'xETH', 'xWrapped Ether')
 
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 14
@@ -77,7 +78,7 @@ const WETH_ONLY: ChainTokenList = {
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR,SOCKS,DFOUSD,ZEROXBTC,COMMONWEALTH,LIDTOKEN]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR,SOCKS,DFOUSD,ZEROXBTC,COMMONWEALTH,LIDTOKEN,XETH]
 }
 
 /**
@@ -93,13 +94,13 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,WBTC,USDC,FISH,UNITOKEN,CRAB,SHRIMP,TORI,BUIDL,AXS,SOCKS,LIDTOKEN]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,WBTC,USDC,FISH,UNITOKEN,CRAB,SHRIMP,TORI,BUIDL,AXS,SOCKS,LIDTOKEN,XETH]
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR,SOCKS,DFOUSD,LIDTOKEN]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR,SOCKS,DFOUSD,LIDTOKEN,XETH]
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
