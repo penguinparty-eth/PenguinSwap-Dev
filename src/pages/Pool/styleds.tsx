@@ -3,14 +3,14 @@ import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   position: relative;
-  background-color:white;
+  background-color: ${({theme}) => theme.primary1};
 `
 
 export const ClickableText = styled(Text)`
   :hover {
     cursor: pointer;
   }
-  color: ${({ theme }) => theme.primary1};
+  color: ${({ theme }) => theme.primary3};
 `
 export const MaxButton = styled.button<{ width: string }>`
   padding: 0.5rem 1rem;
