@@ -48,7 +48,6 @@ const HeaderFrame = styled.div`
   width: 100%;
   top: 0;
   position: relative;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1rem;
   z-index: 2;
   ${({ theme }) => theme.mediaWidth.upToSmall`
@@ -142,7 +141,6 @@ const UNIAmount = styled(AccountElement)`
   height: 36px;
   font-weight: 500;
   background-color: ${({ theme }) => theme.bg3};
-  background: radial-gradient(174.47% 188.91% at 1.84% 0%, #ff007a 0%, #2172e5 100%), #edeef2;
 `
 
 const UNIWrapper = styled.span`
@@ -220,13 +218,13 @@ const StyledNavLink = styled(NavLink).attrs({
   outline: none;
   cursor: pointer;
   text-decoration: none;
-  color: ${({ theme }) => theme.text2};
+  color: ${({ theme }) => theme.text1};
   font-size: 0.9rem;
   width: fit-content;
   margin: 0.75rem 0.75rem 0.75rem 0.75rem;
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   font-weight: 750;
-  background-color:rgba(255, 255, 255, 0.3);
+  background-color:${({ theme }) => theme.bg3};
 
   &.${activeClassName} {
     border-radius: 12px;
@@ -236,7 +234,7 @@ const StyledNavLink = styled(NavLink).attrs({
 
   :hover,
   :focus {
-    color: ${({ theme }) => darken(0.2, theme.text1)};
+    color: ${({ theme }) => darken(0.2, theme.primaryText1)};
     border-style: solid;
     border-color:gold;
     border-width:1px;

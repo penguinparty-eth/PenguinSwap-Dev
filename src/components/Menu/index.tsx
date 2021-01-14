@@ -17,7 +17,8 @@ const StyledMenuButton = styled.button`
   margin: 0;
   padding: 0;
   height: 35px;
-  background-color:rgba(255, 255, 255, 0.3);
+  color:${({ theme }) => theme.text1};
+  background-color:${({ theme }) => theme.bg3};
   border-style: solid;
   border-color: white;
   border-radius: 2rem;
@@ -118,14 +119,14 @@ export default function Menu() {
           <MenuItem id="link" href="https://gnosis-safe.io/app/#/safes/0x686B4535FF6573cef3FF37419A4fc6Ac775Ec7ea/balances">
             💰Treasury
           </MenuItem>
-          <MenuItem id="link" href="https://open.codecks.io/-penguinparty/">
-            🎴 Codecks
-          </MenuItem>
           <MenuItem id="link" href="https://unigov.eth.link">
             🏛 UniGov
           </MenuItem>
           <MenuItem id="link" href="https://snapshot.page/#/penguin-party">
             🐧 Voting
+          </MenuItem>
+          <MenuItem id="link" href="https://lid.sh">
+            📈LID Protocol
           </MenuItem>
           <MenuItem id="link" href="https://uniswap.info/">
             <PieChart size={14} />
