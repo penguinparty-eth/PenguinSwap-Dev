@@ -141,7 +141,7 @@ export function CurrencySearch({
     <Column style={{ width: '100%', flex: '1 1' }}>
       <PaddedColumn gap="14px">
         <RowBetween>
-          <Text fontWeight={500} fontSize={16}>
+          <Text fontWeight={500} fontSize={16} color={theme.text1}>
             Select a token
             <QuestionHelper text="Find a token by searching for its name or symbol or by pasting its address below." />
           </Text>
@@ -160,7 +160,7 @@ export function CurrencySearch({
           <CommonBases chainId={chainId} onSelect={handleCurrencySelect} selectedCurrency={selectedCurrency} />
         )}
         <RowBetween>
-          <Text fontSize={14} fontWeight={500}>
+          <Text fontSize={14} fontWeight={500} color={theme.text1}>
             Token Name
           </Text>
           <SortButton ascending={invertSearchOrder} toggleSortOrder={() => setInvertSearchOrder(iso => !iso)} />

@@ -1,5 +1,5 @@
 import { Currency, CurrencyAmount, currencyEquals, ETHER, Token } from '@uniswap/sdk'
-import React, { CSSProperties, MutableRefObject, useCallback, useMemo } from 'react'
+import React, { CSSProperties, MutableRefObject, useCallback, useMemo, useContext } from 'react'
 import { FixedSizeList } from 'react-window'
 import { Text } from 'rebass'
 import styled from 'styled-components'
@@ -9,6 +9,7 @@ import { useAddUserToken, useRemoveUserAddedToken } from '../../state/user/hooks
 import { useCurrencyBalance } from '../../state/wallet/hooks'
 import { LinkStyledButton, TYPE } from '../../theme'
 import { useIsUserAddedToken } from '../../hooks/Tokens'
+import { ThemeContext } from 'styled-components'
 import Column from '../Column'
 import { RowFixed } from '../Row'
 import CurrencyLogo from '../CurrencyLogo'
@@ -43,7 +44,12 @@ const Tag = styled.div`
 `
 
 function Balance({ balance }: { balance: CurrencyAmount }) {
-  return <StyledBalanceText title={balance.toExact()}>{balance.toSignificant(4)}</StyledBalanceText>
+  const theme = useContext(ThemeContext)
+  return (
+    <StyledBalanceText title={balance.toExact()} color={theme.text2}>
+        {balance.toSignificant(4)}
+    </StyledBalanceText>
+  )
 }
 
 const TagContainer = styled.div`
@@ -99,6 +105,7 @@ function CurrencyRow({
   const isOnSelectedList = isTokenOnList(selectedTokenList, currency)
   const customAdded = useIsUserAddedToken(currency)
   const balance = useCurrencyBalance(account ?? undefined, currency)
+  const theme = useContext(ThemeContext)
 
   const removeToken = useRemoveUserAddedToken()
   const addToken = useAddUserToken()
@@ -114,7 +121,7 @@ function CurrencyRow({
     >
       <CurrencyLogo currency={currency} size={'20px'} />
       <Column>
-        <Text title={currency.name} fontWeight={250}>
+        <Text title={currency.name} fontWeight={250} color={theme.text1}>
           {currency.name}
         </Text>
         <FadedSpan>
