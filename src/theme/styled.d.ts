@@ -1,6 +1,7 @@
 import { FlattenSimpleInterpolation, ThemedCssFunction } from 'styled-components'
 
 export type Color = string
+export type Url = string
 export interface Colors {
   // base
   white: Color
@@ -44,6 +45,9 @@ export interface Colors {
   yellow1: Color
   yellow2: Color
   blue1: Color
+
+  // background image url
+  bgUrl: Url
 }
 
 export interface Grids {
