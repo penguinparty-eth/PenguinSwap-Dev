@@ -35,6 +35,8 @@ const ProposalInfo = styled(AutoColumn)`
   position: relative;
   max-width: 640px;
   width: 100%;
+  background-color: ${({ theme }) => theme.bg1};
+  color: ${({ theme }) => theme.text1};
 `
 const ArrowWrapper = styled(StyledInternalLink)`
   display: flex;

@@ -79,7 +79,11 @@ export function colors(darkMode: boolean): Colors {
     green1: '#27AE60',
     yellow1: '#FFE270',
     yellow2: '#F3841E',
-    blue1: '#2172E5'
+    blue1: '#2172E5',
+
+    bgUrl: darkMode
+      ? 'https://ipfs.io/ipfs/QmcCNnbT8UuAeM9CjoN1artmxxeKL7t2krBztCRvFEbdjN' 
+      : 'https://ipfs.io/ipfs/QmSoJw2uMHaK6bNZZbqSQ6xZ7b37P4oGm5YFHqLqWibygq'
 
     // dont wanna forget these blue yet
     // blue4: darkMode ? '#153d6f70' : '#C4D9F8',
@@ -218,7 +222,7 @@ html {
 export const ThemedGlobalStyle = createGlobalStyle`
 html {
   background-image:
-  url('https://ipfs.io/ipfs/QmcCNnbT8UuAeM9CjoN1artmxxeKL7t2krBztCRvFEbdjN');
+  url('${({ theme }) => theme.bgUrl }');
   background-position: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;

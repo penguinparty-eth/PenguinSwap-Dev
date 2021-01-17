@@ -198,7 +198,7 @@ export default function SettingsTab() {
       {open && (
         <MenuFlyout>
           <AutoColumn gap="md" style={{ padding: '1rem' }}>
-            <Text fontWeight={600} fontSize={14}>
+            <Text fontWeight={600} fontSize={14} color={theme.text1}>
               Transaction Settings
             </Text>
             <TransactionSettings
@@ -207,7 +207,7 @@ export default function SettingsTab() {
               deadline={ttl}
               setDeadline={setTtl}
             />
-            <Text fontWeight={600} fontSize={14}>
+            <Text fontWeight={600} fontSize={14} color={theme.text1}>
               Interface Settings
             </Text>
             <RowBetween>
