@@ -161,8 +161,8 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
         <Row>
           <Text
             fontWeight={isSelected ? 500 : 400}
-            fontSize={16}
-            style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}
+            fontSize={20}
+            style={{ overflow: 'hidden', textOverflow: 'ellipsis', color:'blue' }}
           >
             {list.name}
           </Text>
