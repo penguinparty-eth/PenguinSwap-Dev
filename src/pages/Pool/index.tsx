@@ -21,6 +21,8 @@ import { Dots } from '../../components/swap/styleds'
 import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
 
 const PageWrapper = styled(AutoColumn)`
+  background-color: ${({theme}) => theme.bg1};
+  border-radius: 15px;
   max-width: 640px;
   width: 100%;
 `
