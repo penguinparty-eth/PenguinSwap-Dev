@@ -1,10 +1,10 @@
-import React, { memo, useCallback, useMemo, useRef, useState } from 'react'
+import React, { memo, useCallback, useMemo, useRef, useState, useContext } from 'react'
 import { ArrowLeft } from 'react-feather'
 import ReactGA from 'react-ga'
 import { usePopper } from 'react-popper'
 import { useDispatch, useSelector } from 'react-redux'
 import { Text } from 'rebass'
-import styled from 'styled-components'
+import styled, { ThemeContext } from 'styled-components'
 import { ReactComponent as DropDown } from '../../assets/images/dropdown.svg'
 import { useFetchListCallback } from '../../hooks/useFetchListCallback'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
@@ -65,6 +65,7 @@ const StyledListUrlText = styled.div`
   font-size: 14px;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: ${({theme}) => theme.text1}
 `
 
 function ListOrigin({ listUrl }: { listUrl: string }) {
@@ -101,6 +102,8 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
   const node = useRef<HTMLDivElement>()
   const [referenceElement, setReferenceElement] = useState<HTMLDivElement>()
   const [popperElement, setPopperElement] = useState<HTMLDivElement>()
+
+  const theme = useContext(ThemeContext)
 
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement: 'auto',
@@ -162,7 +165,8 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
           <Text
             fontWeight={isSelected ? 500 : 400}
             fontSize={20}
-            style={{ overflow: 'hidden', textOverflow: 'ellipsis', color:'blue' }}
+            style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}
+            color={ theme.text1 }
           >
             {list.name}
           </Text>
@@ -254,6 +258,7 @@ export function ListSelect({ onDismiss, onBack }: { onDismiss: () => void; onBac
   const lists = useSelector<AppState, AppState['lists']['byUrl']>(state => state.lists.byUrl)
   const adding = Boolean(lists[listUrlInput]?.loadingRequestId)
   const [addError, setAddError] = useState<string | null>(null)
+  const theme = useContext(ThemeContext)
 
   const handleInput = useCallback(e => {
     setListUrlInput(e.target.value)
@@ -326,7 +331,7 @@ export function ListSelect({ onDismiss, onBack }: { onDismiss: () => void; onBac
           <div>
             <ArrowLeft style={{ cursor: 'pointer' }} onClick={onBack} />
           </div>
-          <Text fontWeight={500} fontSize={20}>
+          <Text fontWeight={500} fontSize={20} color={theme.text1}>
             Manage Lists
           </Text>
           <CloseIcon onClick={onDismiss} />
@@ -336,7 +341,7 @@ export function ListSelect({ onDismiss, onBack }: { onDismiss: () => void; onBac
       <Separator />
 
       <PaddedColumn gap="14px">
-        <Text fontWeight={600}>
+        <Text fontWeight={600} color={theme.text1}>
           Add a list{' '}
           <QuestionHelper text="Token lists are an open specification for lists of ERC20 tokens. You can use any token list by entering its URL below. Beware that third party token lists can contain fake or malicious ERC20 tokens." />
         </Text>
