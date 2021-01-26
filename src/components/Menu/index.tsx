@@ -95,7 +95,7 @@ export default function Menu() {
     // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451
     <StyledMenu ref={node as any}>
       <StyledMenuButton onClick={toggle}>
-        🔥 Main Menu 🔥
+        🔥 Menu 
       </StyledMenuButton>
 
       {open && (

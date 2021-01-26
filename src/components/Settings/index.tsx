@@ -6,7 +6,6 @@ import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import { ApplicationModal } from '../../state/application/actions'
 import { useModalOpen, useToggleSettingsMenu } from '../../state/application/hooks'
 import {
-  useDarkModeManager,
   useExpertModeManager,
   useUserTransactionTTL,
   useUserSlippageTolerance,
@@ -27,6 +26,9 @@ const StyledMenuIcon = styled(Settings)`
 
   > * {
     stroke: ${({ theme }) => theme.text1};
+  }
+  :hover {
+    opacity: 0.7;
   }
 `
 
@@ -138,8 +140,6 @@ export default function SettingsTab() {
 
   const [singleHopOnly, setSingleHopOnly] = useUserSingleHopOnly()
 
-  const [darkMode, toggleDarkMode] = useDarkModeManager()
-
   // show confirmation view before turning on
   const [showConfirmation, setShowConfirmation] = useState(false)
 
@@ -186,11 +186,11 @@ export default function SettingsTab() {
         </ModalContentWrapper>
       </Modal>
       <StyledMenuButton onClick={toggle} id="open-settings-dialog-button">
-        <StyledMenuIcon />
+      <StyledMenuIcon />
         {expertMode ? (
           <EmojiWrapper>
             <span role="img" aria-label="wizard-icon">
-              🐧
+              🧙
             </span>
           </EmojiWrapper>
         ) : null}
@@ -245,14 +245,6 @@ export default function SettingsTab() {
                 isActive={singleHopOnly}
                 toggle={() => (singleHopOnly ? setSingleHopOnly(false) : setSingleHopOnly(true))}
               />
-            </RowBetween>
-            <RowBetween>
-              <RowFixed>
-                <TYPE.black fontWeight={400} fontSize={14} color={theme.text2}>
-                  Toggle Dark Mode
-                </TYPE.black>
-              </RowFixed>
-              <Toggle isActive={darkMode} toggle={toggleDarkMode} />
             </RowBetween>
           </AutoColumn>
         </MenuFlyout>

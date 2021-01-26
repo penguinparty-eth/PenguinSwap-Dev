@@ -1,6 +1,6 @@
 {
   "name": "@uniswap/interface",
-  "description": "Penguinswap Interface",
+  "description": "Uniswap Interface",
   "homepage": ".",
   "private": true,
   "devDependencies": {
@@ -31,7 +31,7 @@
     "@uniswap/liquidity-staker": "^1.0.2",
     "@uniswap/merkle-distributor": "1.0.1",
     "@uniswap/sdk": "3.0.3",
-    "@uniswap/token-lists": "^1.0.0-beta.17",
+    "@uniswap/token-lists": "^1.0.0-beta.19",
     "@uniswap/v2-core": "1.0.0",
     "@uniswap/v2-periphery": "^1.1.0-beta.0",
     "@web3-react/core": "^6.0.9",
@@ -44,7 +44,7 @@
     "cids": "^1.0.0",
     "copy-to-clipboard": "^3.2.0",
     "cross-env": "^7.0.2",
-    "cypress": "^5.6.0",
+    "cypress": "^4.11.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.3",
@@ -82,7 +82,7 @@
     "react-window": "^1.8.5",
     "rebass": "^4.0.7",
     "redux-localstorage-simple": "^2.3.1",
-    "serve": "^11.3.2",
+    "serve": "^11.3.0",
     "start-server-and-test": "^1.11.0",
     "styled-components": "^4.2.0",
     "typescript": "^3.8.3",
@@ -119,19 +119,11 @@
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@metamask/legacy-web3": "^1.0.2",
-    "web-vitals": "^0.2.4",
-    "workbox-background-sync": "^5.1.3",
-    "workbox-broadcast-update": "^5.1.3",
-    "workbox-cacheable-response": "^5.1.3",
-    "workbox-core": "^5.1.3",
-    "workbox-expiration": "^5.1.3",
-    "workbox-google-analytics": "^5.1.3",
-    "workbox-navigation-preload": "^5.1.3",
-    "workbox-precaching": "^5.1.4",
-    "workbox-range-requests": "^5.1.3",
-    "workbox-routing": "^5.1.3",
-    "workbox-strategies": "^5.1.3",
-    "workbox-streams": "^5.1.3"
+    "@types/workbox-core": "^4.3.0",
+    "@types/workbox-expiration": "^4.3.0",
+    "@types/workbox-precaching": "^4.3.0",
+    "@types/workbox-routing": "^4.3.0",
+    "@types/workbox-strategies": "^4.3.0",
+    "@uniswap/default-token-list": "^2.0.0"
   }
 }

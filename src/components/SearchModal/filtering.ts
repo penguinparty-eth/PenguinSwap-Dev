@@ -33,4 +33,13 @@ export function filterTokens(tokens: Token[], search: string): Token[] {
 
     return (symbol && matchesSearch(symbol)) || (name && matchesSearch(name))
   })
+  // .sort((t0: Token, t1: Token) => {
+//   if (t0.symbol && matchesSearch(t0.symbol) && t1.symbol && !matchesSearch(t1.symbol)) {
+//     return -1
+//   }
+//   if (t0.symbol && !matchesSearch(t0.symbol) && t1.symbol && matchesSearch(t1.symbol)) {
+//     return 1
+//   }
+//   return 0
+// })
 }
