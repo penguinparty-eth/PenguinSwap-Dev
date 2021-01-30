@@ -100,14 +100,8 @@ const MenuFlyout = styled.span`
   right: 0rem;
   z-index: 100;
 
-  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
-    min-width: 18.125rem;
-    right: -46px;
-  `};
-
   ${({ theme }) => theme.mediaWidth.upToMedium`
     min-width: 18.125rem;
-    top: -22rem;
   `};
 `
 
