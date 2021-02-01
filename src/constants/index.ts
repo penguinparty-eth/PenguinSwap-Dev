@@ -37,6 +37,7 @@ export const DFOUSD = new Token(ChainId.MAINNET, '0x44086035439e676c02d411880fcc
 export const ZEROXBTC = new Token(ChainId.MAINNET, '0xb6ed7644c69416d67b522e20bc294a9a9b405b31', 18, '0xBTC', '0xBitcoin')
 export const LIDTOKEN = new Token(ChainId.MAINNET, '0x0417912b3a7AF768051765040A55BB0925D4DDcF', 18, 'LID', 'Liquidity Dividends Protocol')
 export const XETH = new Token(ChainId.MAINNET, '0x29B109625ac15BC4577d0b70ACB9e4E27F7C07E8', 18, 'xETH', 'xWrapped Ether')
+export const JRT = new Token(ChainId.MAINNET, '0x8a9c67fee641579deba04928c4bc45f66e26343a', 18, 'JRT', 'Jarvis Reward Token')
 
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 13
@@ -78,7 +79,7 @@ const WETH_ONLY: ChainTokenList = {
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR,SOCKS,DFOUSD,ZEROXBTC,COMMONWEALTH,LIDTOKEN,XETH]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR,SOCKS,DFOUSD,ZEROXBTC,COMMONWEALTH,LIDTOKEN,XETH,JRT]
 }
 
 /**
@@ -218,3 +219,5 @@ export const BLOCKED_PRICE_IMPACT_NON_EXPERT: Percent = new Percent(JSBI.BigInt(
 export const MIN_ETH: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16)) // .01 ETH
 export const BETTER_TRADE_LINK_THRESHOLD = new Percent(JSBI.BigInt(75), JSBI.BigInt(10000))
 export const BETTER_TRADE_LESS_HOPS_THRESHOLD = new Percent(JSBI.BigInt(50), JSBI.BigInt(10000))
+export const ZERO_PERCENT = new Percent('0')
+export const ONE_HUNDRED_PERCENT = new Percent('1')

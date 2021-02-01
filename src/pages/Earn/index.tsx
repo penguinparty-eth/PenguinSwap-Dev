@@ -13,6 +13,8 @@ import { JSBI } from '@uniswap/sdk'
 import { BIG_INT_ZERO } from '../../constants'
 import { OutlineCard } from '../../components/Card'
 const PageWrapper = styled(AutoColumn)`
+  background-color: ${({theme}) => theme.bg1};
+  border-radius: 15px;
   max-width: 640px;
   width: 100%;
 `

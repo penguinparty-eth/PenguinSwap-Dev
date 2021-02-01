@@ -82,8 +82,8 @@ export function colors(darkMode: boolean): Colors {
     blue1: '#2172E5',
 
     bgUrl: darkMode
-      ? 'https://ipfs.io/ipfs/QmcCNnbT8UuAeM9CjoN1artmxxeKL7t2krBztCRvFEbdjN' 
-      : 'https://ipfs.io/ipfs/QmSoJw2uMHaK6bNZZbqSQ6xZ7b37P4oGm5YFHqLqWibygq'
+      ? 'https://ipfs.io/ipfs/QmcCNnbT8UuAeM9CjoN1artmxxeKL7t2krBztCRvFEbdjN'
+      : 'https://ipfs.io/ipfs/QmQxCBFcrCnq6znhAeRdVyLnPxpuB4wRFEMhCdY5E9W2mf'
 
     // dont wanna forget these blue yet
     // blue4: darkMode ? '#153d6f70' : '#C4D9F8',
