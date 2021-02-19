@@ -1,4 +1,4 @@
-import { CurrencyAmount, JSBI, Token, Trade } from '@uniswap/sdk'
+import { Currency,CurrencyAmount, JSBI, Token, Trade } from '@uniswap/sdk'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { ArrowDown } from 'react-feather'
 import ReactGA from 'react-ga'
@@ -44,6 +44,7 @@ import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import AppBody from '../AppBody'
 import { ClickableText } from '../Pool/styleds'
+import { DEFAULTTOKEN } from '../../constants'
 import Loader from '../../components/Loader'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import UnsupportedCurrencyFooter from 'components/swap/UnsupportedCurrencyFooter'
@@ -52,13 +53,22 @@ export default function Swap() {
   const loadedUrlParams = useDefaultsFromURLSearch()
 
   // token warning stuff
+
   const [loadedInputCurrency, loadedOutputCurrency] = [
     useCurrency(loadedUrlParams?.inputCurrencyId),
     useCurrency(loadedUrlParams?.outputCurrencyId)
   ]
   const [dismissTokenWarning, setDismissTokenWarning] = useState<boolean>(false)
+
+  const isTokenOtherThanDefault = (currency: Currency) => {
+    if (currency instanceof Token) {
+      return currency.address.toLowerCase() !== DEFAULTTOKEN
+    }
+    return false
+  }
+
   const urlLoadedTokens: Token[] = useMemo(
-    () => [loadedInputCurrency, loadedOutputCurrency]?.filter((c): c is Token => c instanceof Token) ?? [],
+    () => [loadedInputCurrency, loadedOutputCurrency]?.filter((c): c is Token => isTokenOtherThanDefault(c)) ?? [],
     [loadedInputCurrency, loadedOutputCurrency]
   )
   const handleConfirmTokenWarning = useCallback(() => {
