@@ -1,0 +1,82 @@
+
+body {
+  background: rgba(0, 0, 0, 0.5);
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+ 
+}
+.crypto-kek-div {
+  margin-right: 2%;
+}
+
+.dev {
+  margin: 2%
+}
+
+.devs h1 {
+  margin: auto;
+}
+
+.hiturunk {
+  width: 225px;
+  border-radius: 50%;
+}
+
+.img-div {
+  margin: 0 auto;;
+}
+
+.lid-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  margin-left: 2%;
+}
+
+.lid-cryptoKek {
+  display: flex;
+  padding-bottom: 5%;
+  margin-top: 3%;
+  margin-bottom: 5%;
+}
+
+.lid-pic {
+  width: 275px;
+  border-radius: 10px;
+}
+
+.team-photo {
+  width: 150px;
+  height: 150px;
+  grid-row-start: 1;
+}
+
+@media (max-width: 767px) {
+  .lid-cryptoKek {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .penguin-party{
+    
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .devs {
+      flex-direction: column;
+      grid-template-columns: 1fr 1fr;
+    }
+  
+    .lid-pic {
+      width: 100%;
+    }
+   .hiturunk {
+     width: 45%;
+   }
+  }
