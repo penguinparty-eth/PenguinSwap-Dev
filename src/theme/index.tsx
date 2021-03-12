@@ -59,8 +59,8 @@ export function colors(darkMode: boolean): Colors {
     advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.6)',
 
     //primary colors
-    primary1: darkMode ? '#2172E5' : '#9999FF',
-    primary2: darkMode ? '#3680E7' : '#9999FF',
+    primary1: darkMode ? '#212429' : '#FFFFFF',
+    primary2: darkMode ? '#9999FF' : '#9999FF',
     primary3: darkMode ? '#4D8FEA' : '#FF99C9',
     primary4: darkMode ? '#376bad70' : '#F6DDE8',
     primary5: darkMode ? '#153d6f70' : '#FDEAF1',
@@ -82,8 +82,8 @@ export function colors(darkMode: boolean): Colors {
     blue1: '#2172E5',
 
     bgUrl: darkMode
-      ? 'https://ipfs.io/ipfs/QmcCNnbT8UuAeM9CjoN1artmxxeKL7t2krBztCRvFEbdjN' 
-      : 'https://ipfs.io/ipfs/QmSoJw2uMHaK6bNZZbqSQ6xZ7b37P4oGm5YFHqLqWibygq'
+      ? 'https://ipfs.io/ipfs/QmcCNnbT8UuAeM9CjoN1artmxxeKL7t2krBztCRvFEbdjN'
+      : 'https://ipfs.io/ipfs/QmQxCBFcrCnq6znhAeRdVyLnPxpuB4wRFEMhCdY5E9W2mf'
 
     // dont wanna forget these blue yet
     // blue4: darkMode ? '#153d6f70' : '#C4D9F8',

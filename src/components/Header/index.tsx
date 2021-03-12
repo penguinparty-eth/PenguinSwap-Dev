@@ -14,8 +14,8 @@ import styled from 'styled-components'
 //import UniGovIcon from '../../assets/svg/UniGov.svg'
 //import CodecksIcon from '../../assets/svg/Codecks.svg'
 //import TreasuryIcon from '../../assets/svg/Treasury.svg'
-import Logo from '../../assets/svg/logo.svg'
-import LogoDark from '../../assets/svg/logo_white.svg'
+import Logo from '../../assets/svg/logo_simple.svg'
+import LogoDark from '../../assets/svg/logo_simple.svg'
 import { useActiveWeb3React } from '../../hooks'
 import { useDarkModeManager } from '../../state/user/hooks'
 import { useETHBalances, useAggregateFishBalance, useAggregateSocksBalance } from '../../state/wallet/hooks'
@@ -24,7 +24,7 @@ import { CountUp } from 'use-count-up'
 import { TYPE } from '../../theme'
 
 import { YellowCard } from '../Card'
-import Settings from '../Settings'
+import { Moon, Sun } from 'react-feather'
 import Menu from '../Menu'
 
 import Row, { RowFixed } from '../Row'
@@ -64,7 +64,7 @@ const HeaderFrame = styled.div`
 
 const HeaderControls = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-self: flex-end;
   overflow:visible;
@@ -91,7 +91,6 @@ const HeaderElement = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  margin: 1rem 1rem 1rem 1rem;
   ${({ theme }) => theme.mediaWidth.upToMedium`
    flex-direction: row-reverse;
     align-items: center;
@@ -112,7 +111,7 @@ const HeaderRow = styled(RowFixed)`
 const HeaderLinks = styled(Row)`
   justify-content: center;
   ${({ theme }) => theme.mediaWidth.upToSmall`
-    padding: 1rem 1rem 1rem 1rem;
+    padding: 1rem 0rem 1rem 1rem;
     justify-content: flex-end;
 `};
 `
@@ -136,7 +135,7 @@ const AccountElement = styled.div<{ active: boolean }>`
 `
 
 const UNIAmount = styled(AccountElement)`
-  color: white;
+  color: ${({ theme }) => theme.text1};
   padding: 4px 8px;
   height: 36px;
   font-weight: 500;
@@ -209,21 +208,17 @@ const StyledNavLink = styled(NavLink).attrs({
   activeClassName
 })`
   ${({ theme }) => theme.flexRowNoWrap}
-  align-items: center
-  text-align:center;
-  border-style: solid;
-  border-color: white;
-  border-radius: 2rem;
-  border-width:1px;
+  align-items: left;
+  border-radius: 12px;
   outline: none;
   cursor: pointer;
   text-decoration: none;
   color: ${({ theme }) => theme.text1};
   font-size: 0.9rem;
   width: fit-content;
-  margin: 0.75rem 0.75rem 0.75rem 0.75rem;
-  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-  font-weight: 750;
+  margin: 0 4px;
+  padding: 10px 8px;
+  font-weight: 500;
   background-color:${({ theme }) => theme.bg3};
 
   &.${activeClassName} {
@@ -235,9 +230,32 @@ const StyledNavLink = styled(NavLink).attrs({
   :hover,
   :focus {
     color: ${({ theme }) => darken(0.2, theme.primaryText1)};
-    border-style: solid;
-    border-color:gold;
-    border-width:1px;
+  }
+`
+const StyledMenuButton = styled.button`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  height: 35px;
+  background-color: ${({ theme }) => theme.bg3};
+  margin-left: 8px;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.5rem;
+  :hover,
+  :focus {
+    cursor: pointer;
+    outline: none;
+    background-color: ${({ theme }) => theme.bg4};
+  }
+  svg {
+    margin-top: 2px;
+  }
+  > * {
+    stroke: ${({ theme }) => theme.text1};
   }
 `
 
@@ -253,7 +271,8 @@ export default function Header() {
   const { t } = useTranslation()
 
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
-  const [isDark] = useDarkModeManager()
+  // const [isDark] = useDarkModeManager()
+  const [darkMode, toggleDarkMode] = useDarkModeManager()
 
   const toggleClaimModal = useToggleSelfClaimModal()
 
@@ -285,12 +304,12 @@ export default function Header() {
       <HeaderRow>
         <Title href=".">
           <UniIcon>
-            <img width={'45px'} src={isDark ? LogoDark : Logo} alt="logo" />
+            <img width={'36px'} src={darkMode ? LogoDark : Logo} alt="logo" />
           </UniIcon>
         </Title>
         <HeaderLinks>
           <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
-            🔄 {t('swap')} 🔄
+            {t('swap')}
           </StyledNavLink>
           <StyledNavLink
             id={`pool-nav-link`}
@@ -303,13 +322,13 @@ export default function Header() {
               pathname.startsWith('/find')
             }
           >
-            🌊 {t('pool')} 🌊
+            {t('pool')}
           </StyledNavLink>
           <StyledNavLink id={`stake-nav-link`} to={'/uni'}>
-            ⛏ Staking ⛏
+            Staking
           </StyledNavLink>
           <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
-            🦄 Voting 🦄
+            Voting
           </StyledNavLink>
         </HeaderLinks>
       </HeaderRow>
@@ -335,11 +354,7 @@ export default function Header() {
               <UNIAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
                 {account && (
                   <HideSmall>
-                    <TYPE.white
-                      style={{
-                        paddingRight: '.4rem'
-                      }}
-                    >
+
                       <CountUp
                         key={countUpFishValue}
                         isCounting
@@ -348,10 +363,9 @@ export default function Header() {
                         thousandsSeparator={','}
                         duration={1}
                       />
-                    </TYPE.white>
                   </HideSmall>
                 )}
-                🐟
+                 🐟
               </UNIAmount>
               <CardNoise />
             </UNIWrapper>
@@ -361,11 +375,7 @@ export default function Header() {
               <UNIAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
                 {account && (
                   <HideSmall>
-                    <TYPE.white
-                      style={{
-                        paddingRight: '.4rem'
-                      }}
-                    >
+
                       <CountUp
                         key={countUpSocksValue}
                         isCounting
@@ -374,10 +384,9 @@ export default function Header() {
                         thousandsSeparator={','}
                         duration={1}
                       />
-                    </TYPE.white>
                   </HideSmall>
                 )}
-                🧦
+                 🧦
               </UNIAmount>
               <CardNoise />
             </UNIWrapper>
@@ -392,8 +401,10 @@ export default function Header() {
           </AccountElement>
         </HeaderElement>
         <HeaderElementWrap>
+          <StyledMenuButton onClick={() => toggleDarkMode()}>
+            {darkMode ? <Moon size={20} /> : <Sun size={20} />}
+          </StyledMenuButton>
           <Menu />
-          <Settings />
         </HeaderElementWrap>
       </HeaderControls>
     </HeaderFrame>
