@@ -4,6 +4,7 @@ import styled from 'styled-components'
 export const Wrapper = styled.div`
   position: relative;
   background-color: ${({theme}) => theme.primary1};
+  padding: 1rem;
 `
 
 export const ClickableText = styled(Text)`

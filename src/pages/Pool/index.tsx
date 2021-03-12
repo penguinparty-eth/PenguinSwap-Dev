@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
-import { Pair } from '@uniswap/sdk'
+import { Pair, JSBI } from '@uniswap/sdk'
 import { Link } from 'react-router-dom'
 import { SwapPoolTabs } from '../../components/NavigationTabs'
 
@@ -19,12 +19,14 @@ import { usePairs } from '../../data/Reserves'
 import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks'
 import { Dots } from '../../components/swap/styleds'
 import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
+import { useStakingInfo } from '../../state/stake/hooks'
+import { BIG_INT_ZERO } from '../../constants'
 
 const PageWrapper = styled(AutoColumn)`
-  background-color: ${({theme}) => theme.bg1};
-  border-radius: 15px;
   max-width: 640px;
   width: 100%;
+  background-color: ${({ theme }) => theme.bg1};
+  border-radius: 3% 3%;
 `
 
 const VoteCard = styled(DataCard)`
@@ -57,7 +59,7 @@ const ResponsiveButtonPrimary = styled(ButtonPrimary)`
   `};
 `
 
-const ResponsiveButtonSecondary = styled(ButtonSecondary)`
+const ResponsiveButtonSecondary = styled(ButtonPrimary)`
   width: fit-content;
   ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 48%;
@@ -66,7 +68,6 @@ const ResponsiveButtonSecondary = styled(ButtonSecondary)`
 
 const EmptyProposals = styled.div`
   border: 1px solid ${({ theme }) => theme.text4};
-  background-color:white;
   padding: 16px 12px;
   border-radius: 12px;
   display: flex;
@@ -110,11 +111,24 @@ export default function Pool() {
 
   const hasV1Liquidity = useUserHasLiquidityInAllTokens()
 
+  // show liquidity even if its deposited in rewards contract
+  const stakingInfo = useStakingInfo()
+  const stakingInfosWithBalance = stakingInfo?.filter(pool => JSBI.greaterThan(pool.stakedAmount.raw, BIG_INT_ZERO))
+  const stakingPairs = usePairs(stakingInfosWithBalance?.map(stakingInfo => stakingInfo.tokens))
+
+  // remove any pairs that also are included in pairs with stake in mining pool
+  const v2PairsWithoutStakedAmount = allV2PairsWithLiquidity.filter(v2Pair => {
+    return (
+      stakingPairs
+        ?.map(stakingPair => stakingPair[1])
+        .filter(stakingPair => stakingPair?.liquidityToken.address === v2Pair.liquidityToken.address).length === 0
+    )
+  })
+
   return (
     <>
       <PageWrapper>
         <SwapPoolTabs active={'pool'} />
-
         <VoteCard>
           <CardBGImage />
           <CardNoise />
@@ -145,15 +159,21 @@ export default function Pool() {
           <AutoColumn gap="lg" style={{ width: '100%' }}>
             <TitleRow style={{ marginTop: '1rem' }} padding={'0'}>
               <HideSmall>
-                <TYPE.white style={{ marginTop: '0.5rem', justifySelf: 'flex-start' }}>
+                <TYPE.mediumHeader style={{ marginTop: '0.5rem', justifySelf: 'flex-start' }}>
                   Your liquidity
-                </TYPE.white>
+                </TYPE.mediumHeader>
               </HideSmall>
               <ButtonRow>
                 <ResponsiveButtonSecondary as={Link} padding="6px 8px" to="/create/ETH">
                   Create a pair
                 </ResponsiveButtonSecondary>
-                <ResponsiveButtonPrimary id="join-pool-button" as={Link} padding="6px 8px" to="/add/ETH">
+                <ResponsiveButtonPrimary
+                  id="join-pool-button"
+                  as={Link}
+                  padding="6px 8px"
+                  borderRadius="12px"
+                  to="/add/ETH"
+                >
                   <Text fontWeight={500} fontSize={16}>
                     Add Liquidity
                   </Text>
@@ -173,7 +193,7 @@ export default function Pool() {
                   <Dots>Loading</Dots>
                 </TYPE.body>
               </EmptyProposals>
-            ) : allV2PairsWithLiquidity?.length > 0 ? (
+            ) : allV2PairsWithLiquidity?.length > 0 || stakingPairs?.length > 0 ? (
               <>
                 <ButtonSecondary>
                   <RowBetween>
@@ -183,8 +203,7 @@ export default function Pool() {
                     <span> ↗</span>
                   </RowBetween>
                 </ButtonSecondary>
-
-                {allV2PairsWithLiquidity.map(v2Pair => (
+                {v2PairsWithoutStakedAmount.map(v2Pair => (
                   <FullPositionCard key={v2Pair.liquidityToken.address} pair={v2Pair} />
                 ))}
               </>
@@ -197,9 +216,9 @@ export default function Pool() {
             )}
 
             <AutoColumn justify={'center'} gap="md">
-              <Text textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
+              <Text textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0', color: '#9999FF' }}>
                 {hasV1Liquidity ? 'Uniswap V1 liquidity found!' : "Don't see a pool you joined?"}{' '}
-                <StyledInternalLink id="import-pool-link" to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
+                <StyledInternalLink id="import-pool-link" style={{ color: 'gold' }} to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
                   {hasV1Liquidity ? 'Migrate now.' : 'Import it.'}
                 </StyledInternalLink>
               </Text>

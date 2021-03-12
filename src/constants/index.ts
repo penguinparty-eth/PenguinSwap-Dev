@@ -11,7 +11,7 @@ export { PRELOADED_PROPOSALS } from './proposals'
 type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
-
+export const DEFAULTTOKEN = '0x30bcd71b8d21fe830e493b30e90befba29de9114'
 export const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
 export const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
 export const USDT = new Token(ChainId.MAINNET, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
@@ -37,6 +37,8 @@ export const DFOUSD = new Token(ChainId.MAINNET, '0x44086035439e676c02d411880fcc
 export const ZEROXBTC = new Token(ChainId.MAINNET, '0xb6ed7644c69416d67b522e20bc294a9a9b405b31', 18, '0xBTC', '0xBitcoin')
 export const LIDTOKEN = new Token(ChainId.MAINNET, '0x0417912b3a7AF768051765040A55BB0925D4DDcF', 18, 'LID', 'Liquidity Dividends Protocol')
 export const XETH = new Token(ChainId.MAINNET, '0x29B109625ac15BC4577d0b70ACB9e4E27F7C07E8', 18, 'xETH', 'xWrapped Ether')
+export const LIFT = new Token(ChainId.MAINNET, '0x359b04965a756052b335D962826A6292b40CB343', 18, 'LIFT', 'LIFTOFF Protocol Token')
+export const JRT = new Token(ChainId.MAINNET, '0x8a9c67fee641579deba04928c4bc45f66e26343a', 18, 'JRT', 'Jarvis Reward Token')
 
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 13
@@ -78,7 +80,7 @@ const WETH_ONLY: ChainTokenList = {
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR,SOCKS,DFOUSD,ZEROXBTC,COMMONWEALTH,LIDTOKEN,XETH]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR,SOCKS,DFOUSD,ZEROXBTC,COMMONWEALTH,LIDTOKEN,XETH,JRT,LIFT]
 }
 
 /**
@@ -94,13 +96,13 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,WBTC,USDC,FISH,UNITOKEN,CRAB,SHRIMP,TORI,BUIDL,AXS,SOCKS,LIDTOKEN,XETH]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,WBTC,USDC,FISH,UNITOKEN,CRAB,SHRIMP,TORI,BUIDL,AXS,SOCKS,LIDTOKEN,XETH,LIFT]
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR,SOCKS,DFOUSD,LIDTOKEN,XETH]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR,SOCKS,DFOUSD,LIDTOKEN,XETH,LIFT]
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
@@ -193,7 +195,7 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
 export const NetworkContextName = 'NETWORK'
 
 // default allowed slippage, in bips
-export const INITIAL_ALLOWED_SLIPPAGE = 250
+export const INITIAL_ALLOWED_SLIPPAGE = 300
 // 20 minutes, denominated in seconds
 export const DEFAULT_DEADLINE_FROM_NOW = 60 * 20
 
@@ -217,4 +219,6 @@ export const BLOCKED_PRICE_IMPACT_NON_EXPERT: Percent = new Percent(JSBI.BigInt(
 // used to ensure the user doesn't send so much ETH so they end up with <.01
 export const MIN_ETH: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16)) // .01 ETH
 export const BETTER_TRADE_LINK_THRESHOLD = new Percent(JSBI.BigInt(75), JSBI.BigInt(10000))
-export const BETTER_TRADE_LESS_HOPS_THRESHOLD = new Percent(JSBI.BigInt(50), JSBI.BigInt(10000))
+export const BETTER_TRADE_LESS_HOPS_THRESHOLD = new Percent(JSBI.BigInt(500), JSBI.BigInt(10000))
+export const ZERO_PERCENT = new Percent('0')
+export const ONE_HUNDRED_PERCENT = new Percent('1')

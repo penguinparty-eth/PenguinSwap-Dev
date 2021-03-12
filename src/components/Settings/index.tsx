@@ -6,7 +6,6 @@ import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import { ApplicationModal } from '../../state/application/actions'
 import { useModalOpen, useToggleSettingsMenu } from '../../state/application/hooks'
 import {
-  useDarkModeManager,
   useExpertModeManager,
   useUserTransactionTTL,
   useUserSlippageTolerance,
@@ -27,6 +26,9 @@ const StyledMenuIcon = styled(Settings)`
 
   > * {
     stroke: ${({ theme }) => theme.text1};
+  }
+  :hover {
+    opacity: 0.7;
   }
 `
 
@@ -98,14 +100,8 @@ const MenuFlyout = styled.span`
   right: 0rem;
   z-index: 100;
 
-  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
-    min-width: 18.125rem;
-    right: -46px;
-  `};
-
   ${({ theme }) => theme.mediaWidth.upToMedium`
     min-width: 18.125rem;
-    top: -22rem;
   `};
 `
 
@@ -137,8 +133,6 @@ export default function SettingsTab() {
   const [expertMode, toggleExpertMode] = useExpertModeManager()
 
   const [singleHopOnly, setSingleHopOnly] = useUserSingleHopOnly()
-
-  const [darkMode, toggleDarkMode] = useDarkModeManager()
 
   // show confirmation view before turning on
   const [showConfirmation, setShowConfirmation] = useState(false)
@@ -186,11 +180,11 @@ export default function SettingsTab() {
         </ModalContentWrapper>
       </Modal>
       <StyledMenuButton onClick={toggle} id="open-settings-dialog-button">
-        <StyledMenuIcon />
+      <StyledMenuIcon />
         {expertMode ? (
           <EmojiWrapper>
             <span role="img" aria-label="wizard-icon">
-              🐧
+              🧙
             </span>
           </EmojiWrapper>
         ) : null}
@@ -245,14 +239,6 @@ export default function SettingsTab() {
                 isActive={singleHopOnly}
                 toggle={() => (singleHopOnly ? setSingleHopOnly(false) : setSingleHopOnly(true))}
               />
-            </RowBetween>
-            <RowBetween>
-              <RowFixed>
-                <TYPE.black fontWeight={400} fontSize={14} color={theme.text2}>
-                  Toggle Dark Mode
-                </TYPE.black>
-              </RowFixed>
-              <Toggle isActive={darkMode} toggle={toggleDarkMode} />
             </RowBetween>
           </AutoColumn>
         </MenuFlyout>

@@ -3,6 +3,7 @@ import { Version } from '../../hooks/useToggledVersion'
 import { parseUnits } from '@ethersproject/units'
 import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount, Trade } from '@uniswap/sdk'
 import { ParsedQs } from 'qs'
+import { DEFAULTTOKEN } from '../../constants'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useV1Trade } from '../../data/V1'
@@ -224,7 +225,7 @@ function parseCurrencyFromURLParameter(urlParam: any): string {
     if (urlParam.toUpperCase() === 'ETH') return 'ETH'
     if (valid === false) return 'ETH'
   }
-  return 'ETH' ?? ''
+  return DEFAULTTOKEN ?? ''
 }
 
 function parseTokenAmountURLParameter(urlParam: any): string {

@@ -17,13 +17,11 @@ import TransactionUpdater from './state/transactions/updater'
 import UserUpdater from './state/user/updater'
 import ThemeProvider, { FixedGlobalStyle, ThemedGlobalStyle } from './theme'
 import getLibrary from './utils/getLibrary'
-import '@metamask/legacy-web3'
 
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import reportWebVitals from './reportWebVitals';
 //have to ignore all warnings from this line because it's an ephemeral file
 // @ts-ignore
 import gitData from "./.parsed-git.json";
+
 const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName)
 
 //TODO: THIS IS TEMPORARY
@@ -87,17 +85,7 @@ ReactDOM.render(
 // Learn more about service workers: https://cra.link/PWA
 // serviceWorkerRegistration.register();
 
-  serviceWorkerRegistration.register({
-    onUpdate: registration => {
-    alert('New version available!  Ready to update?');
-    window.location.reload();
-      if (registration && registration.waiting) {
-        registration.waiting.postMessage({ type: 'SKIP_WAITING' });
-      }
-    }
-  });
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals(console.log);
