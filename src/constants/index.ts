@@ -41,6 +41,11 @@ export const LIFT = new Token(ChainId.MAINNET, '0x359b04965a756052b335D962826A62
 export const JRT = new Token(ChainId.MAINNET, '0x8a9c67fee641579deba04928c4bc45f66e26343a', 18, 'JRT', 'Jarvis Reward Token')
 export const KEK = new Token(ChainId.MAINNET, '0x3fa400483487A489EC9b1dB29C4129063EEC4654', 18,  'KEK', 'Cryptokek.com')
 export const MEME = new Token(ChainId.MAINNET, '0xd5525d397898e5502075ea5e830d8914f6f0affe', 8,  'MEME', 'MEME (dontbuymeme.com)')
+export const YTSLA = new Token(ChainId.MAINNET, '0x5322a3556f979ce2180b30e689a9436fddcb1021', 18,  'yTSLA', 'yTSLA')
+export const BEANS = new Token(ChainId.MAINNET, '0x801f90f81786dc72b4b9d51ab613fbe99e5e4ccd', 18,  'BEANS', 'Happyfarm BEANS')
+export const BAO = new Token(ChainId.MAINNET, '0x374cb8c27130e2c9e04f44303f3c8351b9de61c1', 18,  'BAO', 'BAO (bao.finance)')
+export const ONEINCH = new Token(ChainId.MAINNET, '0x111111111117dc0aa78b770fa6a738034120c302', 18,  'BAO', '1INCH (1inch.exchange)')
+export const ISLA = new Token(ChainId.MAINNET, '0x20a68f9e34076b2dc15ce726d7eebb83b694702d', 18,  'ISLA', 'Defiville Island Token (defiville.finance)')
 
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 13
@@ -82,7 +87,7 @@ const WETH_ONLY: ChainTokenList = {
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR,SOCKS,DFOUSD,ZEROXBTC,COMMONWEALTH,LIDTOKEN,XETH,JRT,LIFT, KEK, MEME]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR,SOCKS,DFOUSD,ZEROXBTC,COMMONWEALTH,LIDTOKEN,XETH,JRT,LIFT, KEK, MEME, YTSLA, BEANS, BAO, ONEINCH, ISLA]
 }
 
 /**
@@ -98,13 +103,13 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,WBTC,USDC,FISH,UNITOKEN,CRAB,SHRIMP,TORI,BUIDL,AXS,SOCKS,LIDTOKEN,XETH,LIFT,KEK,MEME]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,WBTC,USDC,FISH,UNITOKEN,CRAB,SHRIMP,TORI,BUIDL,AXS,SOCKS,LIDTOKEN,XETH,LIFT,KEK,MEME, YTSLA, BEANS, BAO, ONEINCH, ISLA]
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR,SOCKS,DFOUSD,LIDTOKEN,XETH,LIFT,KEK,MEME]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR,SOCKS,DFOUSD,LIDTOKEN,XETH,LIFT,KEK,MEME, YTSLA, BEANS, BAO, ONEINCH, ISLA]
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
