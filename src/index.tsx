@@ -21,8 +21,13 @@ import '@metamask/legacy-web3'
 
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-
+//have to ignore all warnings from this line because it's an ephemeral file
+// @ts-ignore
+import gitData from "./.parsed-git.json";
 const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName)
+
+//TODO: THIS IS TEMPORARY
+console.log("GITDATA ", gitData);
 
 if ('ethereum' in window) {
   ;(window.ethereum as any).autoRefreshOnNetworkChange = false
