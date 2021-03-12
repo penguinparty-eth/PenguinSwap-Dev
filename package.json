@@ -93,9 +93,15 @@
     "@walletconnect/web3-provider": "1.1.1-alpha.0"
   },
   "scripts": {
+    "prestart": "node scripts/preprocess-git-env.js",
     "start": "react-scripts start",
+    "poststart": "node scripts/postprocess-git-env.js",
+    "prebuild": "node scripts/preprocess-git-env.js",
     "build": "react-scripts build",
+    "postbuild": "node scripts/postprocess-git-env.js",
+    "pretest": "node scripts/preprocess-git-env.js",
     "test": "react-scripts test --env=jsdom",
+    "posttest": "node scripts/preprocess-git-env.js",
     "eject": "react-scripts eject",
     "integration-test": "start-server-and-test 'serve build -l 3000' http://localhost:3000 'cypress run'"
   },
