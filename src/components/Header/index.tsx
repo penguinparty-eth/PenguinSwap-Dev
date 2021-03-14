@@ -330,6 +330,9 @@ export default function Header() {
           <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
             Voting
           </StyledNavLink>
+          <StyledNavLink id={`about-nav-link`} to={'/about'}>
+          🐧 About Penguin Party 🐧
+          </StyledNavLink>
         </HeaderLinks>
       </HeaderRow>
       <HeaderControls>
