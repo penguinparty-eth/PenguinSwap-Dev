@@ -31,6 +31,14 @@ const ConfirmedIcon = styled(ColumnCenter)`
   padding: 60px 0;
 `
 
+const HeaderText = styled(Text)`
+  color: ${({ theme }) => theme.text1}
+`
+
+const BodyText = styled(Text)`
+  color: ${({ theme }) => theme.text3}
+`
+
 function ConfirmationPendingContent({ onDismiss, pendingText }: { onDismiss: () => void; pendingText: string }) {
   return (
     <Wrapper>
@@ -43,17 +51,17 @@ function ConfirmationPendingContent({ onDismiss, pendingText }: { onDismiss: () 
           <CustomLightSpinner src={Circle} alt="loader" size={'90px'} />
         </ConfirmedIcon>
         <AutoColumn gap="12px" justify={'center'}>
-          <Text fontWeight={500} fontSize={20}>
+          <HeaderText fontWeight={500} fontSize={20}>
             Waiting For Confirmation
-          </Text>
+          </HeaderText>
           <AutoColumn gap="12px" justify={'center'}>
-            <Text fontWeight={600} fontSize={14} color="" textAlign="center">
+            <BodyText fontWeight={600} fontSize={14} color="" textAlign="center">
               {pendingText}
-            </Text>
+            </BodyText>
           </AutoColumn>
-          <Text fontSize={12} color="#565A69" textAlign="center">
+          <BodyText fontSize={12} textAlign="center">
             Confirm this transaction in your wallet
-          </Text>
+          </BodyText>
         </AutoColumn>
       </Section>
     </Wrapper>
@@ -82,7 +90,7 @@ function TransactionSubmittedContent({
           <ArrowUpCircle strokeWidth={0.5} size={90} color={theme.primary1} />
         </ConfirmedIcon>
         <AutoColumn gap="12px" justify={'center'}>
-          <Text fontWeight={500} fontSize={20}>
+          <Text color={theme.text1} fontWeight={500} fontSize={20}>
             Transaction Submitted
           </Text>
           {chainId && hash && (
@@ -93,7 +101,7 @@ function TransactionSubmittedContent({
             </ExternalLink>
           )}
           <ButtonPrimary onClick={onDismiss} style={{ margin: '20px 0 0 0' }}>
-            <Text fontWeight={500} fontSize={20}>
+            <Text color={theme.text1} fontWeight={500} fontSize={20}>
               Close
             </Text>
           </ButtonPrimary>
@@ -138,7 +146,7 @@ export function TransactionErrorContent({ message, onDismiss }: { message: strin
     <Wrapper>
       <Section>
         <RowBetween>
-          <Text fontWeight={500} fontSize={20}>
+          <Text color={theme.text1} fontWeight={500} fontSize={20}>
             Error
           </Text>
           <CloseIcon onClick={onDismiss} />
