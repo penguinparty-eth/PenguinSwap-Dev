@@ -390,7 +390,7 @@ export default function AddLiquidity({
               <>
                 <LightCard padding="0px" borderRadius={'20px'}>
                   <RowBetween padding="1rem">
-                    <TYPE.subHeader fontWeight={500} fontSize={14}>
+                    <TYPE.subHeader color={theme.text1} fontWeight={500} fontSize={14}>
                       {noLiquidity ? 'Initial prices' : 'Prices'} and pool share
                     </TYPE.subHeader>
                   </RowBetween>{' '}

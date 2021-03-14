@@ -114,11 +114,13 @@ export function ConfirmationModalContent({
   topContent: () => React.ReactNode
   bottomContent: () => React.ReactNode
 }) {
+  const theme = useContext(ThemeContext)
+
   return (
     <Wrapper>
       <Section>
         <RowBetween>
-          <Text fontWeight={500} fontSize={20}>
+          <Text color={theme.text1} fontWeight={500} fontSize={20}>
             {title}
           </Text>
           <CloseIcon onClick={onDismiss} />
