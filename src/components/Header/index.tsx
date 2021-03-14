@@ -179,6 +179,7 @@ const BalanceText = styled(Text)`
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
     display: none;
   `};
+  color: ${({ theme }) => theme.text1};
 `
 
 const Title = styled.a`
