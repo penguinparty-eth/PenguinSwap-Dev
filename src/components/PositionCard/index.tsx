@@ -25,6 +25,8 @@ import DoubleCurrencyLogo from '../DoubleLogo'
 import { RowBetween, RowFixed } from '../Row'
 import { Dots } from '../swap/styleds'
 
+
+
 export const FixedHeightRow = styled(RowBetween)`
   height: 24px;
 `
@@ -46,7 +48,7 @@ const StyledPositionCard = styled(LightCard)<{ bgColor: any }>`
 interface PositionCardProps {
   pair: Pair
   showUnwrapped?: boolean
-  border?: string
+  border?: string,
 }
 
 export function MinimalPositionCard({ pair, showUnwrapped = false, border }: PositionCardProps) {
@@ -80,7 +82,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
   return (
     <>
       {userPoolBalance && JSBI.greaterThan(userPoolBalance.raw, JSBI.BigInt(0)) ? (
-        <GreyCard border={border}>
+        <GreyCard border={border} >
           <AutoColumn gap="12px">
             <FixedHeightRow>
               <RowFixed>

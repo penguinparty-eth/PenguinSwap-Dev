@@ -27,6 +27,9 @@ const PageWrapper = styled(AutoColumn)``
 const TopSection = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
+  background-color: white;
+  padding: 3%;
+  border-radius: 25px;
 `
 
 const Proposal = styled(Button)`
@@ -215,7 +218,7 @@ export default function Vote() {
           <EmptyProposals>
             <TYPE.body style={{ marginBottom: '8px' }}>No proposals found.</TYPE.body>
             <TYPE.subHeader>
-              <i>Proposals submitted by community members will appear here.</i>
+              <i style={{ marginBottom: '8px' }}>Proposals submitted by community members will appear here.</i>
             </TYPE.subHeader>
           </EmptyProposals>
         )}

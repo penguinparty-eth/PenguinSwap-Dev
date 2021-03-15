@@ -332,7 +332,10 @@ export default function Header() {
             Voting
           </StyledNavLink>
           <StyledNavLink id={`about-nav-link`} to={'/about'}>
-          🐧 About Penguin Party 🐧
+          About
+          </StyledNavLink>
+          <StyledNavLink id={`about-nav-link`} to={'swap?outputCurrency=0x30bcd71b8d21fe830e493b30e90befba29de9114'}>
+          Roulette
           </StyledNavLink>
         </HeaderLinks>
       </HeaderRow>
