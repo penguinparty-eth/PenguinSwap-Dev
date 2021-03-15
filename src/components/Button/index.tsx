@@ -113,8 +113,7 @@ export const ButtonGray = styled(Base)`
 
 export const ButtonSecondary = styled(Base)`
   border: 1px solid ${({ theme }) => theme.primary4};
-  color: ${({ theme }) => theme.text1};
-  background-color: white;
+  background-color: ${({ theme }) => theme.primary1};
   font-size: 16px;
   border-radius: 12px;
   padding: ${({ padding }) => (padding ? padding : '10px')};

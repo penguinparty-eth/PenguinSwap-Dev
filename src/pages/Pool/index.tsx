@@ -201,7 +201,7 @@ export default function Pool() {
                     <ExternalLink href={'https://uniswap.info/account/' + account}>
                       Account analytics and accrued fees
                     </ExternalLink>
-                    <span> ↗</span>
+                    <span style={{ color: theme.text1 }}> ↗</span>
                   </RowBetween>
                 </ButtonSecondary>
                 {v2PairsWithoutStakedAmount.map(v2Pair => (
