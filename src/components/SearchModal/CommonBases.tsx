@@ -10,7 +10,7 @@ import { AutoRow } from '../Row'
 import CurrencyLogo from '../CurrencyLogo'
 
 const TextThemed = styled(Text)`
-  color: ${({ theme }) => theme.text2};
+  color: ${({ theme }) => theme.text3};
 `
 
 const BaseWrapper = styled.div<{ disable?: boolean }>`
@@ -56,18 +56,18 @@ export default function CommonBases({
           disable={selectedCurrency === ETHER}
         >
           <CurrencyLogo currency={ETHER} style={{ marginRight: 8 }} />
-          <Text fontWeight={500} fontSize={16}>
+          <TextThemed fontWeight={500} fontSize={16}>
             ETH
-          </Text>
+          </TextThemed>
         </BaseWrapper>
         {(chainId ? SUGGESTED_BASES[chainId] : []).map((token: Token) => {
           const selected = selectedCurrency instanceof Token && selectedCurrency.address === token.address
           return (
             <BaseWrapper onClick={() => !selected && onSelect(token)} disable={selected} key={token.address}>
               <CurrencyLogo currency={token} style={{ marginRight: 8 }} />
-              <Text fontWeight={500} fontSize={16}>
+              <TextThemed fontWeight={500} fontSize={16}>
                 {token.symbol}
-              </Text>
+              </TextThemed>
             </BaseWrapper>
           )
         })}
