@@ -332,8 +332,11 @@ export default function Header() {
             Voting
           </StyledNavLink>
           <StyledNavLink id={`about-nav-link`} to={'/about'}>
-          🐧 About Penguin Party 🐧
+          About
           </StyledNavLink>
+          <HeaderElement onClick={() => window.location.assign('https://penguinswap.eth.link/#/swap?outputCurrency=0x30bcd71b8d21fe830e493b30e90befba29de9114')}>
+          Roulette
+          </HeaderElement>
         </HeaderLinks>
       </HeaderRow>
       <HeaderControls>
