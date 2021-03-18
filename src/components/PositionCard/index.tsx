@@ -1,12 +1,12 @@
 import { JSBI, Pair, Percent } from '@uniswap/sdk'
 import { darken } from 'polished'
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { ChevronDown, ChevronUp } from 'react-feather'
 import { Link } from 'react-router-dom'
 import { Text } from 'rebass'
 import styled from 'styled-components'
 import { useTotalSupply } from '../../data/TotalSupply'
-
+import { ThemeContext } from 'styled-components'
 import { useActiveWeb3React } from '../../hooks'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import { ExternalLink, TYPE } from '../../theme'
@@ -53,6 +53,7 @@ interface PositionCardProps {
 
 export function MinimalPositionCard({ pair, showUnwrapped = false, border }: PositionCardProps) {
   const { account } = useActiveWeb3React()
+  const theme = useContext(ThemeContext)
 
   const currency0 = showUnwrapped ? pair.token0 : unwrappedToken(pair.token0)
   const currency1 = showUnwrapped ? pair.token1 : unwrappedToken(pair.token1)
@@ -146,7 +147,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
         </GreyCard>
       ) : (
         <LightCard>
-          <TYPE.subHeader style={{ textAlign: 'center' }}>
+          <TYPE.subHeader style={{ textAlign: 'center', color: theme.text1 }}>
             <span role="img" aria-label="wizard-icon">
               ⭐️
             </span>{' '}

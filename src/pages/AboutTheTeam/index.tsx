@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import PinkLogo from '../../../src/assets/svg/logo_pink.svg'
 import './style.css'
 
+import { LIDTOKEN, KEK, ISLA, PENGUINSWAPURL } from '../../constants'
+
 
 export default function ShowTeamPage() {
   const PenguinParty = styled.div`
@@ -59,7 +61,9 @@ export default function ShowTeamPage() {
   flex-direction: column;
   padding-bottom: 5%;
   `
-  
+  const LIDTRADE = PENGUINSWAPURL.concat(LIDTOKEN.address)
+  const KEKTRADE = PENGUINSWAPURL.concat(KEK.address)
+  const ISLATRADE = PENGUINSWAPURL.concat(ISLA.address)
   
 
   return (
@@ -126,13 +130,22 @@ export default function ShowTeamPage() {
     <div className='lid-div'>
     <a href="https://lid.sh/"><img className='lid-pic' src="https://cryptoslate.com/wp-content/uploads/2020/08/lid-social.jpg" alt=""/></a>
       <h2><a href="https://lid.sh/">Liquidity Dividends Protocol</a></h2>
+      <h2><a href={ LIDTRADE } >Trade</a></h2>
       <h3>The LID token by Liquidity Dividends Protocol allows stakers to earn rewards from bots trading on Uniswap while gaining exposure to the wide variety of assets paired against LID as locked liquidity. </h3>
     </div>
     <div className='crypto-kek-div'>
     <a href="https://cryptokek.com/"><img className='crypto-kek-pic' src="https://pbs.twimg.com/profile_images/1353739226748223488/-J29E6vO_400x400.png" alt=""/></a>
       <h2><a href="https://cryptokek.com/">CryptoKek</a></h2>
+      <h2><a href={ KEKTRADE } >Trade</a></h2>
       <h3>CryptoKek is an analytics platform for decentralized exchanges designed to offer cutting edge insight to support its users in their endeavors. </h3>
     </div>
+    <div className='defiville-div'>
+    <a href="https://defiville.finance/"><img className='defiville-pic' src="https://defiville.finance/img/SVG/logo.svg" alt=""/></a>
+      <h2><a href="https://defiville.finance/">DEFIVILLE</a></h2>
+      <h2><a href={ ISLATRADE } >Trade</a></h2>
+      <h3>Defiville is a 100% community-led gamified social experiment focused on incentivizing participation in yield-farming protocols.</h3>
+    </div>
+
     </div>
     </Partners>
     </PenguinArea>

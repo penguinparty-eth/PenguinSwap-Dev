@@ -47,6 +47,8 @@ export const BAO = new Token(ChainId.MAINNET, '0x374cb8c27130e2c9e04f44303f3c835
 export const ONEINCH = new Token(ChainId.MAINNET, '0x111111111117dc0aa78b770fa6a738034120c302', 18,  'BAO', '1INCH (1inch.exchange)')
 export const ISLA = new Token(ChainId.MAINNET, '0x20a68f9e34076b2dc15ce726d7eebb83b694702d', 18,  'ISLA', 'Defiville Island Token (defiville.finance)')
 
+export const PENGUINSWAPURL = "https://penguinswap.eth.link/#/swap?outputCurrency="
+
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 13
 export const PROPOSAL_LENGTH_IN_BLOCKS = 40_320
