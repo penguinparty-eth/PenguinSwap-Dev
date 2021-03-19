@@ -12,6 +12,7 @@ import Loader from '../Loader'
 const TransactionWrapper = styled.div``
 
 const TransactionStatusText = styled.div`
+  color: ${({ theme }) => theme.text3};
   margin-right: 0.5rem;
   display: flex;
   align-items: center;

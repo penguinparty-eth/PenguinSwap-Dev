@@ -18,10 +18,14 @@ import UserUpdater from './state/user/updater'
 import ThemeProvider, { FixedGlobalStyle, ThemedGlobalStyle } from './theme'
 import getLibrary from './utils/getLibrary'
 
-
-
+//have to ignore all warnings from this line because it's an ephemeral file
+// @ts-ignore
+import gitData from "./.parsed-git.json";
 
 const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName)
+
+//TODO: THIS IS TEMPORARY
+console.log("GITDATA ", gitData);
 
 if ('ethereum' in window) {
   ;(window.ethereum as any).autoRefreshOnNetworkChange = false
@@ -76,12 +80,25 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('worker.js').then(function(registration) {
+      console.log('Worker registration successful', registration.scope);
+    }, function(err) {
+      console.log('Worker registration failed', err);
+    }).catch(function(err) {
+      console.log(err);
+    });
+  });
+} else {
+  console.log('Service Worker is not supported by browser.');
+}
+
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://cra.link/PWA
-// serviceWorkerRegistration.register();
-
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+

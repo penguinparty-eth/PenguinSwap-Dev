@@ -17,6 +17,14 @@ const Wrapper = styled.div`
   padding-bottom: 80px;
 `
 
+const TextThemed = styled(Text)`
+  color: ${({ theme }) => theme.text1};
+`
+
+const ArrowLeftThemed = styled(ArrowLeft)`
+  color: ${({ theme }) => theme.text1};
+`
+
 const ToggleWrapper = styled(RowBetween)`
   background-color: ${({ theme }) => theme.bg3};
   border-radius: 12px;
@@ -60,10 +68,10 @@ export default function Manage({
     <Wrapper>
       <PaddedColumn>
         <RowBetween>
-          <ArrowLeft style={{ cursor: 'pointer' }} onClick={() => setModalView(CurrencyModalView.search)} />
-          <Text fontWeight={500} fontSize={20}>
+          <ArrowLeftThemed style={{ cursor: 'pointer' }} onClick={() => setModalView(CurrencyModalView.search)} />
+          <TextThemed fontWeight={500} fontSize={20}>
             Manage
-          </Text>
+          </TextThemed>
           <CloseIcon onClick={onDismiss} />
         </RowBetween>
       </PaddedColumn>

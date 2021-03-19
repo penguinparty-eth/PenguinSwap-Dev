@@ -110,6 +110,7 @@ const HeaderRow = styled(RowFixed)`
 
 const HeaderLinks = styled(Row)`
   justify-content: center;
+
   ${({ theme }) => theme.mediaWidth.upToSmall`
     padding: 1rem 0rem 1rem 1rem;
     justify-content: flex-end;
@@ -179,6 +180,7 @@ const BalanceText = styled(Text)`
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
     display: none;
   `};
+  color: ${({ theme }) => theme.text1};
 `
 
 const Title = styled.a`
@@ -233,6 +235,9 @@ const StyledNavLink = styled(NavLink).attrs({
   }
 `
 const StyledMenuButton = styled.button`
+  color: ${({ theme }) => theme.text1};
+  font-weight: 500;
+  font-size: 0.9rem;
   position: relative;
   width: 100%;
   height: 100%;
@@ -330,6 +335,12 @@ export default function Header() {
           <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
             Voting
           </StyledNavLink>
+          <StyledNavLink id={`about-nav-link`} to={'/about'}>
+          About
+          </StyledNavLink>
+          <StyledMenuButton onClick={() => window.location.assign('https://penguinswap.eth.link/#/swap?outputCurrency=0x30bcd71b8d21fe830e493b30e90befba29de9114')}>
+          Roulette
+          </StyledMenuButton>
         </HeaderLinks>
       </HeaderRow>
       <HeaderControls>
