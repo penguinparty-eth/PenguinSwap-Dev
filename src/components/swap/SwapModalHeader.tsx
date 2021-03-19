@@ -49,7 +49,7 @@ export default function SwapModalHeader({
           </TruncatedText>
         </RowFixed>
         <RowFixed gap={'0px'}>
-          <Text fontSize={24} fontWeight={500} style={{ marginLeft: '10px' }}>
+          <Text color={theme.text3} fontSize={24} fontWeight={500} style={{ marginLeft: '10px' }}>
             {trade.inputAmount.currency.symbol}
           </Text>
         </RowFixed>
@@ -75,7 +75,7 @@ export default function SwapModalHeader({
           </TruncatedText>
         </RowFixed>
         <RowFixed gap={'0px'}>
-          <Text fontSize={24} fontWeight={500} style={{ marginLeft: '10px' }}>
+          <Text color={theme.text3} fontSize={24} fontWeight={500} style={{ marginLeft: '10px' }}>
             {trade.outputAmount.currency.symbol}
           </Text>
         </RowFixed>

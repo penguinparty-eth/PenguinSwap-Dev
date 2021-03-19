@@ -7,8 +7,8 @@ export const DEFAULT_TOKEN_LIST_URL = 'https://ipfs.io/ipfs/QmUDgJB6gnaLZz5h7ku2
  * @TODO add list from blockchain association
  */
 export const UNSUPPORTED_LIST_URLS: string[] = []
-const PENGUINLIST =  'https://ipfs.io/ipfs/QmUDgJB6gnaLZz5h7ku23w9B78H2P6M3siNw7UTeipFtg3'
-const LIDLIST =  'https://gateway.pinata.cloud/ipfs/QmW5nPQM5D9VP9S7aP5z4wYs6EDyKKhMd6cfXRGHxCinJb'
+const PENGUINLIST =  'https://ipfs.io/ipfs/QmUyMb8xKEzQWrjg2o67zXJixQS6QSxYwuXQioZzY1zb2F'
+const LIDLIST =  'tokenlist.lid.eth'
 const COMPOUND_LIST = 'https://raw.githubusercontent.com/compound-finance/token-list/master/compound.tokenlist.json'
 const UMA_LIST = 'https://umaproject.org/uma.tokenlist.json'
 const AAVE_LIST = 'tokenlist.aave.eth'

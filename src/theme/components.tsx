@@ -22,7 +22,7 @@ export const ButtonText = styled.button`
 `
 
 export const Button = styled.button.attrs<{ warning: boolean }, { backgroundColor: string }>(({ warning, theme }) => ({
-  backgroundColor: warning ? theme.red1 : theme.primary1
+  backgroundColor: warning ? theme.red1 : theme.primary2
 }))`
   padding: 1rem 2rem 1rem 2rem;
   border-radius: 3rem;
@@ -50,6 +50,7 @@ export const Button = styled.button.attrs<{ warning: boolean }, { backgroundColo
 
 export const CloseIcon = styled(X)<{ onClick: () => void }>`
   cursor: pointer;
+  color: ${({ theme }) => theme.text1};
 `
 
 // for wrapper react feather icons
@@ -72,7 +73,7 @@ export const LinkStyledButton = styled.button<{ disabled?: boolean }>`
   text-decoration: none;
   background: none;
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
-  color: ${({ theme, disabled }) => (disabled ? theme.text2 : theme.primary1)};
+  color: ${({ theme, disabled }) => (disabled ? theme.text2 : theme.text3)};
   font-weight: 500;
   :hover {
     text-decoration: ${({ disabled }) => (disabled ? null : 'underline')};
@@ -107,7 +108,7 @@ export const StyledInternalLink = styled(Link)`
 const StyledLink = styled.a`
   text-decoration: none;
   cursor: pointer;
-  color: ${({ theme }) => theme.primary1};
+  color: ${({ theme }) => theme.text2};
   font-weight: 500;
   :hover {
     text-decoration: underline;

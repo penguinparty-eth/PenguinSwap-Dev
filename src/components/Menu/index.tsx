@@ -106,19 +106,19 @@ export default function Menu() {
             News
           </MenuItem>
           <MenuItem id="link" href="https://uniswap.org/docs/v2">
-            <BookOpen size={14} />
+          <BookOpen size={14} />
             Docs
           </MenuItem>
           <MenuItem id="link" href={CODE_LINK}>
-            <Code size={14} />
+          <Code size={14} />
             Code
           </MenuItem>
           <MenuItem id="link" href="https://discord.gg/pkmBgQr">
-            <MessageCircle size={14} />
+          <MessageCircle size={14} />
             Discord
           </MenuItem>
           <MenuItem id="link" href="https://gnosis-safe.io/app/#/safes/0x686B4535FF6573cef3FF37419A4fc6Ac775Ec7ea/balances">
-            💰Treasury
+            💰 Treasury
           </MenuItem>
           <MenuItem id="link" href="https://unigov.eth.link">
             🏛 UniGov
@@ -127,11 +127,14 @@ export default function Menu() {
             🐧 Voting
           </MenuItem>
           <MenuItem id="link" href="https://lid.sh">
-            📈LID Protocol
+            📈 LID Protocol
           </MenuItem>
           <MenuItem id="link" href="https://uniswap.info/">
             <PieChart size={14} />
             Analytics
+          </MenuItem>
+          <MenuItem id="link" href="https://docs.google.com/presentation/d/1HAclH6XfukwZSYB5L6o_07ApOWiSTDzfPe6OVmN5SHc/edit#slide=id.gc443928cc3_0_155">
+            🌅 Roadmap
           </MenuItem>
         </MenuFlyout>
       )}

@@ -25,6 +25,8 @@ import { BIG_INT_ZERO } from '../../constants'
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
+  background-color: ${({ theme }) => theme.bg1};
+  border-radius: 3% 3%;
 `
 
 const VoteCard = styled(DataCard)`
@@ -33,6 +35,7 @@ const VoteCard = styled(DataCard)`
 `
 
 const TitleRow = styled(RowBetween)`
+  color: ${({ theme }) => theme.text1};
   ${({ theme }) => theme.mediaWidth.upToSmall`
     flex-wrap: wrap;
     gap: 12px;
@@ -57,7 +60,7 @@ const ResponsiveButtonPrimary = styled(ButtonPrimary)`
   `};
 `
 
-const ResponsiveButtonSecondary = styled(ButtonSecondary)`
+const ResponsiveButtonSecondary = styled(ButtonPrimary)`
   width: fit-content;
   ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 48%;
@@ -198,7 +201,7 @@ export default function Pool() {
                     <ExternalLink href={'https://uniswap.info/account/' + account}>
                       Account analytics and accrued fees
                     </ExternalLink>
-                    <span> ↗</span>
+                    <span style={{ color: theme.text1 }}> ↗</span>
                   </RowBetween>
                 </ButtonSecondary>
                 {v2PairsWithoutStakedAmount.map(v2Pair => (
@@ -214,9 +217,9 @@ export default function Pool() {
             )}
 
             <AutoColumn justify={'center'} gap="md">
-              <Text textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
+              <Text textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0', color: '#9999FF' }}>
                 {hasV1Liquidity ? 'Uniswap V1 liquidity found!' : "Don't see a pool you joined?"}{' '}
-                <StyledInternalLink id="import-pool-link" to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
+                <StyledInternalLink id="import-pool-link" style={{ color: 'gold' }} to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
                   {hasV1Liquidity ? 'Migrate now.' : 'Import it.'}
                 </StyledInternalLink>
               </Text>

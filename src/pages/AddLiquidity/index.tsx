@@ -334,13 +334,13 @@ export default function AddLiquidity({
                 <ColumnCenter>
                   <BlueCard>
                     <AutoColumn gap="10px">
-                      <TYPE.link fontWeight={600} color={'primaryText1'}>
+                      <TYPE.link fontWeight={600} color={theme.text1}>
                         You are the first liquidity provider.
                       </TYPE.link>
-                      <TYPE.link fontWeight={400} color={'primaryText1'}>
+                      <TYPE.link fontWeight={400} color={theme.text1}>
                         The ratio of tokens you add will set the price of this pool.
                       </TYPE.link>
-                      <TYPE.link fontWeight={400} color={'primaryText1'}>
+                      <TYPE.link fontWeight={400} color={theme.text1}>
                         Once you are happy with the rate click supply to review.
                       </TYPE.link>
                     </AutoColumn>
@@ -350,7 +350,7 @@ export default function AddLiquidity({
               <ColumnCenter>
                 <BlueCard>
                   <AutoColumn gap="10px">
-                    <TYPE.link fontWeight={400} color={'primaryText1'}>
+                    <TYPE.link fontWeight={400} color={theme.text1}>
                       <b>Tip:</b> When you add liquidity, you will receive pool tokens representing your position.
                       These tokens automatically earn fees proportional to your share of the pool, and can be redeemed
                       at any time.
@@ -390,7 +390,7 @@ export default function AddLiquidity({
               <>
                 <LightCard padding="0px" borderRadius={'20px'}>
                   <RowBetween padding="1rem">
-                    <TYPE.subHeader fontWeight={500} fontSize={14}>
+                    <TYPE.subHeader color={theme.text1} fontWeight={500} fontSize={14}>
                       {noLiquidity ? 'Initial prices' : 'Prices'} and pool share
                     </TYPE.subHeader>
                   </RowBetween>{' '}
