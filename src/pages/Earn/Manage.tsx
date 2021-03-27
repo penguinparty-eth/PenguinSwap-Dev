@@ -33,6 +33,8 @@ import { BIG_INT_ZERO, BIG_INT_SECONDS_IN_WEEK } from '../../constants'
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
+  background-color:rgba(200,200,200,0.7);
+  border-radius:10%;
 `
 
 const PositionInfo = styled(AutoColumn)<{ dim: any }>`
@@ -68,7 +70,7 @@ const StyledBottomCard = styled(DataCard)<{ dim: any }>`
 const PoolData = styled(DataCard)`
   background: none;
   border: 1px solid ${({ theme }) => theme.bg4};
-  padding: 1rem;
+  padding: 3rem;
   z-index: 1;
 `
 

@@ -1,6 +1,6 @@
 import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WETH, Pair } from '@uniswap/sdk'
 import { useMemo } from 'react'
-import { UNI, DAI, WBTC, USDC} from '../../constants'
+import { UNI, TORI, USDC, FISH} from '../../constants'
 import { STAKING_REWARDS_INTERFACE } from '../../constants/abis/staking-rewards'
 import { useActiveWeb3React } from '../../hooks'
 import { NEVER_RELOAD, useMultipleContractSingleData } from '../multicall/hooks'
@@ -20,15 +20,19 @@ export const STAKING_REWARDS_INFO: {
 } = {
   [ChainId.MAINNET]: [
     {
-      tokens: [WETH[ChainId.MAINNET], DAI],
+      tokens: [FISH,WETH[ChainId.MAINNET]],
       stakingRewardAddress: '0xa1484C3aa22a66C62b77E0AE78E15258bd0cB711'
     },
     {
-      tokens: [WBTC, USDC],
+      tokens: [FISH, UNI[ChainId.MAINNET]],
+      stakingRewardAddress: '0xa1484C3aa22a66C62b77E0AE78E15258bd0cB711'
+    },
+    {
+      tokens: [FISH, USDC],
       stakingRewardAddress: '0xCA35e32e7926b96A9988f61d510E038108d8068e'
     },
     {
-      tokens: [WETH[ChainId.MAINNET], WBTC],
+      tokens: [FISH, TORI],
       stakingRewardAddress: '0xCA35e32e7926b96A9988f61d510E038108d8068e'
     }
   ]
