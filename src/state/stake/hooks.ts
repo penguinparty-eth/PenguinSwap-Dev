@@ -180,8 +180,7 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
         const periodFinishMs = periodFinishSeconds * 1000
 
         // compare period end timestamp vs current block timestamp (in seconds)
-        const active =
-        periodFinishSeconds && currentBlockTimestamp ? periodFinishSeconds > currentBlockTimestamp.toNumber() : true
+        const active = true
         memo.push({
           stakingRewardAddress: rewardsAddress,
           tokens: info[index].tokens,

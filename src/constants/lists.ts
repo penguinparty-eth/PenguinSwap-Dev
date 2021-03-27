@@ -1,7 +1,7 @@
 // the Uniswap Default token list lives here
 // export const DEFAULT_TOKEN_LIST_URL = 'https://gateway.pinata.cloud/ipfs/QmUPRJphaELm7JY2PLTtziN5PSrWpw692TY4DUsoL8KEb3'
 // cid or hashid is usable... a CID is added to ens, and becomes the hashid...
-export const DEFAULT_TOKEN_LIST_URL = 'https://ipfs.io/ipfs/QmUDgJB6gnaLZz5h7ku23w9B78H2P6M3siNw7UTeipFtg3'
+export const DEFAULT_TOKEN_LIST_URL = 'https://gateway.pinata.cloud/ipfs/QmUdR5xmmh9oHnEwu5rEaXPRkHgmkxnEmh2EacaP9rSCpX'
 // used to mark unsupported tokens, these are hosted lists of unsupported tokens
 /**
  * @TODO add list from blockchain association

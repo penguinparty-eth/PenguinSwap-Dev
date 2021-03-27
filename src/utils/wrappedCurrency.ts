@@ -1,12 +1,8 @@
 import { ChainId, Currency, CurrencyAmount, ETHER, Token, TokenAmount, WETH } from '@uniswap/sdk'
-import { SHRIMP, UNITOKEN} from '../constants/index'
 
 export function wrappedCurrency(currency: Currency | undefined, chainId: ChainId | undefined): Token | undefined {
   if(chainId && currency === ETHER) {
   return WETH[chainId]
-}
-if(currency === UNITOKEN) {
-return SHRIMP
 }
 else {
   if(currency instanceof Token) {

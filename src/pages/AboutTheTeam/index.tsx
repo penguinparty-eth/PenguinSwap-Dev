@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PinkLogo from '../../../src/assets/svg/logo_pink.svg'
 import './style.css'
 
-import { LIDTOKEN, KEK, ISLA, PENGUINSWAPURL } from '../../constants'
+import { LIDTOKEN, KEK, ISLA, PENGUINSWAPURL,VERSION } from '../../constants'
 
 
 export default function ShowTeamPage() {
@@ -12,6 +12,7 @@ export default function ShowTeamPage() {
   justify-content: space-around;
   margin-top: -10%;
   background: rgba(0, 0, 0, 0.6);
+  border-radius:20% 20% 0% 0%;
   `
   const AboutText = styled.div`
   align-self: center;
@@ -21,16 +22,16 @@ export default function ShowTeamPage() {
   `
 
   const PenguinArea = styled.div`
-  background: rgba(0, 0, 0, 0.6);
   color: white;
   display: flex;
   flex-direction: column;
   width: 100%;
   text-align: center;
+  border-radius:0% 0% 10% 10%;
+  background: rgba(0, 0, 0, 0.6);
   `
 
   const Hiturunk = styled.div`
-  background: rgba(0, 0, 0, 0.6);
   color: white;
   width: 100%;
   display: flex;
@@ -40,7 +41,6 @@ export default function ShowTeamPage() {
   align-items: center;
   `
   const Devs = styled.div`
-  background: rgba(0, 0, 0, 0.6);
   background-position: cover;
   color: white;
   width: 100%;
@@ -52,7 +52,6 @@ export default function ShowTeamPage() {
   margin: 0 auto;
   `
   const Partners = styled.div`
-  background: rgba(0, 0, 0, 0.6);
   background-position: cover;
   color: white;
   text-align: center;
@@ -64,7 +63,7 @@ export default function ShowTeamPage() {
   const LIDTRADE = PENGUINSWAPURL.concat(LIDTOKEN.address)
   const KEKTRADE = PENGUINSWAPURL.concat(KEK.address)
   const ISLATRADE = PENGUINSWAPURL.concat(ISLA.address)
-  
+  const VERSION_TEXT = "V.".concat(VERSION)
 
   return (
     <>
@@ -72,7 +71,8 @@ export default function ShowTeamPage() {
       <img width={'35%'} height={'35%'} src={'https://miro.medium.com/max/1200/1*fYXGqcTgQldOd7687sHDag.gif'} alt="logo" style={{'margin': "5%", 'paddingLeft': "2%"}} />
       <AboutText>
         <h2><b>Penguin Party</b> is a Decentralized Governance Token Delegation focused on software deliverables to improve decentralized protocols and ensure protocol interoperability.</h2>
-      <h2><b>Penguin Swap</b> is our front-end interface which interacts with the Uniswap trading Protocol contracts using Penguin Swap's preferred token list and custom token / routing pairs.  </h2>
+        <h2><b>Penguin Swap</b> is our front-end interface which interacts with the Uniswap trading Protocol contracts using Penguin Swap's preferred token list and custom token / routing pairs.  </h2>
+        <h2><b>PenguinSwap { VERSION_TEXT }</b></h2>
       </AboutText>
     </PenguinParty>
     <PenguinArea>
