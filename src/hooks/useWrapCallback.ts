@@ -5,8 +5,8 @@ import { useTransactionAdder } from '../state/transactions/hooks'
 import { useCurrencyBalance } from '../state/wallet/hooks'
 import { useActiveWeb3React } from './index'
 import { useWETHContract, useWUNIContract, useUniContract, useWCOMPContract,
-   useCOMPContract, useTORIContract, useADAIContract, useCOMMONWEALTHContract, useTokenContract } from './useContract'
-import { SHRIMP, UNITOKEN, CRAB, COMP, TORI, ADAI, COMMONWEALTH, FISH, DAI, ADAITWO, XETH} from '../constants/index'
+   useCOMPContract, useTORIContract, useADAIContract, useTokenContract } from './useContract'
+import { SHRIMP, UNITOKEN, CRAB, COMP, TORI, ADAI, FISH, XETH} from '../constants/index'
 import { MaxUint256 } from '@ethersproject/constants'
 const BN = require('bn.js')
 
@@ -36,10 +36,8 @@ export default function useWrapCallback(
   const compContract = useCOMPContract()
   const toriContract = useTORIContract()
   const adaiContract = useADAIContract()
-  const adaiv2Contract = useTokenContract(ADAITWO.address)
-  const commonwealthContract = useCOMMONWEALTHContract()
   const fishContract = useTokenContract(FISH.address)
-  const daiContract = useTokenContract(DAI.address)
+  console.log(fishContract)
   const xethContract = useTokenContract(XETH.address)
   const balance = useCurrencyBalance(account ?? undefined, inputCurrency)
   // we can always parse the amount typed as the input currency, since wrapping is 1:1
@@ -226,191 +224,6 @@ export default function useWrapCallback(
               }
             : undefined,
         inputError: sufficientBalance ? undefined : 'Insufficient ⛩ balance'
-      }
-    }
-    else if (currencyEquals(inputCurrency,ADAI) && currencyEquals(COMMONWEALTH, outputCurrency)) {
-      return {
-        wrapType: WrapType.WRAP,
-        execute:
-          sufficientBalance && inputAmount
-            ? async () => {
-                try {
-                  if((await adaiContract.allowance(account,COMMONWEALTH.address)).lte(new BN(inputAmount.raw.toString(16), 16))){
-                    const txReceipt1 = await adaiContract.approve(COMMONWEALTH.address,MaxUint256)
-                    addTransaction(txReceipt1, { summary: `Approve ${inputAmount.toSignificant(6)} ADAI to 👈⛩️👉` })
-                  }
-                  const txReceipt = await commonwealthContract.wrap(`0x${inputAmount.raw.toString(16)}`,1)
-                  addTransaction(txReceipt, { summary: `Wrap ${inputAmount.toSignificant(6)} ADAI to 👈⛩️👉` })
-                } catch (error) {
-                  console.error('Could not deposit', error)
-                }
-              }
-            : undefined,
-        inputError: sufficientBalance ? undefined : 'Insufficient aDAI balance'
-      }
-    } else if (currencyEquals(COMMONWEALTH, inputCurrency) && currencyEquals(outputCurrency,ADAI)) {
-      return {
-        wrapType: WrapType.UNWRAP,
-        execute:
-          sufficientBalance && inputAmount
-            ? async () => {
-                try {
-                  const txReceipt = await commonwealthContract.unwrap(`0x${inputAmount.raw.toString(16)}`,1)
-                  addTransaction(txReceipt, { summary: `Unwrap ${inputAmount.toSignificant(6)} 👈⛩️👉 to ADAI` })
-                } catch (error) {
-                  console.error('Could not withdraw', error)
-                }
-              }
-            : undefined,
-        inputError: sufficientBalance ? undefined : 'Insufficient 👈⛩️👉 balance'
-      }
-    }
-    else if (currencyEquals(inputCurrency,FISH) && currencyEquals(COMMONWEALTH, outputCurrency)) {
-      return {
-        wrapType: WrapType.WRAP,
-        execute:
-          sufficientBalance && inputAmount
-            ? async () => {
-                try {
-                  if((await fishContract.allowance(account,COMMONWEALTH.address)).lte(new BN(inputAmount.raw.toString(16), 16))){
-                    const txReceipt1 = await fishContract.approve(COMMONWEALTH.address,MaxUint256)
-                    addTransaction(txReceipt1, { summary: `Approve ${inputAmount.toSignificant(6)} 🐟 to 👈⛩️👉` })
-                  }
-                  const txReceipt = await commonwealthContract.wrap(`0x${inputAmount.raw.toString(16)}`,0)
-                  addTransaction(txReceipt, { summary: `Wrap ${inputAmount.toSignificant(6)} 🐟 to 👈⛩️👉` })
-                } catch (error) {
-                  console.error('Could not deposit', error)
-                }
-              }
-            : undefined,
-        inputError: sufficientBalance ? undefined : 'Insufficient 🐟 balance'
-      }
-    } else if (currencyEquals(COMMONWEALTH, inputCurrency) && currencyEquals(outputCurrency,FISH)) {
-      return {
-        wrapType: WrapType.UNWRAP,
-        execute:
-          sufficientBalance && inputAmount
-            ? async () => {
-                try {
-                  const txReceipt = await commonwealthContract.unwrap(`0x${inputAmount.raw.toString(16)}`,0)
-                  addTransaction(txReceipt, { summary: `Unwrap ${inputAmount.toSignificant(6)} 👈⛩️👉 to 🐟` })
-                } catch (error) {
-                  console.error('Could not withdraw', error)
-                }
-              }
-            : undefined,
-        inputError: sufficientBalance ? undefined : 'Insufficient 👈⛩️👉 balance'
-      }
-    }
-    else if (currencyEquals(inputCurrency,TORI) && currencyEquals(COMMONWEALTH, outputCurrency)) {
-      return {
-        wrapType: WrapType.WRAP,
-        execute:
-          sufficientBalance && inputAmount
-            ? async () => {
-                try {
-                  if((await toriContract.allowance(account,COMMONWEALTH.address)).lte(new BN(inputAmount.raw.toString(16), 16))){
-                    const txReceipt1 = await toriContract.approve(COMMONWEALTH.address,MaxUint256)
-                    addTransaction(txReceipt1, { summary: `Approve ${inputAmount.toSignificant(6)} ⛩️ to 👈⛩️👉` })
-                  }
-                  const txReceipt = await commonwealthContract.wrap(`0x${inputAmount.raw.toString(16)}`,2)
-                  addTransaction(txReceipt, { summary: `Wrap ${inputAmount.toSignificant(6)} ⛩️ to 👈⛩️👉` })
-                } catch (error) {
-                  console.error('Could not deposit', error)
-                }
-              }
-            : undefined,
-        inputError: sufficientBalance ? undefined : 'Insufficient ⛩️ balance'
-      }
-    } else if (currencyEquals(COMMONWEALTH, inputCurrency) && currencyEquals(outputCurrency,TORI)) {
-      return {
-        wrapType: WrapType.UNWRAP,
-        execute:
-          sufficientBalance && inputAmount
-            ? async () => {
-                try {
-                  const txReceipt = await commonwealthContract.unwrap(`0x${inputAmount.raw.toString(16)}`,2)
-                  addTransaction(txReceipt, { summary: `Unwrap ${inputAmount.toSignificant(6)} 👈⛩️👉 to ⛩️` })
-                } catch (error) {
-                  console.error('Could not withdraw', error)
-                }
-              }
-            : undefined,
-        inputError: sufficientBalance ? undefined : 'Insufficient 👈⛩️👉 balance'
-      }
-    }
-    else if (currencyEquals(inputCurrency,ADAITWO) && currencyEquals(COMMONWEALTH, outputCurrency)) {
-      return {
-        wrapType: WrapType.WRAP,
-        execute:
-          sufficientBalance && inputAmount
-            ? async () => {
-                try {
-                  if((await adaiv2Contract.allowance(account,COMMONWEALTH.address)).lte(new BN(inputAmount.raw.toString(16), 16))){
-                    const txReceipt1 = await adaiv2Contract.approve(COMMONWEALTH.address,MaxUint256)
-                    addTransaction(txReceipt1, { summary: `Approve ${inputAmount.toSignificant(6)} aDAI-V2 to 👈⛩️👉` })
-                  }
-                  const txReceipt = await commonwealthContract.wrap(`0x${inputAmount.raw.toString(16)}`,3)
-                  addTransaction(txReceipt, { summary: `Wrap ${inputAmount.toSignificant(6)} aDAI-V2 to 👈⛩️👉` })
-                } catch (error) {
-                  console.error('Could not deposit', error)
-                }
-              }
-            : undefined,
-        inputError: sufficientBalance ? undefined : 'Insufficient aDAI-V2 balance'
-      }
-    } else if (currencyEquals(COMMONWEALTH, inputCurrency) && currencyEquals(outputCurrency,ADAITWO)) {
-      return {
-        wrapType: WrapType.UNWRAP,
-        execute:
-          sufficientBalance && inputAmount
-            ? async () => {
-                try {
-                  const txReceipt = await commonwealthContract.unwrap(`0x${inputAmount.raw.toString(16)}`,3)
-                  addTransaction(txReceipt, { summary: `Unwrap ${inputAmount.toSignificant(6)} 👈⛩️👉 to aDAI-V2` })
-                } catch (error) {
-                  console.error('Could not withdraw', error)
-                }
-              }
-            : undefined,
-        inputError: sufficientBalance ? undefined : 'Insufficient 👈⛩️👉 balance'
-      }
-    }
-    else if (currencyEquals(inputCurrency,DAI) && currencyEquals(COMMONWEALTH, outputCurrency)) {
-      return {
-        wrapType: WrapType.WRAP,
-        execute:
-          sufficientBalance && inputAmount
-            ? async () => {
-                try {
-                  if((await daiContract.allowance(account,COMMONWEALTH.address)).lte(new BN(inputAmount.raw.toString(16), 16))){
-                    const txReceipt1 = await daiContract.approve(COMMONWEALTH.address,MaxUint256)
-                    addTransaction(txReceipt1, { summary: `Approve ${inputAmount.toSignificant(6)} aDAI-V2 to 👈⛩️👉` })
-                  }
-                  const txReceipt = await commonwealthContract.wrap(`0x${inputAmount.raw.toString(16)}`,5)
-                  addTransaction(txReceipt, { summary: `Wrap ${inputAmount.toSignificant(6)} aDAI-V2 to 👈⛩️👉` })
-                } catch (error) {
-                  console.error('Could not deposit', error)
-                }
-              }
-            : undefined,
-        inputError: sufficientBalance ? undefined : 'Insufficient aDAI-V2 balance'
-      }
-    } else if (currencyEquals(COMMONWEALTH, inputCurrency) && currencyEquals(outputCurrency,DAI)) {
-      return {
-        wrapType: WrapType.UNWRAP,
-        execute:
-          sufficientBalance && inputAmount
-            ? async () => {
-                try {
-                  const txReceipt = await commonwealthContract.unwrap(`0x${inputAmount.raw.toString(16)}`,5)
-                  addTransaction(txReceipt, { summary: `Unwrap ${inputAmount.toSignificant(6)} 👈⛩️👉 to aDAI-V2` })
-                } catch (error) {
-                  console.error('Could not withdraw', error)
-                }
-              }
-            : undefined,
-        inputError: sufficientBalance ? undefined : 'Insufficient 👈⛩️👉 balance'
       }
     }
      else {

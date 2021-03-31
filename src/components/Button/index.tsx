@@ -181,8 +181,8 @@ export const ButtonOutlined = styled(Base)`
 `
 
 export const ButtonEmpty = styled(Base)`
-  background-color: white;
-  color: ${({ theme }) => theme.primary1};
+  background-color: ${({ theme }) => theme.primary1};
+  color: ${({ theme }) => theme.primaryText1};
   display: flex;
   justify-content: center;
   align-items: center;

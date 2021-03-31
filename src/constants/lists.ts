@@ -1,13 +1,13 @@
 // the Uniswap Default token list lives here
 // export const DEFAULT_TOKEN_LIST_URL = 'https://gateway.pinata.cloud/ipfs/QmUPRJphaELm7JY2PLTtziN5PSrWpw692TY4DUsoL8KEb3'
 // cid or hashid is usable... a CID is added to ens, and becomes the hashid...
-export const DEFAULT_TOKEN_LIST_URL = 'https://gateway.pinata.cloud/ipfs/QmUdR5xmmh9oHnEwu5rEaXPRkHgmkxnEmh2EacaP9rSCpX'
+export const DEFAULT_TOKEN_LIST_URL = 'https://ipfs.io/ipfs/QmTramQ1Js2ouXXWNbCMCz5ha7vgJgwg4iARG17D5Vjxxz'
 // used to mark unsupported tokens, these are hosted lists of unsupported tokens
 /**
  * @TODO add list from blockchain association
  */
 export const UNSUPPORTED_LIST_URLS: string[] = []
-const PENGUINLIST =  'https://ipfs.io/ipfs/QmUyMb8xKEzQWrjg2o67zXJixQS6QSxYwuXQioZzY1zb2F'
+const PENGUINLIST =  'https://ipfs.io/ipfs/QmTramQ1Js2ouXXWNbCMCz5ha7vgJgwg4iARG17D5Vjxxz'
 const LIDLIST =  'tokenlist.lid.eth'
 const COMPOUND_LIST = 'https://raw.githubusercontent.com/compound-finance/token-list/master/compound.tokenlist.json'
 const UMA_LIST = 'https://umaproject.org/uma.tokenlist.json'

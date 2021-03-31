@@ -40,7 +40,7 @@ export const HoverCard = styled(Card)`
 const StyledPositionCard = styled(LightCard)<{ bgColor: any }>`
   border: none;
   background: ${({ theme, bgColor }) =>
-    `radial-gradient(91.85% 100% at 1.84% 0%, ${transparentize(0.8, bgColor)} 0%, ${theme.bg3} 100%) `};
+    `radial-gradient(91.85% 100% at 1.84% 20%, ${transparentize(0.8, bgColor)} 0%, ${theme.primary2} 100%) `};
   position: relative;
   overflow: hidden;
 `
@@ -88,7 +88,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
     <>
       {userPoolBalance && JSBI.greaterThan(userPoolBalance.raw, JSBI.BigInt(0)) ? (
         <GreyCard border={border} >
-          <AutoColumn gap="12px">
+          <AutoColumn gap="6px">
             <FixedHeightRow>
               <RowFixed>
                 <Text fontWeight={500} fontSize={16}>
@@ -216,13 +216,17 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
               {showMore ? (
                 <>
                   {' '}
+                  <ThemedText>
                   Manage
                   <ChevronUp size="20" style={{ marginLeft: '10px' }} />
+                  </ThemedText>
                 </>
               ) : (
                 <>
+                <ThemedText>
                   Manage
                   <ChevronDown size="20" style={{ marginLeft: '10px' }} />
+                  </ThemedText>
                 </>
               )}
             </ButtonEmpty>

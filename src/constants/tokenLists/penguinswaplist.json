@@ -2,8 +2,8 @@
   "name": "PenguinParty v2",
   "timestamp": "2021-02-19T12:00:00+00:00",
   "version": {
-    "major": 2,
-    "minor": 9,
+    "major": 3,
+    "minor": 0,
     "patch": 0
   },
   "keywords": [
@@ -198,12 +198,42 @@
       "decimals": 18
     },
     {
-      "address": "0x2192C21494b08e9BA9fE8EA0cBb64F902Df2d99E",
-      "chainId": 5,
-      "name": "Penguin Party Tori - V2",
-      "symbol": "0-Tori-v2",
+      "address": "0x93b2fff814fcaeffb01406e80b4ecd89ca6a021b",
+      "chainId": 1,
+      "name": "GrumpyCat",
+      "symbol": "GRUMPY",
+      "decimals": 9,
+      "logoURI": "https://etherscan.io/token/images/grumpycat_32.png"
+    },
+    {
+      "address": "0x20a68f9e34076b2dc15ce726d7eebb83b694702d",
+      "chainId": 1,
+      "name": "Defiville ISLA",
+      "symbol": "ISLA",
       "decimals": 18,
-      "logoURI": "https://gateway.pinata.cloud/ipfs/QmeoxPH3yxcjkp2cLvdEgEKwbUE67z79QPjhbA9nTbeZM8"
+      "logoURI": "https://etherscan.io/token/images/defiville_32.png"
+    },
+    {
+      "address": "0x3fa400483487A489EC9b1dB29C4129063EEC4654",
+      "chainId": 1,
+      "name": "KEKtics",
+      "symbol": "KEK",
+      "decimals": 18,
+      "logoURI": "https://etherscan.io/token/images/cryptokekcom_32.png"
+    },
+    {
+      "address": "0x5322a3556f979ce2180b30e689a9436fddcb1021",
+      "chainId": 1,
+      "name": "yTSLA",
+      "symbol": "yTSLA",
+      "decimals": 18
+    },
+    {
+      "address": "0xd5525d397898e5502075ea5e830d8914f6f0affe",
+      "chainId": 1,
+      "name": "MEME",
+      "symbol": "MEME",
+      "decimals": 18
     },
     {
       "address": "0x30bcd71b8d21fe830e493b30e90befba29de9114",

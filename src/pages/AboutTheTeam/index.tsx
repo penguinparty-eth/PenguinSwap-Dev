@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PinkLogo from '../../../src/assets/svg/logo_pink.svg'
 import './style.css'
 
-import { LIDTOKEN, KEK, ISLA, PENGUINSWAPURL,VERSION } from '../../constants'
+import { KEK, ISLA, PENGUINSWAPURL,VERSION } from '../../constants'
 
 
 export default function ShowTeamPage() {
@@ -60,7 +60,6 @@ export default function ShowTeamPage() {
   flex-direction: column;
   padding-bottom: 5%;
   `
-  const LIDTRADE = PENGUINSWAPURL.concat(LIDTOKEN.address)
   const KEKTRADE = PENGUINSWAPURL.concat(KEK.address)
   const ISLATRADE = PENGUINSWAPURL.concat(ISLA.address)
   const VERSION_TEXT = "V.".concat(VERSION)
@@ -72,10 +71,13 @@ export default function ShowTeamPage() {
       <AboutText>
         <h2><b>Penguin Party</b> is a Decentralized Governance Token Delegation focused on software deliverables to improve decentralized protocols and ensure protocol interoperability.</h2>
         <h2><b>Penguin Swap</b> is our front-end interface which interacts with the Uniswap trading Protocol contracts using Penguin Swap's preferred token list and custom token / routing pairs.  </h2>
-        <h2><b>PenguinSwap { VERSION_TEXT }</b></h2>
       </AboutText>
     </PenguinParty>
     <PenguinArea>
+    <h2><b>PenguinSwap { VERSION_TEXT }</b></h2>
+    <h1>
+    Made with 💖 at PanArka Blockchain Laboratories, Inc. - A Delaware Corporation
+    </h1>
     <Hiturunk>
     <h1>The 🐧 Team</h1>
       <img className='hiturunk' src="https://pbs.twimg.com/profile_images/1316829704868040707/wZd46uDZ_400x400.jpg" alt=""/>
@@ -130,8 +132,10 @@ export default function ShowTeamPage() {
     <div className='lid-div'>
     <a href="https://lid.sh/"><img className='lid-pic' src="https://cryptoslate.com/wp-content/uploads/2020/08/lid-social.jpg" alt=""/></a>
       <h2><a href="https://lid.sh/">Liquidity Dividends Protocol</a></h2>
-      <h2><a href={ LIDTRADE } >Trade</a></h2>
-      <h3>The LID token by Liquidity Dividends Protocol allows stakers to earn rewards from bots trading on Uniswap while gaining exposure to the wide variety of assets paired against LID as locked liquidity. </h3>
+      <h3>The LID token by Liquidity Dividends Protocol allowed stakers to earn rewards from bots trading on Uniswap while gaining exposure to the wide variety of assets paired against LID as locked liquidity. </h3>
+      <div>
+      <h4> ❗❗❗Penguin Party is currently in the process of taking over control of LID/LIFTOFF in an acquisition.❗❗❗</h4>
+      </div>
     </div>
     <div className='crypto-kek-div'>
     <a href="https://cryptokek.com/"><img className='crypto-kek-pic' src="https://pbs.twimg.com/profile_images/1353739226748223488/-J29E6vO_400x400.png" alt=""/></a>
@@ -145,7 +149,6 @@ export default function ShowTeamPage() {
       <h2><a href={ ISLATRADE } >Trade</a></h2>
       <h3>Defiville is a 100% community-led gamified social experiment focused on incentivizing participation in yield-farming protocols.</h3>
     </div>
-
     </div>
     </Partners>
     </PenguinArea>
