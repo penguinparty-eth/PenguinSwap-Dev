@@ -160,17 +160,12 @@ export function useAggregateFishBalance(): TokenAmount | undefined {
   const uni = chainId ? FISH : undefined
 
   const uniBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, uni)
-  const uniUnclaimed: TokenAmount | undefined = useUserUnclaimedAmount(account)
-  const uniUnHarvested: TokenAmount | undefined = useTotalUniEarned()
 
   if (!uni) return undefined
 
   return new TokenAmount(
     uni,
-    JSBI.add(
-      JSBI.add(uniBalance?.raw ?? JSBI.BigInt(0), uniUnclaimed?.raw ?? JSBI.BigInt(0)),
-      uniUnHarvested?.raw ?? JSBI.BigInt(0)
-    )
+    uniBalance?.raw ?? JSBI.BigInt(0)
   )
 }
 export function useAggregateSocksBalance(): TokenAmount | undefined {
@@ -179,16 +174,11 @@ export function useAggregateSocksBalance(): TokenAmount | undefined {
   const uni = chainId ? SOCKS : undefined
 
   const uniBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, uni)
-  const uniUnclaimed: TokenAmount | undefined = useUserUnclaimedAmount(account)
-  const uniUnHarvested: TokenAmount | undefined = useTotalUniEarned()
 
   if (!uni) return undefined
 
   return new TokenAmount(
     uni,
-    JSBI.add(
-      JSBI.add(uniBalance?.raw ?? JSBI.BigInt(0), uniUnclaimed?.raw ?? JSBI.BigInt(0)),
-      uniUnHarvested?.raw ?? JSBI.BigInt(0)
-    )
+    uniBalance?.raw ?? JSBI.BigInt(0)
   )
 }

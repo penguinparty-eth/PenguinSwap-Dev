@@ -18,7 +18,7 @@ import Logo from '../../assets/svg/logo_simple.svg'
 import LogoDark from '../../assets/svg/logo_simple.svg'
 import { useActiveWeb3React } from '../../hooks'
 import { useDarkModeManager } from '../../state/user/hooks'
-import { useETHBalances, useAggregateFishBalance, useAggregateSocksBalance } from '../../state/wallet/hooks'
+import { useETHBalances, useAggregateFishBalance } from '../../state/wallet/hooks'
 import { CardNoise } from '../earn/styled'
 import { CountUp } from 'use-count-up'
 import { TYPE } from '../../theme'
@@ -36,7 +36,7 @@ import { useUserHasSubmittedClaim } from '../../state/transactions/hooks'
 import { Dots } from '../swap/styleds'
 import Modal from '../Modal'
 import UniBalanceContent from './UniBalanceContent'
-import SocksBalanceContent from './SocksBalanceContent'
+//import SocksBalanceContent from './SocksBalanceContent'
 import usePrevious from '../../hooks/usePrevious'
 
 const HeaderFrame = styled.div`
@@ -286,25 +286,17 @@ export default function Header() {
   const { claimTxn } = useUserHasSubmittedClaim(account ?? undefined)
 
   const aggregateFishBalance: TokenAmount | undefined = useAggregateFishBalance()
-  const aggregateSocksBalance: TokenAmount | undefined = useAggregateSocksBalance()
-
   const [showUniBalanceModal, setShowUniBalanceModal] = useState(false)
-  const [showSocksBalanceModal, setShowSocksBalanceModal] = useState(false)
   const showClaimPopup = useShowClaimPopup()
 
   const countUpFishValue = aggregateFishBalance?.toFixed(0) ?? '0'
   const countUpFishValuePrevious = usePrevious(countUpFishValue) ?? '0'
-  const countUpSocksValue = aggregateSocksBalance?.toFixed(0) ?? '0'
-  const countUpSocksValuePrevious = usePrevious(countUpSocksValue) ?? '0'
 
   return (
     <HeaderFrame>
       <ClaimModal />
       <Modal isOpen={showUniBalanceModal} onDismiss={() => setShowUniBalanceModal(false)}>
         <UniBalanceContent setShowUniBalanceModal={setShowUniBalanceModal} />
-      </Modal>
-      <Modal isOpen={showSocksBalanceModal} onDismiss={() => setShowSocksBalanceModal(false)}>
-        <SocksBalanceContent setShowSocksBalanceModal={setShowSocksBalanceModal} />
       </Modal>
       <HeaderRow>
         <Title href=".">
@@ -329,9 +321,7 @@ export default function Header() {
           >
             {t('pool')}
           </StyledNavLink>
-          <StyledNavLink id={`stake-nav-link`} to={'/uni'}>
-            Staking
-          </StyledNavLink>
+          
           <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
             Voting
           </StyledNavLink>
@@ -381,27 +371,7 @@ export default function Header() {
               <CardNoise />
             </UNIWrapper>
           )}
-          {!availableClaim && aggregateSocksBalance && (
-            <UNIWrapper onClick={() => setShowSocksBalanceModal(true)}>
-              <UNIAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
-                {account && (
-                  <HideSmall>
 
-                      <CountUp
-                        key={countUpSocksValue}
-                        isCounting
-                        start={parseFloat(countUpSocksValuePrevious)}
-                        end={parseFloat(countUpSocksValue)}
-                        thousandsSeparator={','}
-                        duration={1}
-                      />
-                  </HideSmall>
-                )}
-                 🧦
-              </UNIAmount>
-              <CardNoise />
-            </UNIWrapper>
-          )}
           <AccountElement active={!!account} style={{ pointerEvents: 'auto' }}>
             {account && userEthBalance ? (
               <BalanceText style={{ flexShrink: 0 }} pl="0.75rem" pr="0.5rem" fontWeight={500}>

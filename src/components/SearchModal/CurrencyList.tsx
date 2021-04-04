@@ -34,8 +34,8 @@ const Tag = styled.div`
   background-color: ${({ theme }) => theme.bg3};
   color: ${({ theme }) => theme.text2};
   font-size: 14px;
-  border-radius: 2px;
-  padding: 0.1rem 0.3rem 0.1rem 0.3rem;
+  border-radius: 4px;
+  padding: 0.25rem 0.3rem 0.25rem 0.3rem;
   max-width: 6rem;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -118,13 +118,13 @@ function CurrencyRow({
       disabled={isSelected}
       selected={otherSelected}
     >
-      <CurrencyLogo currency={currency} size={'20px'} />
+      <CurrencyLogo currency={currency} size={'30px'} />
       <Column>
-        <Text title={currency.name} fontWeight={250} color={theme.text1}>
+        <Text title={currency.name} fontWeight={200} color={theme.text1}>
           {currency.name}
         </Text>
-        <TYPE.darkGray ml="0px" fontSize={'12px'} fontWeight={300}>
-          {currency.name} {!isOnSelectedList && customAdded && '• Added by user'}
+        <TYPE.darkGray ml="0px" fontSize={'12px'} fontWeight={200}>
+           {!isOnSelectedList && customAdded && '• Added by user'}
         </TYPE.darkGray>
       </Column>
       <TokenTags currency={currency} />
@@ -209,7 +209,7 @@ export default function CurrencyList({
       width="100%"
       itemData={itemData}
       itemCount={itemData.length}
-      itemSize={50}
+      itemSize={65}
       itemKey={itemKey}
     >
       {Row}

@@ -1,15 +1,15 @@
 import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WETH, Pair } from '@uniswap/sdk'
 import { useMemo } from 'react'
-import { DAI, UNI, USDC, USDT, WBTC } from '../../constants'
+import { UNI, TORI, USDC, FISH} from '../../constants'
 import { STAKING_REWARDS_INTERFACE } from '../../constants/abis/staking-rewards'
 import { useActiveWeb3React } from '../../hooks'
 import { NEVER_RELOAD, useMultipleContractSingleData } from '../multicall/hooks'
 import { tryParseAmount } from '../swap/hooks'
 import useCurrentBlockTimestamp from 'hooks/useCurrentBlockTimestamp'
 
-export const STAKING_GENESIS = 1600387200
+export const STAKING_GENESIS = 1617642000
 
-export const REWARDS_DURATION_DAYS = 60
+export const REWARDS_DURATION_DAYS = 90
 
 // TODO add staking rewards addresses here
 export const STAKING_REWARDS_INFO: {
@@ -20,19 +20,19 @@ export const STAKING_REWARDS_INFO: {
 } = {
   [ChainId.MAINNET]: [
     {
-      tokens: [WETH[ChainId.MAINNET], DAI],
+      tokens: [FISH,WETH[ChainId.MAINNET]],
       stakingRewardAddress: '0xa1484C3aa22a66C62b77E0AE78E15258bd0cB711'
     },
     {
-      tokens: [WETH[ChainId.MAINNET], USDC],
-      stakingRewardAddress: '0x7FBa4B8Dc5E7616e59622806932DBea72537A56b'
+      tokens: [FISH, UNI[ChainId.MAINNET]],
+      stakingRewardAddress: '0xa1484C3aa22a66C62b77E0AE78E15258bd0cB711'
     },
     {
-      tokens: [WETH[ChainId.MAINNET], USDT],
-      stakingRewardAddress: '0x6C3e4cb2E96B01F4b866965A91ed4437839A121a'
+      tokens: [FISH, USDC],
+      stakingRewardAddress: '0xCA35e32e7926b96A9988f61d510E038108d8068e'
     },
     {
-      tokens: [WETH[ChainId.MAINNET], WBTC],
+      tokens: [FISH, TORI],
       stakingRewardAddress: '0xCA35e32e7926b96A9988f61d510E038108d8068e'
     }
   ]
@@ -57,8 +57,6 @@ export interface StakingInfo {
   // when the period ends
   periodFinish: Date | undefined
   // calculates a hypothetical amount of token distributed to the active account per second.
-  active: boolean
-  // if pool is active
   getHypotheticalRewardRate: (
     stakedAmount: TokenAmount,
     totalStakedAmount: TokenAmount,
@@ -180,8 +178,6 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
         const periodFinishMs = periodFinishSeconds * 1000
 
         // compare period end timestamp vs current block timestamp (in seconds)
-        const active =
-        periodFinishSeconds && currentBlockTimestamp ? periodFinishSeconds > currentBlockTimestamp.toNumber() : true
         memo.push({
           stakingRewardAddress: rewardsAddress,
           tokens: info[index].tokens,
@@ -192,7 +188,6 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
           stakedAmount: stakedAmount,
           totalStakedAmount: totalStakedAmount,
           getHypotheticalRewardRate,
-          active
         })
       }
       return memo
