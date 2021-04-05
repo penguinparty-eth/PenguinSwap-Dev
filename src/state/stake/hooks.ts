@@ -2,6 +2,7 @@ import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WETH, Pair } from '@
 import { useMemo } from 'react'
 import { UNI, TORI, USDC, FISH} from '../../constants'
 import { STAKING_REWARDS_INTERFACE } from '../../constants/abis/staking-rewards'
+import {useTokenContract} from '../../hooks/useContract'
 import { useActiveWeb3React } from '../../hooks'
 import { NEVER_RELOAD, useMultipleContractSingleData } from '../multicall/hooks'
 import { tryParseAmount } from '../swap/hooks'
@@ -21,11 +22,11 @@ export const STAKING_REWARDS_INFO: {
   [ChainId.MAINNET]: [
     {
       tokens: [FISH,WETH[ChainId.MAINNET]],
-      stakingRewardAddress: '0xB1637bE0173330664adecB343faF112Ca837dA06'
+      stakingRewardAddress: '0x5b90eB5d9dD24eC45A5160E59a8Ca2847d30ecBC'
     },
     {
       tokens: [FISH, UNI[ChainId.MAINNET]],
-      stakingRewardAddress: '0x5fD8E3112676f69a3613c19597778E6f7A902d7C'
+      stakingRewardAddress: '0xEB8dBe43f12BA16202FebD4260a8a097efd39871'
     },
     {
       tokens: [FISH, USDC],
@@ -33,7 +34,7 @@ export const STAKING_REWARDS_INFO: {
     },
     {
       tokens: [FISH, TORI],
-      stakingRewardAddress: '0x6109443fcaf515a23f30248eba1e5ebeb7f53c55'
+      stakingRewardAddress: '0x88cA91F8b89f7d11Ae99e4177D821F9d7a7C6579'
     }
   ]
 }
@@ -86,16 +87,22 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
     [chainId, pairToFilterBy]
   )
 
-  const uni = chainId ? UNI[chainId] : undefined
+  const uni = FISH
 
   const rewardsAddresses = useMemo(() => info.map(({ stakingRewardAddress }) => stakingRewardAddress), [info])
 
   const accountArg = useMemo(() => [account ?? undefined], [account])
-
+  const poolAddresses = ["0xB1637bE0173330664adecB343faF112Ca837dA06","0x5fd8e3112676f69a3613c19597778e6f7a902d7c","0xb25e6db21929badf86c6711367d5bd0ea622f42d","0x6109443FCAf515A23f30248EbA1e5ebeB7f53c55"]
   // get all the info from the staking rewards contracts
   const balances = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'balanceOf', accountArg)
   const earnedAmounts = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'earned', accountArg)
-  const totalSupplies = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'totalSupply')
+  const totalSupplies = [
+    useTokenContract(poolAddresses[0]).balanceOf("0x5b90eB5d9dD24eC45A5160E59a8Ca2847d30ecBC"),
+    useTokenContract(poolAddresses[1]).balanceOf("0xEB8dBe43f12BA16202FebD4260a8a097efd39871"),
+    useTokenContract(poolAddresses[2]).balanceOf("0xb25e6db21929badf86c6711367d5bd0ea622f42d"),
+    useTokenContract(poolAddresses[3]).balanceOf("0x88cA91F8b89f7d11Ae99e4177D821F9d7a7C6579")
+]
+  console.log(totalSupplies)
 
   // tokens per second, constants
   const rewardRates = useMultipleContractSingleData(
@@ -146,7 +153,7 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
           periodFinishState.error
         ) {
           console.error('Failed to load staking rewards info')
-          return memo
+          //return memo
         }
 
         // get the LP token
@@ -156,8 +163,8 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
         // check for account, if no account set to 0
 
         const stakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(balanceState?.result?.[0] ?? 0))
-        const totalStakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(totalSupplyState.result?.[0]))
-        const totalRewardRate = new TokenAmount(uni, JSBI.BigInt(rewardRateState.result?.[0]))
+        const totalStakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(0))
+        const totalRewardRate = new TokenAmount(uni, JSBI.BigInt(0))
 
         const getHypotheticalRewardRate = (
           stakedAmount: TokenAmount,
