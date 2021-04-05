@@ -30,7 +30,7 @@ export const STAKING_REWARDS_INFO: {
     },
     {
       tokens: [FISH, USDC],
-      stakingRewardAddress: '0xb25e6db21929badf86c6711367d5bd0ea622f42d'
+      stakingRewardAddress: '0x208624b771cb04a683ea89c72fd6da6458052c93'
     },
     {
       tokens: [FISH, TORI],
@@ -96,12 +96,13 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
   // get all the info from the staking rewards contracts
   const balances = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'balanceOf', accountArg)
   const earnedAmounts = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'earned', accountArg)
-  const totalSupplies = [
-    useTokenContract(poolAddresses[0]).balanceOf("0x5b90eB5d9dD24eC45A5160E59a8Ca2847d30ecBC"),
-    useTokenContract(poolAddresses[1]).balanceOf("0xEB8dBe43f12BA16202FebD4260a8a097efd39871"),
-    useTokenContract(poolAddresses[2]).balanceOf("0xb25e6db21929badf86c6711367d5bd0ea622f42d"),
-    useTokenContract(poolAddresses[3]).balanceOf("0x88cA91F8b89f7d11Ae99e4177D821F9d7a7C6579")
-]
+  const totalSupplies = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'totalSupply')
+  //const totalSupplies = [
+  console.log(useTokenContract(poolAddresses[0]).balanceOf("0x5b90eB5d9dD24eC45A5160E59a8Ca2847d30ecBC"));
+  //  useTokenContract(poolAddresses[1]).balanceOf("0xEB8dBe43f12BA16202FebD4260a8a097efd39871"),
+  //  useTokenContract(poolAddresses[2]).balanceOf("0xb25e6db21929badf86c6711367d5bd0ea622f42d"),
+  //  useTokenContract(poolAddresses[3]).balanceOf("0x88cA91F8b89f7d11Ae99e4177D821F9d7a7C6579")
+//]
   console.log(totalSupplies)
 
   // tokens per second, constants
@@ -163,8 +164,8 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
         // check for account, if no account set to 0
 
         const stakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(balanceState?.result?.[0] ?? 0))
-        const totalStakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(0))
-        const totalRewardRate = new TokenAmount(uni, JSBI.BigInt(0))
+        const totalStakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(totalSupplyState.result?.[0] ?? 0))
+        const totalRewardRate = new TokenAmount(uni, JSBI.BigInt(rewardRateState.result?.[0] ?? 0))
 
         const getHypotheticalRewardRate = (
           stakedAmount: TokenAmount,
