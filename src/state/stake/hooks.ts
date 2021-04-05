@@ -7,7 +7,7 @@ import { NEVER_RELOAD, useMultipleContractSingleData } from '../multicall/hooks'
 import { tryParseAmount } from '../swap/hooks'
 import useCurrentBlockTimestamp from 'hooks/useCurrentBlockTimestamp'
 
-export const STAKING_GENESIS = 1617642000
+export const STAKING_GENESIS = 1617682260
 
 export const REWARDS_DURATION_DAYS = 90
 
@@ -21,19 +21,19 @@ export const STAKING_REWARDS_INFO: {
   [ChainId.MAINNET]: [
     {
       tokens: [FISH,WETH[ChainId.MAINNET]],
-      stakingRewardAddress: '0xa1484C3aa22a66C62b77E0AE78E15258bd0cB711'
+      stakingRewardAddress: '0xB1637bE0173330664adecB343faF112Ca837dA06'
     },
     {
       tokens: [FISH, UNI[ChainId.MAINNET]],
-      stakingRewardAddress: '0xa1484C3aa22a66C62b77E0AE78E15258bd0cB711'
+      stakingRewardAddress: '0x5fD8E3112676f69a3613c19597778E6f7A902d7C'
     },
     {
       tokens: [FISH, USDC],
-      stakingRewardAddress: '0xCA35e32e7926b96A9988f61d510E038108d8068e'
+      stakingRewardAddress: '0xb25e6db21929badf86c6711367d5bd0ea622f42d'
     },
     {
       tokens: [FISH, TORI],
-      stakingRewardAddress: '0xCA35e32e7926b96A9988f61d510E038108d8068e'
+      stakingRewardAddress: '0x6109443fcaf515a23f30248eba1e5ebeb7f53c55'
     }
   ]
 }
