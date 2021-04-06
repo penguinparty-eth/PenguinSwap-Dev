@@ -127,12 +127,9 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
         !balanceState?.loading &&
         !earnedAmountState?.loading &&
         // always need these
-        totalSupplyState &&
-        !totalSupplyState.loading &&
-        rewardRateState &&
-        !rewardRateState.loading &&
-        periodFinishState &&
-        !periodFinishState.loading
+        !totalSupplyState?.loading &&
+        !rewardRateState?.loading &&
+        !periodFinishState?.loading
       ) {
         if (
           balanceState?.error ||
@@ -203,8 +200,7 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
 }
 
 export function useTotalUniEarned(): TokenAmount | undefined {
-  const { chainId } = useActiveWeb3React()
-  const uni = chainId ? UNI[chainId] : undefined
+  const uni = FISH
   const stakingInfos = useStakingInfo()
 
   return useMemo(() => {
