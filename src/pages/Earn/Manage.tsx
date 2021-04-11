@@ -34,7 +34,9 @@ const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
   background-color:rgba(200,200,200,0.7);
-  border-radius:10%;
+  border-radius:1%;
+  border-style: ridge;
+  border-width:5px;
 `
 
 const PositionInfo = styled(AutoColumn)<{ dim: any }>`

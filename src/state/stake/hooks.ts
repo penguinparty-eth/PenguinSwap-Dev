@@ -7,7 +7,7 @@ import { NEVER_RELOAD, useMultipleContractSingleData } from '../multicall/hooks'
 import { tryParseAmount } from '../swap/hooks'
 import useCurrentBlockTimestamp from 'hooks/useCurrentBlockTimestamp'
 
-export const STAKING_GENESIS = 1617642000
+export const STAKING_GENESIS = 1617682260
 
 export const REWARDS_DURATION_DAYS = 90
 
@@ -21,19 +21,19 @@ export const STAKING_REWARDS_INFO: {
   [ChainId.MAINNET]: [
     {
       tokens: [FISH,WETH[ChainId.MAINNET]],
-      stakingRewardAddress: '0xa1484C3aa22a66C62b77E0AE78E15258bd0cB711'
+      stakingRewardAddress: '0x5b90eB5d9dD24eC45A5160E59a8Ca2847d30ecBC'
     },
     {
       tokens: [FISH, UNI[ChainId.MAINNET]],
-      stakingRewardAddress: '0xa1484C3aa22a66C62b77E0AE78E15258bd0cB711'
+      stakingRewardAddress: '0xEB8dBe43f12BA16202FebD4260a8a097efd39871'
     },
     {
       tokens: [FISH, USDC],
-      stakingRewardAddress: '0xCA35e32e7926b96A9988f61d510E038108d8068e'
+      stakingRewardAddress: '0x208624b771cb04a683ea89c72fd6da6458052c93'
     },
     {
       tokens: [FISH, TORI],
-      stakingRewardAddress: '0xCA35e32e7926b96A9988f61d510E038108d8068e'
+      stakingRewardAddress: '0x88cA91F8b89f7d11Ae99e4177D821F9d7a7C6579'
     }
   ]
 }
@@ -86,18 +86,14 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
     [chainId, pairToFilterBy]
   )
 
-  const uni = chainId ? UNI[chainId] : undefined
+  const uni = FISH
 
   const rewardsAddresses = useMemo(() => info.map(({ stakingRewardAddress }) => stakingRewardAddress), [info])
-
   const accountArg = useMemo(() => [account ?? undefined], [account])
-
   // get all the info from the staking rewards contracts
   const balances = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'balanceOf', accountArg)
   const earnedAmounts = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'earned', accountArg)
   const totalSupplies = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'totalSupply')
-
-  // tokens per second, constants
   const rewardRates = useMultipleContractSingleData(
     rewardsAddresses,
     STAKING_REWARDS_INTERFACE,
@@ -131,12 +127,9 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
         !balanceState?.loading &&
         !earnedAmountState?.loading &&
         // always need these
-        totalSupplyState &&
-        !totalSupplyState.loading &&
-        rewardRateState &&
-        !rewardRateState.loading &&
-        periodFinishState &&
-        !periodFinishState.loading
+        !totalSupplyState?.loading &&
+        !rewardRateState?.loading &&
+        !periodFinishState?.loading
       ) {
         if (
           balanceState?.error ||
@@ -146,7 +139,7 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
           periodFinishState.error
         ) {
           console.error('Failed to load staking rewards info')
-          return memo
+          //return memo
         }
 
         // get the LP token
@@ -156,8 +149,8 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
         // check for account, if no account set to 0
 
         const stakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(balanceState?.result?.[0] ?? 0))
-        const totalStakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(totalSupplyState.result?.[0]))
-        const totalRewardRate = new TokenAmount(uni, JSBI.BigInt(rewardRateState.result?.[0]))
+        const totalStakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(totalSupplyState.result?.[0] ?? 0))
+        const totalRewardRate = new TokenAmount(uni, JSBI.divide(JSBI.BigInt("78125000000000000"), JSBI.BigInt(("243"))))
 
         const getHypotheticalRewardRate = (
           stakedAmount: TokenAmount,
@@ -174,7 +167,7 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
 
         const individualRewardRate = getHypotheticalRewardRate(stakedAmount, totalStakedAmount, totalRewardRate)
 
-        const periodFinishSeconds = periodFinishState.result?.[0]?.toNumber()
+        const periodFinishSeconds = 1625458260
         const periodFinishMs = periodFinishSeconds * 1000
 
         // compare period end timestamp vs current block timestamp (in seconds)
@@ -207,8 +200,7 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
 }
 
 export function useTotalUniEarned(): TokenAmount | undefined {
-  const { chainId } = useActiveWeb3React()
-  const uni = chainId ? UNI[chainId] : undefined
+  const uni = FISH
   const stakingInfos = useStakingInfo()
 
   return useMemo(() => {
