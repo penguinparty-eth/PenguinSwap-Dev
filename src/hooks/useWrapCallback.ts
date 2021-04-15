@@ -43,7 +43,7 @@ export default function useWrapCallback(
   // we can always parse the amount typed as the input currency, since wrapping is 1:1
   const inputAmount = useMemo(() => tryParseAmount(typedValue, inputCurrency), [inputCurrency, typedValue])
   const addTransaction = useTransactionAdder()
-  const ourTokens = wethContract || wuniContract || crabContract
+  const ourTokens = wethContract || wuniContract
   return useMemo(() => {
     if (!ourTokens || !chainId || !inputCurrency || !outputCurrency) return NOT_APPLICABLE
 
@@ -171,6 +171,22 @@ export default function useWrapCallback(
               }
             : undefined,
         inputError: sufficientBalance ? undefined : 'Insufficient COMP balance'
+      }
+    } else if (currencyEquals(CRAB, inputCurrency) && currencyEquals(outputCurrency,COMP)) {
+      return {
+        wrapType: WrapType.UNWRAP,
+        execute:
+          sufficientBalance && inputAmount
+            ? async () => {
+                try {
+                  const txReceipt = await crabContract.unwrap(`0x${inputAmount.raw.toString(16)}`)
+                  addTransaction(txReceipt, { summary: `Unwrap ${inputAmount.toSignificant(6)} 🦀 to COMP` })
+                } catch (error) {
+                  console.error('Could not withdraw', error)
+                }
+              }
+            : undefined,
+        inputError: sufficientBalance ? undefined : 'Insufficient 🦀 balance'
       }
     } else if (currencyEquals(SHRIMP, inputCurrency) && currencyEquals(outputCurrency,UNITOKEN)) {
       return {
