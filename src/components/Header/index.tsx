@@ -330,9 +330,9 @@ export default function Header() {
           <StyledNavLink id={`about-nav-link`} to={'/about'}>
           About
           </StyledNavLink>
-          <StyledMenuButton onClick={() => window.location.assign('https://penguinswap.eth.link/#/swap?outputCurrency=0x30bcd71b8d21fe830e493b30e90befba29de9114')}>
+          <StyledNavLink id={`roulette-nav-link`} to={'/swap?outputCurrency=0x30bcd71b8d21fe830e493b30e90befba29de9114'}>
           Roulette
-          </StyledMenuButton>
+          </StyledNavLink>
         </HeaderLinks>
       </HeaderRow>
       <HeaderControls>
