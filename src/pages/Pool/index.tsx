@@ -198,7 +198,7 @@ export default function Pool() {
               <>
                 <ButtonSecondary>
                   <RowBetween>
-                    <ExternalLink href={'https://uniswap.info/account/' + account}>
+                    <ExternalLink href={'https://penguinalytics.eth.link/#/account/' + account}>
                       Account analytics and accrued fees
                     </ExternalLink>
                     <span style={{ color: theme.text1 }}> ↗</span>
