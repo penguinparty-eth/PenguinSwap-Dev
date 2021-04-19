@@ -210,7 +210,7 @@ export default function Pool() {
               </>
             ) : (
               <EmptyProposals>
-                <TYPE.body color={theme.text3} textAlign="center">
+                <TYPE.body color={theme.primaryText1} textAlign="center">
                   No liquidity found.
                 </TYPE.body>
               </EmptyProposals>
