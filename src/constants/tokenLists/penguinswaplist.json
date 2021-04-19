@@ -2,7 +2,7 @@
   "name": "PenguinParty v2",
   "timestamp": "2021-02-19T12:00:00+00:00",
   "version": {
-    "major": 3,
+    "major": 4,
     "minor": 0,
     "patch": 0
   },
@@ -19,6 +19,13 @@
       "symbol": "LIFT",
       "decimals": 18,
       "logoURI":"https://liftoff.eth.link/static/media/logo.a8d9a689.png"
+    },
+    {
+      "address": "0xbd4a858139b155219e2c8d10135003fdef720b6b",
+      "chainId": 1,
+      "name": "Saren Protocol Token",
+      "symbol": "SAR",
+      "decimals": 18
     },
     {
       "address": "0x8a9c67fee641579deba04928c4bc45f66e26343a",
