@@ -301,7 +301,7 @@ export default function Header() {
       <HeaderRow>
         <Title href=".">
           <UniIcon>
-            <img width={'36px'} src={darkMode ? LogoDark : Logo} alt="logo" />
+            <a href="https://penguinparty.eth.link/"><img width={'50px'} src={darkMode ? LogoDark : Logo} alt="logo" /></a>
           </UniIcon>
         </Title>
         <HeaderLinks>
@@ -330,9 +330,6 @@ export default function Header() {
           <StyledNavLink id={`about-nav-link`} to={'/about'}>
           About
           </StyledNavLink>
-          <StyledMenuButton onClick={() => window.location.assign('https://penguinswap.eth.link/#/swap?outputCurrency=0x30bcd71b8d21fe830e493b30e90befba29de9114')}>
-          Roulette
-          </StyledMenuButton>
         </HeaderLinks>
       </HeaderRow>
       <HeaderControls>
@@ -373,7 +370,12 @@ export default function Header() {
               <CardNoise />
             </UNIWrapper>
           )}
-
+          <HeaderElementWrap>
+          <Menu />
+          <StyledMenuButton onClick={() => toggleDarkMode()}>
+            {darkMode ? <Moon size={20} /> : <Sun size={20} />}
+          </StyledMenuButton>
+          </HeaderElementWrap>
           <AccountElement active={!!account} style={{ pointerEvents: 'auto' }}>
             {account && userEthBalance ? (
               <BalanceText style={{ flexShrink: 0 }} pl="0.75rem" pr="0.5rem" fontWeight={500}>
@@ -383,12 +385,6 @@ export default function Header() {
             <Web3Status />
           </AccountElement>
         </HeaderElement>
-        <HeaderElementWrap>
-          <StyledMenuButton onClick={() => toggleDarkMode()}>
-            {darkMode ? <Moon size={20} /> : <Sun size={20} />}
-          </StyledMenuButton>
-          <Menu />
-        </HeaderElementWrap>
       </HeaderControls>
     </HeaderFrame>
   )
