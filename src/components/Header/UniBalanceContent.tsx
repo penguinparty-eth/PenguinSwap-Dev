@@ -87,7 +87,7 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
                   <TYPE.white color="white">{uniBalance?.toFixed(2, { groupSeparator: ',' })}</TYPE.white>
                 </RowBetween>
                 <RowBetween>
-                  <TYPE.white color="white">Unclaimed UNI:</TYPE.white>
+                  <TYPE.white color="white">Unclaimed 🐟:</TYPE.white>
                   <TYPE.white color="white">
                     {uniToClaim?.toFixed(4, { groupSeparator: ',' })}{' '}
                     {uniToClaim && uniToClaim.greaterThan('0') && (

@@ -11,7 +11,7 @@ export { PRELOADED_PROPOSALS } from './proposals'
 type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
-export const VERSION = "5.4"
+export const VERSION = "5.5"
 export const DEFAULTTOKEN = '0x30bcd71b8d21fe830e493b30e90befba29de9114'
 export const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
 export const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
@@ -46,6 +46,8 @@ export const BEANS = new Token(ChainId.MAINNET, '0x801f90f81786dc72b4b9d51ab613f
 export const BAO = new Token(ChainId.MAINNET, '0x374cb8c27130e2c9e04f44303f3c8351b9de61c1', 18,  'BAO', 'BAO (bao.finance)')
 export const ONEINCH = new Token(ChainId.MAINNET, '0x111111111117dc0aa78b770fa6a738034120c302', 18,  'BAO', '1INCH (1inch.exchange)')
 export const ISLA = new Token(ChainId.MAINNET, '0x20a68f9e34076b2dc15ce726d7eebb83b694702d', 18,  'ISLA', 'Defiville Island Token (defiville.finance)')
+export const SAREN = new Token(ChainId.MAINNET, '0xbd4a858139b155219e2c8d10135003fdef720b6b', 18,  'SAREN', 'Saren Token')
+
 
 export const PENGUINSWAPURL = "https://penguinswap.eth.link/#/swap?outputCurrency="
 
@@ -89,7 +91,7 @@ const WETH_ONLY: ChainTokenList = {
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,MKR,SOCKS,DFOUSD,XETH,JRT,KEK,MEME,YTSLA,ISLA]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,MKR,SOCKS,DFOUSD,XETH,JRT,KEK,MEME,YTSLA,ISLA,SAREN]
 }
 
 /**
@@ -108,10 +110,10 @@ export const SUGGESTED_BASES: ChainTokenList = {
   [ChainId.MAINNET]: [FISH,UNITOKEN,CRAB,SHRIMP,TORI,ISLA,KEK]
 }
 
-// used to construct the list of all pairs we consider by default in the frontend
+// used to construct the list of all pairs we consider by default in the frontend 
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR,SOCKS,DFOUSD,LIDTOKEN,XETH,LIFT,KEK,MEME, YTSLA, BEANS, BAO, ONEINCH, ISLA]
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET],DAI,USDC,COMP,WBTC,FISH,UNITOKEN,CRAB,SHRIMP,LINK,BUIDL,TORI,AXS,MKR,SOCKS,DFOUSD,LIDTOKEN,XETH,LIFT,KEK,MEME, YTSLA, BEANS, BAO, ONEINCH, ISLA,SAREN]
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {

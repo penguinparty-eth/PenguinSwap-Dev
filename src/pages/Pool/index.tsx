@@ -198,7 +198,7 @@ export default function Pool() {
               <>
                 <ButtonSecondary>
                   <RowBetween>
-                    <ExternalLink href={'https://uniswap.info/account/' + account}>
+                    <ExternalLink href={'https://penguinalytics.eth.link/#/account/' + account}>
                       Account analytics and accrued fees
                     </ExternalLink>
                     <span style={{ color: theme.text1 }}> ↗</span>
@@ -210,7 +210,7 @@ export default function Pool() {
               </>
             ) : (
               <EmptyProposals>
-                <TYPE.body color={theme.text3} textAlign="center">
+                <TYPE.body color={theme.primaryText1} textAlign="center">
                   No liquidity found.
                 </TYPE.body>
               </EmptyProposals>
