@@ -1,21 +1,14 @@
 import React, { useRef } from 'react'
-import { BookOpen, Code, Info, MessageCircle, PieChart } from 'react-feather'
+import { Code, Info, MessageCircle, PieChart } from 'react-feather'
 import styled from 'styled-components'
-import { ReactComponent as MenuIcon } from '../../assets/images/menu.svg'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import { ApplicationModal } from '../../state/application/actions'
 import { useModalOpen, useToggleModal } from '../../state/application/hooks'
 
 import { ExternalLink } from '../../theme'
 
-const StyledMenuIcon = styled(MenuIcon)`
-  path {
-    stroke: ${({ theme }) => theme.text1};
-  }
-`
-
 const StyledMenuButton = styled.button`
-  width: 100%;
+  width: 6rem;
   height: 100%;
   border: none;
   background-color: transparent;
@@ -96,18 +89,20 @@ export default function Menu() {
     // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451
     <StyledMenu ref={node as any}>
       <StyledMenuButton onClick={toggle}>
-        <StyledMenuIcon />
+        <span>💎Menu💎</span>
       </StyledMenuButton>
 
       {open && (
         <MenuFlyout>
+        <MenuItem id="link" href="https://penguinparty.eth.link/">
+          🏰Home
+        </MenuItem>
+        <MenuItem id="link" href="https://saren.io/">
+          💮Saren Protocol
+        </MenuItem>
           <MenuItem id="link" href="https://hiturunk.medium.com">
             <Info size={14} />
             News
-          </MenuItem>
-          <MenuItem id="link" href="https://uniswap.org/docs/v2">
-          <BookOpen size={14} />
-            Docs
           </MenuItem>
           <MenuItem id="link" href={CODE_LINK}>
           <Code size={14} />
@@ -120,21 +115,12 @@ export default function Menu() {
           <MenuItem id="link" href="https://gnosis-safe.io/app/#/safes/0x686B4535FF6573cef3FF37419A4fc6Ac775Ec7ea/balances">
             💰 Treasury
           </MenuItem>
-          <MenuItem id="link" href="https://unigov.eth.link">
-            🏛 UniGov
-          </MenuItem>
           <MenuItem id="link" href="https://snapshot.page/#/penguin-party">
             🐧 Voting
           </MenuItem>
-          <MenuItem id="link" href="https://lid.sh">
-            📈 LID Protocol
-          </MenuItem>
-          <MenuItem id="link" href="https://uniswap.info/">
+          <MenuItem id="link" href="https://penguinalytics.eth.link/">
             <PieChart size={14} />
             Analytics
-          </MenuItem>
-          <MenuItem id="link" href="https://docs.google.com/presentation/d/1HAclH6XfukwZSYB5L6o_07ApOWiSTDzfPe6OVmN5SHc/edit#slide=id.gc443928cc3_0_155">
-            🌅 Roadmap
           </MenuItem>
         </MenuFlyout>
       )}
