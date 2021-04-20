@@ -13,14 +13,19 @@ export default memo(function SwapRoute({ trade }: { trade: Trade }) {
       {trade.route.path.map((token, i, path) => {
         const isLastItem: boolean = i === path.length - 1
         const currency = unwrappedToken(token)
+        const analyticsAddress = "https://penguinalytics.eth.link/#/token/" + token.address;
         return (
           <Fragment key={i}>
             <Flex alignItems="end">
-              <TYPE.black fontSize={14} color={theme.text1} ml="0.125rem" mr="0.125rem">
-                {currency.symbol}
+              <TYPE.black fontSize={15} color={theme.text1} ml="0.125rem" mr="0.125rem">
+                <a href={analyticsAddress}>{currency.symbol}</a>
               </TYPE.black>
             </Flex>
-            {isLastItem ? null : <ChevronRight size={12} color={theme.text2} />}
+            {isLastItem ? null :         <a
+                      href={'https://penguinalytics.eth.link/#/pair/' + trade.route.pairs[i].liquidityToken.address}
+                      target="_blank"
+                    >
+                    <ChevronRight size={40} color={theme.text2} /></a>}
           </Fragment>
         )
       })}

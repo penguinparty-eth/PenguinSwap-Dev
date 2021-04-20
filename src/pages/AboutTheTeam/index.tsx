@@ -129,14 +129,6 @@ export default function ShowTeamPage() {
     <Partners>
     <h1>Our 🐧 Partners</h1>
     <div className='lid-cryptoKek'>
-    <div className='lid-div'>
-    <a href="https://lid.sh/"><img className='lid-pic' src="https://cryptoslate.com/wp-content/uploads/2020/08/lid-social.jpg" alt=""/></a>
-      <h2><a href="https://lid.sh/">Liquidity Dividends Protocol</a></h2>
-      <h3>The LID token by Liquidity Dividends Protocol allowed stakers to earn rewards from bots trading on Uniswap while gaining exposure to the wide variety of assets paired against LID as locked liquidity. </h3>
-      <div>
-      <h4> ❗❗❗Penguin Party is currently in the process of taking over control of LID/LIFTOFF in an acquisition.❗❗❗</h4>
-      </div>
-    </div>
     <div className='crypto-kek-div'>
     <a href="https://cryptokek.com/"><img className='crypto-kek-pic' src="https://pbs.twimg.com/profile_images/1353739226748223488/-J29E6vO_400x400.png" alt=""/></a>
       <h2><a href="https://cryptokek.com/">CryptoKek</a></h2>
