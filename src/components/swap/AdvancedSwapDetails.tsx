@@ -93,12 +93,6 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
             <>
             <RowBetween style={{ padding: '0 16px' }}>
               <span style={{ display: 'flex', alignItems: 'center' }}>
-              <InfoLink
-                href={'https://penguinalytics.eth.link/#/pair/' + trade.route.pairs[0].liquidityToken.address}
-                target="_blank"
-              >
-               <span>View pair analytics ↗</span> 
-              </InfoLink>
                   <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
                     Route
                   </TYPE.black>
@@ -114,7 +108,7 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
                 href={'https://penguinalytics.eth.link/#/pair/' + trade.route.pairs[0].liquidityToken.address}
                 target="_blank"
               >
-               <span>View pair analytics ↗</span> 
+               <span>View pair analytics ↗</span>
               </InfoLink>
             </AutoColumn>
           )}

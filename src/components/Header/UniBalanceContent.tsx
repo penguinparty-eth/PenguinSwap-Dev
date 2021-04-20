@@ -121,16 +121,16 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
               <TYPE.white color="white">⛩{totalSupplyTori?.toFixed(0, { groupSeparator: ',' })}⛩ - ${toriPrice?.toFixed(2) ?? '-'} / ⛩</TYPE.white>
             </RowBetween>
             {uni && uni.chainId === ChainId.MAINNET ? (
-              <ExternalLink href={`https://uniswap.info/token/${uni.address}`}>View 🐟 Analytics</ExternalLink>
+              <ExternalLink href={`https://penguinalytics.eth.link/#/token/${uni.address}`}>View 🐟 Analytics</ExternalLink>
             ) : null}
             {shrimp && shrimp.chainId === ChainId.MAINNET ? (
-              <ExternalLink href={`https://uniswap.info/token/${shrimp.address}`}>View 🦐 Analytics</ExternalLink>
+              <ExternalLink href={`https://penguinalytics.eth.link/#/token/${shrimp.address}`}>View 🦐 Analytics</ExternalLink>
             ) : null}
             {crab && crab.chainId === ChainId.MAINNET ? (
-              <ExternalLink href={`https://uniswap.info/token/${crab.address}`}>View 🦀 Analytics</ExternalLink>
+              <ExternalLink href={`https://penguinalytics.eth.link/#/token/${crab.address}`}>View 🦀 Analytics</ExternalLink>
             ) : null}
             {tori && tori.chainId === ChainId.MAINNET ? (
-              <ExternalLink href={`https://uniswap.info/token/${tori.address}`}>View ⛩ Analytics</ExternalLink>
+              <ExternalLink href={`https://penguinalytics.eth.link/#/token/${tori.address}`}>View ⛩ Analytics</ExternalLink>
             ) : null}
           </AutoColumn>
         </CardSection>
