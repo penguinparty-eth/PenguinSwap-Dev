@@ -45,7 +45,7 @@ export default function SwapHeader() {
   return (
     <StyledSwapHeader>
       <RowBetween>
-        <TYPE.black fontWeight={500}>Swap</TYPE.black>
+        <TYPE.black fontWeight={500} style={{margin: "auto"}}>Swap</TYPE.black>
         </RowBetween>
         <RowBetween>
         <StyledRouletteButton onClick={() => window.location.assign('https://penguinswap.eth.link/#/swap?outputCurrency=0x30bcd71b8d21fe830e493b30e90befba29de9114')}>

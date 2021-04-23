@@ -123,7 +123,7 @@ export default function ShowTeamPage() {
       <div className='dev'>
     <img className='team-photo' src={PinkLogo} alt=""/>
     <h2>Dreadful</h2>
-    <h3>Senior Developer</h3>
+    <h3>Developer</h3>
       </div>
     </Devs>
     <Partners>

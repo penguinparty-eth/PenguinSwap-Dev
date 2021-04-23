@@ -10,6 +10,12 @@ import QuestionHelper from '../QuestionHelper'
 import { RowBetween, RowFixed } from '../Row'
 import FormattedPriceImpact from './FormattedPriceImpact'
 import SwapRoute from './SwapRoute'
+// import { useActiveWeb3React } from '../../hooks'
+import useUSDCPrice from '../../utils/useUSDCPrice'
+// import { UNI } from '../../constants'
+
+
+
 
 const InfoLink = styled(ExternalLink)`
   width: 100%;
@@ -26,10 +32,29 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
   const { priceImpactWithoutFee, realizedLPFee } = computeTradePriceBreakdown(trade)
   const isExactIn = trade.tradeType === TradeType.EXACT_INPUT
   const slippageAdjustedAmounts = computeSlippageAdjustedAmounts(trade, allowedSlippage)
+  // const { chainId } = useActiveWeb3React()
+  const inputAmount = trade.inputAmount.currency
+  const usdcInputPrice = useUSDCPrice(inputAmount)
 
+  
+
+  
   return (
     <>
       <AutoColumn style={{ padding: '0 16px' }}>
+        <RowBetween>
+          <RowFixed>
+          <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
+            {'Token A Price in USDC'}
+            </TYPE.black>
+            <QuestionHelper text="This is the value of token A in USDC" />
+          </RowFixed>
+          <RowFixed>
+          <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
+          {'$'+usdcInputPrice?.toFixed(2)}
+          </TYPE.black>
+          </RowFixed>
+        </RowBetween>
         <RowBetween>
           <RowFixed>
             <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
@@ -38,7 +63,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
             <QuestionHelper text="Your transaction will revert if there is a large, unfavorable price movement before it is confirmed." />
           </RowFixed>
           <RowFixed>
-            <TYPE.black color={theme.text1} fontSize={14}>
+            <TYPE.black color={theme.text1} fontSize={14}> 
               {isExactIn
                 ? `${slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4)} ${trade.outputAmount.currency.symbol}` ??
                   '-'
@@ -93,6 +118,12 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
             <>
             <RowBetween style={{ padding: '0 16px' }}>
               <span style={{ display: 'flex', alignItems: 'center' }}>
+              <InfoLink
+                href={'https://penguinalytics.eth.link/#/pair/' + trade.route.pairs[0].liquidityToken.address}
+                target="_blank"
+              >
+               <span>View pair analytics ↗</span> 
+              </InfoLink>
                   <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
                     Route
                   </TYPE.black>
