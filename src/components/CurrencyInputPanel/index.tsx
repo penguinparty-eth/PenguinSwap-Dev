@@ -15,6 +15,8 @@ import { useActiveWeb3React } from '../../hooks'
 import { useTranslation } from 'react-i18next'
 import useTheme from '../../hooks/useTheme'
 
+import useUSDCPrice from '../../utils/useUSDCPrice'
+
 const InputRow = styled.div<{ selected: boolean }>`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: center;
@@ -161,6 +163,8 @@ export default function CurrencyInputPanel({
     setModalOpen(false)
   }, [setModalOpen])
 
+  const toUsdc = useUSDCPrice(currency)
+  console.log(toUsdc)
   return (
     <InputPanel id={id}>
       <Container hideInput={hideInput}>
@@ -179,7 +183,26 @@ export default function CurrencyInputPanel({
                   style={{ display: 'inline', cursor: 'pointer' }}
                 >
                   {!hideBalance && !!currency && selectedCurrencyBalance
-                    ? (customBalanceText ?? 'Balance: ') + selectedCurrencyBalance?.toSignificant(6)
+                    ? (customBalanceText ?? `${currency.symbol} balance: `) + selectedCurrencyBalance?.toSignificant(6)
+                    : ' -'}
+                </TYPE.body>
+              )}
+            </RowBetween>
+          </LabelRow>
+        )}
+        {!hideInput && (
+          <LabelRow>
+            <RowBetween>
+              {account && (
+                <TYPE.body
+                  onClick={onMax}
+                  color={theme.text2}
+                  fontWeight={500}
+                  fontSize={14}
+                  style={{ display: 'inline', cursor: 'pointer' }}
+                >
+                  {!hideBalance && !!currency && selectedCurrencyBalance
+                    ? (customBalanceText ?? '≈ ') + (Number(toUsdc.toFixed(2)) * Number(value)).toFixed(2)
                     : ' -'}
                 </TYPE.body>
               )}
