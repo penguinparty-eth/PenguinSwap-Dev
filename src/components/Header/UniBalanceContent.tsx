@@ -34,10 +34,6 @@ const StyledClose = styled(X)`
   }
 `
 
-const AnalyticsLink = styled(ExternalLink)`
-color: white;
-`
-
 /**
  * Content for balance stats modal
  */
