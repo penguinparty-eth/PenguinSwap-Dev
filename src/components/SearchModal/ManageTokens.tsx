@@ -20,11 +20,12 @@ const Wrapper = styled.div`
   width: 100%;
   height: calc(100% - 60px);
   position: relative;
+  overflow: scroll;
   padding-bottom: 60px;
 `
 
 const Footer = styled.div`
-  position: absolute;
+  position: bottom;
   bottom: 0;
   width: 100%;
   border-radius: 20px;
