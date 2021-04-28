@@ -163,8 +163,8 @@ export default function CurrencyInputPanel({
     setModalOpen(false)
   }, [setModalOpen])
 
-  const toUsdc = useUSDCPrice(currency)
-  console.log(toUsdc)
+  const toUsdc = useUSDCPrice(currency) 
+  
   return (
     <InputPanel id={id}>
       <Container hideInput={hideInput}>
