@@ -52,7 +52,7 @@ export default createReducer<SwapState>(initialState, builder =>
           ...state,
           independentField: state.independentField === Field.INPUT ? Field.OUTPUT : Field.INPUT,
           [field]: { currencyId: currencyId },
-          [otherField]: { currencyId: state[field].currencyId }
+          [otherField]: { currencyId: currencyId }
         }
       } else {
         // the normal case
