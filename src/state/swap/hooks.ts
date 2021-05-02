@@ -167,7 +167,7 @@ export function useDerivedSwapInfo(): {
   if (!parsedAmount) {
     inputError = inputError ?? 'Enter an amount'
   }
-
+  
   if (!currencies[Field.INPUT] || !currencies[Field.OUTPUT]) {
     inputError = inputError ?? 'Select a token'
   }
