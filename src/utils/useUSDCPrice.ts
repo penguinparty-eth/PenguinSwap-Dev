@@ -61,6 +61,6 @@ export default function useUSDCPrice(currency?: Currency): Price | undefined {
         return new Price(currency, USDC, usdcPrice.denominator, usdcPrice.numerator)
       }
     }
-    return undefined
+    return new Price(USDC, USDC, '1', '1')
   }, [chainId, currency, ethPair, ethPairState, usdcEthPair, usdcEthPairState, usdcPair, usdcPairState, wrapped])
 }
