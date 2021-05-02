@@ -1,4 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit'
+import { ETHER } from '@uniswap/sdk'
 import { Field, replaceSwapState, selectCurrency, setRecipient, switchCurrencies, typeInput } from './actions'
 
 export interface SwapState {
@@ -46,7 +47,12 @@ export default createReducer<SwapState>(initialState, builder =>
     )
     .addCase(selectCurrency, (state, { payload: { currencyId, field } }) => {
       const otherField = field === Field.INPUT ? Field.OUTPUT : Field.INPUT
-      if (currencyId === state[otherField].currencyId) {
+      if(currencyId === ETHER.symbol && state[otherField].currencyId === ETHER.symbol) {
+        return {
+          ...state
+        }
+      }
+      else if (currencyId === state[otherField].currencyId) {
         // the case where we have to swap the order
         return {
           ...state,
