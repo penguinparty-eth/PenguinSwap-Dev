@@ -25,6 +25,7 @@
     "@types/styled-components": "^5.1.0",
     "@types/testing-library__cypress": "^5.0.5",
     "@types/wcag-contrast": "^3.0.0",
+    "@types/workbox-build": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
     "@typescript-eslint/parser": "^2.31.0",
     "@uniswap/governance": "^1.0.2",
@@ -64,7 +65,7 @@
     "polished": "^3.3.2",
     "prettier": "^1.17.0",
     "qs": "^6.9.4",
-    "react": "^16.13.1",
+    "react": "^16.14.0",
     "react-confetti": "^6.0.0",
     "react-device-detect": "^1.6.2",
     "react-dom": "^16.13.1",
@@ -87,20 +88,26 @@
     "styled-components": "^4.2.0",
     "typescript": "^3.8.3",
     "use-count-up": "^2.2.5",
-    "wcag-contrast": "^3.0.0"
+    "wcag-contrast": "^3.0.0",
+    "workbox-cli": "^6.1.5",
+    "workbox-webpack-plugin": "^6.1.5",
+    "workbox-build": "^6.1.5"
   },
   "resolutions": {
     "@walletconnect/web3-provider": "1.1.1-alpha.0"
   },
   "scripts": {
     "prestart": "node scripts/preprocess-git-env.js",
-    "start": "react-scripts start",
+    "start": "react-app-rewired start",
     "poststart": "node scripts/postprocess-git-env.js",
     "prebuild": "node scripts/preprocess-git-env.js",
-    "build": "react-scripts build",
+    "build": "react-app-rewired build",
     "postbuild": "node scripts/postprocess-git-env.js",
+    "preprofilebuild": "node scripts/preprocess-git-env.js",
+    "profilebuild": "react-app-rewired build --profile",
+    "postprofilebuild": "node scripts/postprocess-git-env.js",
     "pretest": "node scripts/preprocess-git-env.js",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-app-rewired test --env=jsdom",
     "posttest": "node scripts/preprocess-git-env.js",
     "eject": "react-scripts eject",
     "integration-test": "start-server-and-test 'serve build -l 3000' http://localhost:3000 'cypress run'"
@@ -130,6 +137,9 @@
     "@types/workbox-precaching": "^4.3.0",
     "@types/workbox-routing": "^4.3.0",
     "@types/workbox-strategies": "^4.3.0",
-    "@uniswap/default-token-list": "^2.0.0"
+    "@uniswap/default-token-list": "^2.0.0",
+    "react-app-rewire-workbox": "^2.0.1",
+    "react-app-rewired": "^2.1.8",
+    "workbox-core": "^6.1.5"
   }
 }
