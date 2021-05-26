@@ -5,8 +5,8 @@ import { useTransactionAdder } from '../state/transactions/hooks'
 import { useCurrencyBalance } from '../state/wallet/hooks'
 import { useActiveWeb3React } from './index'
 import { useWETHContract, useWUNIContract, useUniContract, useWCOMPContract,
-   useCOMPContract, useTORIContract, useADAIContract, useTokenContract } from './useContract'
-import { SHRIMP, UNITOKEN, CRAB, COMP, TORI, ADAI, FISH} from '../constants/index'
+   useCOMPContract, useTORIContract, useADAIContract } from './useContract'
+import { SHRIMP, UNITOKEN, CRAB, COMP, TORI, ADAI} from '../constants/index'
 import { MaxUint256 } from '@ethersproject/constants'
 const BN = require('bn.js')
 
@@ -36,8 +36,6 @@ export default function useWrapCallback(
   const compContract = useCOMPContract()
   const toriContract = useTORIContract()
   const adaiContract = useADAIContract()
-  const fishContract = useTokenContract(FISH.address)
-  console.log(fishContract)
   const balance = useCurrencyBalance(account ?? undefined, inputCurrency)
   // we can always parse the amount typed as the input currency, since wrapping is 1:1
   const inputAmount = useMemo(() => tryParseAmount(typedValue, inputCurrency), [inputCurrency, typedValue])

@@ -82,7 +82,7 @@ ReactDOM.render(
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
-    navigator.serviceWorker.register('worker.js').then(function(registration) {
+    navigator.serviceWorker.register('service-worker.js').then(function(registration) {
       console.log('Worker registration successful', registration.scope);
     }, function(err) {
       console.log('Worker registration failed', err);
