@@ -11,8 +11,15 @@ export { PRELOADED_PROPOSALS } from './proposals'
 type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
-export const VERSION = "5.6"
+export const VERSION = "5.7"
 export const DEFAULTTOKEN = '0x30bcd71b8d21fe830e493b30e90befba29de9114'
+export const FISH = new Token(ChainId.MAINNET, '0x30bcd71b8d21fe830e493b30e90befba29de9114', 18, '🐟', 'Penguin Party Fish')
+export const CRAB = new Token(ChainId.MAINNET, '0x8669fA2B06829aa5FaBC47b5E5d0e66b85F1522E', 18, '🦀', 'Penguin Party Crab')
+export const SHRIMP = new Token(ChainId.MAINNET, '0x5a43589fe110bb355ba4a90a9c01476d87e68de8', 18, '🦐', 'Penguin Party Shrimp')
+export const TORI = new Token(ChainId.MAINNET, '0x26780078e07cc33f0323df626f42fa92971561d4', 18, '⛩️', 'Penguin Party Tori')
+export const ISLA = new Token(ChainId.MAINNET, '0x20a68f9e34076b2dc15ce726d7eebb83b694702d', 18,  'ISLA', 'Defiville Island Token (defiville.finance)')
+export const SAREN = new Token(ChainId.MAINNET, '0xbd4a858139b155219e2c8d10135003fdef720b6b', 18,  'SAREN', 'Saren Token')
+export const KEK = new Token(ChainId.MAINNET, '0x3fa400483487A489EC9b1dB29C4129063EEC4654', 18,  'KEK', 'Cryptokek.com')
 export const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
 export const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
 export const USDT = new Token(ChainId.MAINNET, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
@@ -20,10 +27,6 @@ export const COMP = new Token(ChainId.MAINNET, '0xc00e94Cb662C3520282E6f57172140
 export const MKR = new Token(ChainId.MAINNET, '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2', 18, 'MKR', 'Maker')
 export const AMPL = new Token(ChainId.MAINNET, '0xD46bA6D942050d489DBd938a2C909A5d5039A161', 9, 'AMPL', 'Ampleforth')
 export const WBTC = new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', 8, 'WBTC', 'Wrapped BTC')
-export const FISH = new Token(ChainId.MAINNET, '0x30bcd71b8d21fe830e493b30e90befba29de9114', 18, '🐟', 'Penguin Party Fish')
-export const CRAB = new Token(ChainId.MAINNET, '0x8669fA2B06829aa5FaBC47b5E5d0e66b85F1522E', 18, '🦀', 'Penguin Party Crab')
-export const SHRIMP = new Token(ChainId.MAINNET, '0x5a43589fe110bb355ba4a90a9c01476d87e68de8', 18, '🦐', 'Penguin Party Shrimp')
-export const TORI = new Token(ChainId.MAINNET, '0x26780078e07cc33f0323df626f42fa92971561d4', 18, '⛩️', 'Penguin Party Tori')
 export const AUSDC = new Token(ChainId.MAINNET, '0x9bA00D6856a4eDF4665BcA2C2309936572473B7E', 18, 'aUSDC', 'Aave Interest bearing USDC')
 export const ADAITWO = new Token(ChainId.MAINNET, '0x028171bca77440897b824ca71d1c56cac55b68a3', 18, 'aDAI-V2', 'V2 - Aave Interest bearing DAI')
 export const UNITOKEN = new Token(ChainId.MAINNET, '0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984', 18, 'UNI', 'Uniswap Token')
@@ -35,17 +38,12 @@ export const SOCKS = new Token(ChainId.MAINNET, '0x23b608675a2b2fb1890d3abbd85c5
 export const DFOUSD = new Token(ChainId.MAINNET, '0x44086035439e676c02d411880fccb9837ce37c57', 18, 'uSD', 'DFOHub StableDollar')
 export const ZEROXBTC = new Token(ChainId.MAINNET, '0xb6ed7644c69416d67b522e20bc294a9a9b405b31', 18, '0xBTC', '0xBitcoin')
 export const JRT = new Token(ChainId.MAINNET, '0x8a9c67fee641579deba04928c4bc45f66e26343a', 18, 'JRT', 'Jarvis Reward Token')
-export const KEK = new Token(ChainId.MAINNET, '0x3fa400483487A489EC9b1dB29C4129063EEC4654', 18,  'KEK', 'Cryptokek.com')
 export const MEME = new Token(ChainId.MAINNET, '0xd5525d397898e5502075ea5e830d8914f6f0affe', 8,  'MEME', 'MEME (dontbuymeme.com)')
 export const YTSLA = new Token(ChainId.MAINNET, '0x5322a3556f979ce2180b30e689a9436fddcb1021', 18,  'yTSLA', 'yTSLA')
 export const BEANS = new Token(ChainId.MAINNET, '0x801f90f81786dc72b4b9d51ab613fbe99e5e4ccd', 18,  'BEANS', 'Happyfarm BEANS')
 export const BAO = new Token(ChainId.MAINNET, '0x374cb8c27130e2c9e04f44303f3c8351b9de61c1', 18,  'BAO', 'BAO (bao.finance)')
 export const ONEINCH = new Token(ChainId.MAINNET, '0x111111111117dc0aa78b770fa6a738034120c302', 18,  'BAO', '1INCH (1inch.exchange)')
-export const ISLA = new Token(ChainId.MAINNET, '0x20a68f9e34076b2dc15ce726d7eebb83b694702d', 18,  'ISLA', 'Defiville Island Token (defiville.finance)')
-export const SAREN = new Token(ChainId.MAINNET, '0xbd4a858139b155219e2c8d10135003fdef720b6b', 18,  'SAREN', 'Saren Token')
 
-
-export const PENGUINSWAPURL = "https://penguinswap.eth.link/#/swap?outputCurrency="
 
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 13
@@ -229,3 +227,15 @@ export const BETTER_TRADE_LINK_THRESHOLD = new Percent(JSBI.BigInt(1000), JSBI.B
 export const BETTER_TRADE_LESS_HOPS_THRESHOLD = new Percent(JSBI.BigInt(1000), JSBI.BigInt(10000))
 export const ZERO_PERCENT = new Percent('0')
 export const ONE_HUNDRED_PERCENT = new Percent('1')
+
+// URLs for the PenguinParty
+export const PENGUIN_URLS = {
+  home : "https://penguinswap.eth.link/#/swap?outputCurrency=",
+  saren : "https://saren.io",
+  medium : "https://hiturunk.medium.com",
+  github : "https://github.com/penguinparty-eth",
+  discord : "https://discord.gg/pkmBgQr",
+  treasury: "https://gnosis-safe.io/app/#/safes/0x686B4535FF6573cef3FF37419A4fc6Ac775Ec7ea/balances",
+  voting: "https://snapshot.page/#/penguin-party",
+  analytics: "https://penguinalytics.eth.link/",
+}

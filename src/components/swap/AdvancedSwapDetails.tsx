@@ -1,9 +1,9 @@
 import { Trade, TradeType } from '@uniswap/sdk'
 import React, { useContext } from 'react'
-import styled, { ThemeContext } from 'styled-components'
+import { ThemeContext } from 'styled-components'
 import { Field } from '../../state/swap/actions'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
-import { TYPE, ExternalLink } from '../../theme'
+import { TYPE} from '../../theme'
 import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown } from '../../utils/prices'
 import { AutoColumn } from '../Column'
 import QuestionHelper from '../QuestionHelper'
@@ -15,17 +15,6 @@ import useUSDCPrice from '../../utils/useUSDCPrice'
 // import { UNI } from '../../constants'
 
 
-
-
-const InfoLink = styled(ExternalLink)`
-  width: 100%;
-  border: 1px solid ${({ theme }) => theme.bg3};
-  padding: 6px 6px;
-  border-radius: 8px;
-  text-align: center;
-  font-size: 14px;
-  color: ${({ theme }) => theme.text1};
-`
 
 function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippage: number }) {
   const theme = useContext(ThemeContext)
@@ -137,7 +126,6 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
   const [allowedSlippage] = useUserSlippageTolerance()
 
   const showRoute = Boolean(trade && trade.route.path.length > 2)
-
   return (
     <AutoColumn gap="0px">
       {trade && (
@@ -147,12 +135,6 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
             <>
             <RowBetween style={{ padding: '0 16px' }}>
               <span style={{ display: 'flex', alignItems: 'center' }}>
-              <InfoLink
-                href={'https://penguinalytics.eth.link/#/pair/' + trade.route.pairs[0].liquidityToken.address}
-                target="_blank"
-              >
-               <span>View pair analytics ↗</span> 
-              </InfoLink>
                   <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
                     Route
                   </TYPE.black>
@@ -161,16 +143,6 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
                 <SwapRoute trade={trade} />
               </RowBetween>
             </>
-          )}
-          {!showRoute && (
-            <AutoColumn style={{ padding: '12px 16px 0 16px' }}>
-              <InfoLink
-                href={'https://penguinalytics.eth.link/#/pair/' + trade.route.pairs[0].liquidityToken.address}
-                target="_blank"
-              >
-               <span>View pair analytics ↗</span>
-              </InfoLink>
-            </AutoColumn>
           )}
         </>
       )}

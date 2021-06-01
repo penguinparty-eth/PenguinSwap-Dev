@@ -1,11 +1,11 @@
 import React, { useRef } from 'react'
-import { Code, Info, MessageCircle, PieChart } from 'react-feather'
 import styled from 'styled-components'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import { ApplicationModal } from '../../state/application/actions'
 import { useModalOpen, useToggleModal } from '../../state/application/hooks'
-
 import { ExternalLink } from '../../theme'
+// We now use a Penguin Party URLS array.
+import { PENGUIN_URLS } from '../../constants/index'
 
 const StyledMenuButton = styled.button`
   width: 6rem;
@@ -15,8 +15,8 @@ const StyledMenuButton = styled.button`
   margin: 0;
   padding: 0;
   height: 35px;
-  color:${({ theme }) => theme.text1};
-  background-color:${({ theme }) => theme.bg3};
+  color: ${({ theme }) => theme.text1};
+  background-color: ${({ theme }) => theme.bg3};
   padding: 0.15rem 0.5rem;
   border-radius: 0.5rem;
 
@@ -76,9 +76,11 @@ const MenuItem = styled(ExternalLink)`
     margin-right: 8px;
   }
 `
-
-const CODE_LINK = 'https://github.com/penguinparty-eth'
-
+// Removed the emoij, fixed the URLS by importing a constants/index.ts file with the URLS in it.
+// TODO
+// - Increase FONT size
+// - Increate MENU font size
+// - Change button style to match the other buttons
 export default function Menu() {
   const node = useRef<HTMLDivElement>()
   const open = useModalOpen(ApplicationModal.MENU)
@@ -88,39 +90,33 @@ export default function Menu() {
   return (
     // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451
     <StyledMenu ref={node as any}>
-      <StyledMenuButton onClick={toggle}>
-        <span>💎Menu💎</span>
-      </StyledMenuButton>
+      <StyledMenuButton onClick={toggle}>Menu</StyledMenuButton>
 
       {open && (
         <MenuFlyout>
-        <MenuItem id="link" href="https://penguinparty.eth.link/">
-          🏰Home
-        </MenuItem>
-        <MenuItem id="link" href="https://saren.io/">
-          💮Saren Protocol
-        </MenuItem>
-          <MenuItem id="link" href="https://hiturunk.medium.com">
-            <Info size={14} />
+          <MenuItem id="link" href={PENGUIN_URLS.home}>
+            Home Page
+          </MenuItem>{' '}
+          <MenuItem id="link" href={PENGUIN_URLS.medium}>
             News
           </MenuItem>
-          <MenuItem id="link" href={CODE_LINK}>
-          <Code size={14} />
-            Code
+          <MenuItem id="link" href={PENGUIN_URLS.github}>
+            GitHub
           </MenuItem>
-          <MenuItem id="link" href="https://discord.gg/pkmBgQr">
-          <MessageCircle size={14} />
+          <MenuItem id="link" href={PENGUIN_URLS.github}>
             Discord
           </MenuItem>
-          <MenuItem id="link" href="https://gnosis-safe.io/app/#/safes/0x686B4535FF6573cef3FF37419A4fc6Ac775Ec7ea/balances">
-            💰 Treasury
+          <MenuItem id="link" href={PENGUIN_URLS.treasury}>
+            Treasury
           </MenuItem>
-          <MenuItem id="link" href="https://snapshot.page/#/penguin-party">
-            🐧 Voting
+          <MenuItem id="link" href={PENGUIN_URLS.voting}>
+            Voting
           </MenuItem>
-          <MenuItem id="link" href="https://penguinalytics.eth.link/">
-            <PieChart size={14} />
+          <MenuItem id="link" href={PENGUIN_URLS.analytics}>
             Analytics
+          </MenuItem>
+          <MenuItem id="link" href={PENGUIN_URLS.saren}>
+            Saren Protocol
           </MenuItem>
         </MenuFlyout>
       )}
