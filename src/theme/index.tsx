@@ -9,7 +9,9 @@ import styled, {
 import { useIsDarkMode } from '../state/user/hooks'
 import { Text, TextProps } from 'rebass'
 import { Colors } from './styled'
-
+// Import the PenguinParty backgrounds. Both light and dark.
+import penguinBackgroundDark from '../assets/images/penguinparty/penguinbackgrounddark.jpg'
+import penguinBackgroundLight from '../assets/images/penguinparty/penguinbackgroundlight.jpg'
 export * from './components'
 
 const MEDIA_WIDTHS = {
@@ -82,8 +84,8 @@ export function colors(darkMode: boolean): Colors {
     blue1: '#2172E5',
 
     bgUrl: darkMode
-      ? 'https://ipfs.io/ipfs/QmcCNnbT8UuAeM9CjoN1artmxxeKL7t2krBztCRvFEbdjN'
-      : 'https://ipfs.io/ipfs/QmQxCBFcrCnq6znhAeRdVyLnPxpuB4wRFEMhCdY5E9W2mf'
+      ? penguinBackgroundDark
+      : penguinBackgroundLight
 
     // dont wanna forget these blue yet
     // blue4: darkMode ? '#153d6f70' : '#C4D9F8',
