@@ -72,7 +72,7 @@ h2, h3, h4, h5, h6 {
   }
   .devs {
     flex-direction: column;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
   .hiturunk {
     width: 45%;
