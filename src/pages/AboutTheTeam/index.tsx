@@ -75,21 +75,16 @@ export default function ShowTeamPage() {
         <img width={'20%'} height={'20%'} src={PenguinClouds} alt="logo" style={{ margin: '8%', paddingLeft: '2%' }} />
         <AboutText>
           <h1>ABOUT</h1>
-          <b>Penguin Party</b> is a Decentralized Governance Token Delegation focused on software deliverables to
-          improve decentralized protocols and ensure protocol interoperability.
-          <br></br>
-          <br></br>
-          <b>Penguin Swap</b> is our front-end interface which interacts with the Uniswap trading Protocol contracts
-          using Penguin Swap's preferred token list and custom token / routing pairs.
-          <br></br>
-          <br></br>
+          <p><b>Penguin Party</b> is a Decentralized Governance Token Delegation focused on software deliverables to
+          improve decentralized protocols and ensure protocol interoperability.</p>
+          <p><b>Penguin Swap</b> is our front-end interface which interacts with the Uniswap trading Protocol contracts
+          using Penguin Swap's preferred token list and custom token / routing pairs.</p>
           <sup>Made at PanArka Blockchain Laboratories, Inc. - A Delaware Corporation.</sup>
         </AboutText>
       </PenguinParty>
       <PenguinArea>
         <Hiturunk>
-          <h2>The 🐧 Team</h2>
-          <br></br>
+          <p><h2>The 🐧 Team</h2></p>
           <img className="hiturunk" src={HiturunkSelfie} alt="" />
           <h3>Hiturunk</h3>
           Senior Developer / CEO
@@ -113,7 +108,7 @@ export default function ShowTeamPage() {
           <div className="dev">
             <img className="team-photo" src={PinkLogo} alt="" />
             <h3>Davey</h3>
-            Statistics Modelling
+            Scientific Modelling
           </div>
           <div className="dev">
             <img className="team-photo" src={PinkLogo} alt="" />
