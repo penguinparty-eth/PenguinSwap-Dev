@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import PinkLogo from '../../../src/assets/svg/logo_pink.svg'
+import PinkLogo from '../../../src/assets/images/penguinparty/cbwg.png'
 import './style.css'
 import { PENGUIN_URLS, KEK, ISLA, VERSION } from '../../constants'
 // Import the required images
 import CryptokekLogo from '../../assets/images/penguinparty/cryptokek.png'
 import HiturunkSelfie from '../../../src/assets/images/penguinparty/hiturunk.jpg'
 import DefiVille from '../../../src/assets/images/penguinparty/defiville.svg'
-import PenguinClouds from '../../../src/assets/images/penguinparty/penguinclouds.gif'
+import PenguinMainLogo from '../../../src/assets/images/penguinparty/cb.png'
 
 export default function ShowTeamPage() {
   const PenguinParty = styled.div`
@@ -72,7 +72,7 @@ export default function ShowTeamPage() {
   return (
     <>
       <PenguinParty className="penguin-party">
-        <img width={'20%'} height={'20%'} src={PenguinClouds} alt="logo" style={{ margin: '8%', paddingLeft: '2%' }} />
+        <img width={'20%'} height={'20%'} src={PenguinMainLogo} alt="logo" style={{ margin: '8%', paddingLeft: '2%' }} />
         <AboutText>
           <h1>ABOUT</h1>
           <p><b>Penguin Party</b> is a Decentralized Governance Token Delegation focused on software deliverables to
