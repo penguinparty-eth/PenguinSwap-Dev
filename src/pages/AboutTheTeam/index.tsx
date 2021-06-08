@@ -165,12 +165,6 @@ export default function ShowTeamPage() {
             <h3>Pooryia</h3>
             Graphic Designer
           </div>
-
-          <div className="dev">
-            <img className="team-photo" src={PinkLogo} alt="" />
-            <h3>Brute4</h3>
-            Marketing
-          </div>
         </Devs>
         <Partners>
           <h2>Our 🐧 Partners</h2>
