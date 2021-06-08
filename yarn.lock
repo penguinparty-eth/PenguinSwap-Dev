@@ -16787,6 +16787,7 @@
     "workbox-cacheable-response" "^4.3.1"
     "workbox-core" "^4.3.1"
     "workbox-expiration" "^4.3.1"
+    "workbox-google-analytics" "^4.3.1"
     "workbox-navigation-preload" "^4.3.1"
     "workbox-precaching" "^4.3.1"
     "workbox-range-requests" "^4.3.1"
@@ -16828,6 +16829,7 @@
     "workbox-cacheable-response" "^6.1.5"
     "workbox-core" "^6.1.5"
     "workbox-expiration" "^6.1.5"
+    "workbox-google-analytics" "^6.1.5"
     "workbox-navigation-preload" "^6.1.5"
     "workbox-precaching" "^6.1.5"
     "workbox-range-requests" "^6.1.5"
@@ -16894,6 +16896,26 @@
   "version" "6.1.5"
   dependencies:
     "workbox-core" "^6.1.5"
+
+"workbox-google-analytics@^4.3.1":
+  "integrity" "sha512-xzCjAoKuOb55CBSwQrbyWBKqp35yg1vw9ohIlU2wTy06ZrYfJ8rKochb1MSGlnoBfXGWss3UPzxR5QL5guIFdg=="
+  "resolved" "https://registry.npmjs.org/workbox-google-analytics/-/workbox-google-analytics-4.3.1.tgz"
+  "version" "4.3.1"
+  dependencies:
+    "workbox-background-sync" "^4.3.1"
+    "workbox-core" "^4.3.1"
+    "workbox-routing" "^4.3.1"
+    "workbox-strategies" "^4.3.1"
+
+"workbox-google-analytics@^6.1.5":
+  "integrity" "sha512-LYsJ/VxTkYVLxM1uJKXZLz4cJdemidY7kPyAYtKVZ6EiDG89noASqis75/5lhqM1m3HwQfp2DtoPrelKSpSDBA=="
+  "resolved" "https://registry.npmjs.org/workbox-google-analytics/-/workbox-google-analytics-6.1.5.tgz"
+  "version" "6.1.5"
+  dependencies:
+    "workbox-background-sync" "^6.1.5"
+    "workbox-core" "^6.1.5"
+    "workbox-routing" "^6.1.5"
+    "workbox-strategies" "^6.1.5"
 
 "workbox-navigation-preload@^4.3.1":
   "integrity" "sha512-K076n3oFHYp16/C+F8CwrRqD25GitA6Rkd6+qAmLmMv1QHPI2jfDwYqrytOfKfYq42bYtW8Pr21ejZX7GvALOw=="
