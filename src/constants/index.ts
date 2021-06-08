@@ -11,7 +11,7 @@ export { PRELOADED_PROPOSALS } from './proposals'
 type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
-export const VERSION = "5.7"
+export const VERSION = "5.8"
 export const DEFAULTTOKEN = '0x30bcd71b8d21fe830e493b30e90befba29de9114'
 export const FISH = new Token(ChainId.MAINNET, '0x30bcd71b8d21fe830e493b30e90befba29de9114', 18, '🐟', 'Penguin Party Fish')
 export const CRAB = new Token(ChainId.MAINNET, '0x8669fA2B06829aa5FaBC47b5E5d0e66b85F1522E', 18, '🦀', 'Penguin Party Crab')
