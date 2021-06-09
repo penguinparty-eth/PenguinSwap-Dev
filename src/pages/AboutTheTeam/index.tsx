@@ -145,7 +145,7 @@ export default function ShowTeamPage() {
           <div className="dev">
             <img className="team-photo" src={PinkLogo} alt="" />
             <h3>AnimalHut</h3>
-            Infrastructure specialist
+            SRE
           </div>
 
           <div className="dev">
