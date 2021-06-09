@@ -91,7 +91,11 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
             </AutoColumn>
           )}
           <TYPE.subHeader style={{ textAlign: 'center' }}>
-            When you withdraw, your 🐟 is claimed and your liquidity is removed from the mining pool.
+            When you withdraw, your{' '}
+            <span role="img" aria-label="penguin">
+              🐟
+            </span>{' '}
+            is claimed and your liquidity is removed from the mining pool.
           </TYPE.subHeader>
           <ButtonError disabled={!!error} error={!!error && !!stakingInfo?.stakedAmount} onClick={onWithdraw}>
             {error ?? 'Withdraw & Claim'}
@@ -111,7 +115,13 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
             <TYPE.body fontSize={20}>Withdrew UNI-V2!</TYPE.body>
-            <TYPE.body fontSize={20}>Claimed 🐟!</TYPE.body>
+            <TYPE.body fontSize={20}>
+              Claimed{' '}
+              <span role="img" aria-label="penguin">
+                🐟
+              </span>
+              !
+            </TYPE.body>
           </AutoColumn>
         </SubmittedView>
       )}
