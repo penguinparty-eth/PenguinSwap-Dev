@@ -56,7 +56,10 @@ export default function Earn() {
               </RowBetween>
               <RowBetween>
                 <TYPE.white fontSize={14}>
-                  Deposit your Liquidity Provider tokens to receive 🐟, the PenguinSwap protocol governance token.
+                  Deposit your Liquidity Provider tokens to receive {' '}
+                <span role="img" aria-label="FISH">
+                  🐟
+                </span>{' '}, the PenguinSwap protocol governance token.
                 </TYPE.white>
               </RowBetween>{' '}
               <ExternalLink

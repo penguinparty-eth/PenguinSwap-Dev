@@ -24,6 +24,7 @@ export default memo(function SwapRoute({ trade }: { trade: Trade }) {
             {isLastItem ? null :         <a
                       href={'https://penguinalytics.eth.link/#/pair/' + trade.route.pairs[i].liquidityToken.address}
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
                     <ChevronRight size={40} color={theme.text2} /></a>}
           </Fragment>

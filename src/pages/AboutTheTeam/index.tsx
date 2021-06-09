@@ -98,7 +98,13 @@ export default function ShowTeamPage() {
       <PenguinArea>
         <Hiturunk>
           <p>
-            <h2>The 🐧 Team</h2>
+            <h2>
+              The{' '}
+              <span role="img" aria-label="penguin">
+                🐧
+              </span>{' '}
+              Team
+            </h2>
           </p>
           <img className="hiturunk" src={HiturunkSelfie} alt="" />
           <h3>Hiturunk</h3>
@@ -138,14 +144,14 @@ export default function ShowTeamPage() {
 
           <div className="dev">
             <img className="team-photo" src={PinkLogo} alt="" />
-            <h3>Qon</h3>
+            <h3>Qonfluent</h3>
             Backend / Smart contracts
           </div>
 
           <div className="dev">
             <img className="team-photo" src={PinkLogo} alt="" />
             <h3>AnimalHut</h3>
-            Infrastructure specialist
+            SRE
           </div>
 
           <div className="dev">
@@ -165,18 +171,18 @@ export default function ShowTeamPage() {
             <h3>Pooryia</h3>
             Graphic Designer
           </div>
-
-          <div className="dev">
-            <img className="team-photo" src={PinkLogo} alt="" />
-            <h3>Brute4</h3>
-            Marketing
-          </div>
         </Devs>
         <Partners>
-          <h2>Our 🐧 Partners</h2>
+          <h2>
+            Our{' '}
+            <span role="img" aria-label="penguin">
+              🐧
+            </span>{' '}
+            Partners
+          </h2>
 
           <div className="saren-div">
-            <a href="https://saren.io/" target="_blank">
+            <a href="https://saren.io/" target="_blank" rel="noopener noreferrer">
               <img className="pic" src={SarenLogo} alt="" />
             </a>
             <br></br>
@@ -190,7 +196,7 @@ export default function ShowTeamPage() {
           </div>
 
           <div className="crypto-div">
-            <a href="https://cryptokek.com/" target="_blank">
+            <a href="https://cryptokek.com/" target="_blank" rel="noopener noreferrer">
               <img className="pic" src={CryptokekLogo} alt="" />
             </a>
             <br></br>
@@ -204,7 +210,7 @@ export default function ShowTeamPage() {
           </div>
 
           <div className="crypto-div">
-            <a href="https://defiville.finance/" target="_blank">
+            <a href="https://defiville.finance/" target="_blank" rel="noopener noreferrer">
               <img className="pic" src={DefiVille} alt="" />
             </a>
             <br></br>
