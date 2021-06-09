@@ -267,7 +267,10 @@ export default function Manage({
             <AutoColumn gap="sm">
               <RowBetween>
                 <div>
-                  <TYPE.black>Your unclaimed 🐟</TYPE.black>
+                  <TYPE.black>Your unclaimed {' '}
+                <span role="img" aria-label="FISH">
+                  🐟
+                </span>{' '}</TYPE.black>
                 </div>
                 {stakingInfo?.earnedAmount && JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
                   <ButtonEmpty
