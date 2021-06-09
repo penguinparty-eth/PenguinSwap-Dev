@@ -138,7 +138,7 @@ export default function ShowTeamPage() {
 
           <div className="dev">
             <img className="team-photo" src={PinkLogo} alt="" />
-            <h3>Qon</h3>
+            <h3>Qonfluent</h3>
             Backend / Smart contracts
           </div>
 
