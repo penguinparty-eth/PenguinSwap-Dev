@@ -78,7 +78,12 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
               <TYPE.body fontWeight={600} fontSize={36}>
                 {stakingInfo?.earnedAmount?.toSignificant(6)}
               </TYPE.body>
-              <TYPE.body>Unclaimed 🐟</TYPE.body>
+              <TYPE.body>
+                Unclaimed{' '}
+                <span role="img" aria-label="penguin">
+                  🐟
+                </span>{' '}
+              </TYPE.body>
             </AutoColumn>
           )}
           <TYPE.subHeader style={{ textAlign: 'center' }}>
@@ -100,7 +105,13 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
         <SubmittedView onDismiss={wrappedOnDismiss} hash={hash}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
-            <TYPE.body fontSize={20}>Claimed 🐟!</TYPE.body>
+            <TYPE.body fontSize={20}>
+              Claimed{' '}
+              <span role="img" aria-label="penguin">
+                🐟
+              </span>{' '}
+              !
+            </TYPE.body>
           </AutoColumn>
         </SubmittedView>
       )}
