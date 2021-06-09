@@ -67,7 +67,13 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
         <CardNoise />
         <CardSection gap="md">
           <RowBetween>
-            <TYPE.white color="white">Your 🐟 Breakdown</TYPE.white>
+            <TYPE.white color="white">
+              Your{' '}
+              <span role="img" aria-label="FISH">
+                🐟
+              </span>{' '}
+              Breakdown
+            </TYPE.white>
             <StyledClose stroke="white" onClick={() => setShowUniBalanceModal(false)} />
           </RowBetween>
         </CardSection>
@@ -87,7 +93,13 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
                   <TYPE.white color="white">{uniBalance?.toFixed(2, { groupSeparator: ',' })}</TYPE.white>
                 </RowBetween>
                 <RowBetween>
-                  <TYPE.white color="white">Unclaimed 🐟:</TYPE.white>
+                  <TYPE.white color="white">
+                    Unclaimed{' '}
+                    <span role="img" aria-label="FISH">
+                      🐟
+                    </span>{' '}
+                    :
+                  </TYPE.white>
                   <TYPE.white color="white">
                     {uniToClaim?.toFixed(4, { groupSeparator: ',' })}{' '}
                     {uniToClaim && uniToClaim.greaterThan('0') && (
@@ -105,7 +117,13 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
         <CardSection gap="sm">
           <AutoColumn gap="md">
             <RowBetween>
-              <TYPE.white color="white">🐟 price:</TYPE.white>
+              <TYPE.white color="white">
+                {' '}
+                <span role="img" aria-label="FISH">
+                  🐟
+                </span>{' '}
+                price:
+              </TYPE.white>
               <TYPE.white color="white">${uniPrice?.toFixed(2) ?? '-'}</TYPE.white>
             </RowBetween>
             <RowBetween>
@@ -114,27 +132,78 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
             </RowBetween>
             <RowBetween>
               <TYPE.white color="white">Uniswap POWER</TYPE.white>
-              <TYPE.white color="white">🦐{totalSupplyShrimp?.toFixed(0, { groupSeparator: ',' })}🦐 - ${shrimpPrice?.toFixed(2) ?? '-'} / 🦐</TYPE.white>
+              <TYPE.white color="white">
+                {totalSupplyShrimp?.toFixed(0, { groupSeparator: ',' })}{' '}
+                <span role="img" aria-label="SHRIMP">
+                  🦐
+                </span>{' '}
+                - ${shrimpPrice?.toFixed(2) ?? '-'} /{' '}
+                <span role="img" aria-label="SHRIMP">
+                  🦐
+                </span>{' '}
+              </TYPE.white>
             </RowBetween>
             <RowBetween>
               <TYPE.white color="white">Compound.Finance POWER</TYPE.white>
-              <TYPE.white color="white">🦀{totalSupplyCrab?.toFixed(0, { groupSeparator: ',' })}🦀 - ${crabPrice?.toFixed(2) ?? '-'} / 🦀</TYPE.white>
+              <TYPE.white color="white">
+                {totalSupplyCrab?.toFixed(0, { groupSeparator: ',' })}
+                <span role="img" aria-label="CRAB">
+                  🦀
+                </span>{' '}
+                - ${crabPrice?.toFixed(2) ?? '-'} /{' '}
+                <span role="img" aria-label="CRAB">
+                  🦀
+                </span>{' '}
+              </TYPE.white>
             </RowBetween>
             <RowBetween>
               <TYPE.white color="white">ADAI POWER</TYPE.white>
-              <TYPE.white color="white">⛩{totalSupplyTori?.toFixed(0, { groupSeparator: ',' })}⛩ - ${toriPrice?.toFixed(2) ?? '-'} / ⛩</TYPE.white>
+              <TYPE.white color="white">
+                {totalSupplyTori?.toFixed(0, { groupSeparator: ',' })}{' '}
+                <span role="img" aria-label="TORI">
+                  ⛩
+                </span>{' '}
+                - ${toriPrice?.toFixed(2) ?? '-'} /{' '}
+                <span role="img" aria-label="TORI">
+                  ⛩
+                </span>{' '}
+              </TYPE.white>
             </RowBetween>
             {uni && uni.chainId === ChainId.MAINNET ? (
-              <ExternalLink href={`https://penguinalytics.eth.link/#/token/${uni.address}`}>View 🐟 Analytics</ExternalLink>
+              <ExternalLink href={`https://penguinalytics.eth.link/#/token/${uni.address}`}>
+                View{' '}
+                <span role="img" aria-label="FISH">
+                  🐟
+                </span>{' '}
+                Analytics
+              </ExternalLink>
             ) : null}
             {shrimp && shrimp.chainId === ChainId.MAINNET ? (
-              <ExternalLink href={`https://penguinalytics.eth.link/#/token/${shrimp.address}`}>View 🦐 Analytics</ExternalLink>
+              <ExternalLink href={`https://penguinalytics.eth.link/#/token/${shrimp.address}`}>
+                View
+                <span role="img" aria-label="SHRIMP">
+                  🦐
+                </span>{' '}
+                Analytics
+              </ExternalLink>
             ) : null}
             {crab && crab.chainId === ChainId.MAINNET ? (
-              <ExternalLink href={`https://penguinalytics.eth.link/#/token/${crab.address}`}>View 🦀 Analytics</ExternalLink>
+              <ExternalLink href={`https://penguinalytics.eth.link/#/token/${crab.address}`}>
+                View{' '}
+                <span role="img" aria-label="CRAB">
+                  🦀
+                </span>{' '}
+                Analytics
+              </ExternalLink>
             ) : null}
             {tori && tori.chainId === ChainId.MAINNET ? (
-              <ExternalLink href={`https://penguinalytics.eth.link/#/token/${tori.address}`}>View ⛩ Analytics</ExternalLink>
+              <ExternalLink href={`https://penguinalytics.eth.link/#/token/${tori.address}`}>
+                View{' '}
+                <span role="img" aria-label="TORI">
+                  ⛩
+                </span>{' '}
+                Analytics
+              </ExternalLink>
             ) : null}
           </AutoColumn>
         </CardSection>
