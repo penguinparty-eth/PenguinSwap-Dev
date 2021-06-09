@@ -69,7 +69,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
           </RowFixed>
           <RowFixed>
           <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-          {'1 ' + inputToken.name + ' = ' + '$' + usdcInputPrice.toFixed(2)}
+          {'1 ' + inputToken.name + ' = $' + usdcInputPrice.toFixed(2)}
           </TYPE.black>
           </RowFixed>
         </RowBetween>
@@ -83,7 +83,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
           <RowFixed>
             <TYPE.black color={theme.text1} fontSize={14}> 
               {isExactIn
-                ? `${slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4)} ${trade.outputAmount.currency.symbol} ${'/ ' + '$' + (Number(slippageAdjustedAmounts.OUTPUT.toSignificant(4)) * Number(usdcOutputPrice.toFixed(2))).toFixed(2)} ` ??
+                ? `${slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4)} ${trade.outputAmount.currency.symbol} ${'/ $' + (Number(slippageAdjustedAmounts.OUTPUT.toSignificant(4)) * Number(usdcOutputPrice.toFixed(2))).toFixed(2)} ` ??
                   '-'
                 : `${slippageAdjustedAmounts[Field.INPUT]?.toSignificant(4)} ${trade.inputAmount.currency.symbol}` ??
                   '-'}
