@@ -49,7 +49,7 @@ import Loader from '../../components/Loader'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import UnsupportedCurrencyFooter from 'components/swap/UnsupportedCurrencyFooter'
 import { isTradeBetter } from 'utils/trades'
-import CryptoKek from 'pages/CryptoKek'
+import CryptoKek from 'components/CryptoKek'
 export default function Swap() {
   const loadedUrlParams = useDefaultsFromURLSearch()
 
@@ -106,6 +106,8 @@ export default function Swap() {
     currencies,
     inputError: swapInputError
   } = useDerivedSwapInfo()
+
+
   const { wrapType, execute: onWrap, inputError: wrapInputError } = useWrapCallback(
     currencies[Field.INPUT],
     currencies[Field.OUTPUT],
