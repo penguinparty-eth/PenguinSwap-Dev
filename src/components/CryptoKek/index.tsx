@@ -6,8 +6,8 @@ import { Field } from 'state/swap/actions'
 export default function CryptoKek() {
   let testTokenAddress = '0x30bcd71b8d21fe830e493b30e90befba29de9114'
   const { currencies } = useDerivedSwapInfo()
-  var input = currencies[Field.INPUT]
-  var output = currencies[Field.OUTPUT]
+  let input = currencies[Field.INPUT]
+  let output = currencies[Field.OUTPUT]
   console.log({ input, output })
   if (input?.symbol == Currency.ETHER.symbol) {
     //WETH[1] should be WETH[current chain ID]
