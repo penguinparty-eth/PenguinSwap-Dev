@@ -14,6 +14,7 @@ export default function ShowTeamPage() {
   const PenguinParty = styled.div`
     display: flex;
     justify-content: space-around;
+    align-items: center;
     margin-top: -2%;
     width: 70%
     background: rgba(0, 0, 0, 0.8);
@@ -33,6 +34,7 @@ export default function ShowTeamPage() {
     text-align: center;
     background: rgba(0, 0, 0, 0.8);
     border-radius: 0% 0% 5% 5%;
+    padding-bottom: 1rem;
   `
   const Hiturunk = styled.div`
     color: white;
