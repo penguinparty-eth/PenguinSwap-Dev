@@ -158,7 +158,7 @@ export default function Pool() {
 
         <AutoColumn gap="lg" justify="center">
           <AutoColumn gap="lg" style={{ width: '100%' }}>
-            <TitleRow style={{ marginTop: '1rem' }} padding={'0'}>
+            <TitleRow style={{ marginTop: '1rem', paddingLeft: '1rem', paddingRight: '1rem'}}>
               <HideSmall>
                 <TYPE.mediumHeader style={{ marginTop: '0.5rem', justifySelf: 'flex-start' }}>
                   Your liquidity

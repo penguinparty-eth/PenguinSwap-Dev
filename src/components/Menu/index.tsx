@@ -8,6 +8,8 @@ import { ExternalLink } from '../../theme'
 import { PENGUIN_URLS } from '../../constants/index'
 
 const StyledMenuButton = styled.button`
+  font-weight: 500;
+  font-size: 0.9rem;
   width: 6rem;
   height: 100%;
   border: none;
@@ -66,11 +68,12 @@ const MenuItem = styled(ExternalLink)`
   flex: 1;
   padding: 0.25rem 0.25rem;
   color: ${({ theme }) => theme.text2};
+  border: 1px solid transparent;
   :hover {
     color: ${({ theme }) => theme.text1};
     cursor: pointer;
     text-decoration: none;
-    border: 1px solid gold;
+    border: 1px solid ${({ theme }) => theme.primary2}; /* color was gold, trying primary2 instead */
   }
   > svg {
     margin-right: 8px;
