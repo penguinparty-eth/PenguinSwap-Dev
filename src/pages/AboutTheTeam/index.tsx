@@ -18,7 +18,7 @@ export default function ShowTeamPage() {
     margin-top: -2%;
     width: 70%
     background: rgba(0, 0, 0, 0.8);
-    border-radius: 5% 5% 0% 0%;
+    border-radius: 20px 20px 0 0;
   `
   const AboutText = styled.div`
     align-self: center;
@@ -33,7 +33,7 @@ export default function ShowTeamPage() {
     width: 70%;
     text-align: center;
     background: rgba(0, 0, 0, 0.8);
-    border-radius: 0% 0% 5% 5%;
+    border-radius: 0px 0px 20px 20px;
     padding-bottom: 1rem;
   `
   const Hiturunk = styled.div`

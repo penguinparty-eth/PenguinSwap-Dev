@@ -26,7 +26,7 @@ const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
   width: 100%;
   background-color: ${({ theme }) => theme.bg1};
-  border-radius: 3% 3%;
+  border-radius: 12px;
 `
 
 const VoteCard = styled(DataCard)`
@@ -38,7 +38,7 @@ const TitleRow = styled(RowBetween)`
   color: ${({ theme }) => theme.text1};
   ${({ theme }) => theme.mediaWidth.upToSmall`
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 10px;
     width: 100%;
     flex-direction: column-reverse;
   `};
@@ -70,7 +70,7 @@ const ResponsiveButtonSecondary = styled(ButtonPrimary)`
 const EmptyProposals = styled.div`
   border: 1px solid ${({ theme }) => theme.text4};
   padding: 16px 12px;
-  border-radius: 12px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;

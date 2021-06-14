@@ -30,6 +30,7 @@ import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, Redirec
 import Vote from './Vote'
 import VotePage from './Vote/VotePage'
 import ShowTeamPage from './AboutTheTeam'
+import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
 const AppWrapper = styled.div`
   display: flex;
   flex-flow: column;
@@ -75,6 +76,7 @@ function TopLevelModals() {
 export default function App() {
   return (
     <Suspense fallback={null}>
+      <Route component={GoogleAnalyticsReporter} />
       <Route component={DarkModeQueryParamReader} />
       <AppWrapper>
         <URLWarning />

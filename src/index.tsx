@@ -16,18 +16,28 @@ import TransactionUpdater from './state/transactions/updater'
 import UserUpdater from './state/user/updater'
 import ThemeProvider, { FixedGlobalStyle, ThemedGlobalStyle } from './theme'
 import getLibrary from './utils/getLibrary'
+import { isMobile } from 'react-device-detect'
 
 //have to ignore all warnings from this line because it's an ephemeral file
 // @ts-ignore
-import gitData from "./.parsed-git.json";
+import gitData from './.parsed-git.json'
 
 const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName)
 
 //TODO: THIS IS TEMPORARY
-console.log("GITDATA ", gitData);
+console.log('GITDATA ', gitData)
 
 if ('ethereum' in window) {
   ;(window.ethereum as any).autoRefreshOnNetworkChange = false
+}
+const GOOGLE_ANALYTICS_ID: string | undefined = process.env.REACT_APP_GOOGLE_ANALYTICS_ID
+if (typeof GOOGLE_ANALYTICS_ID === 'string') {
+  ReactGA.initialize(GOOGLE_ANALYTICS_ID)
+  ReactGA.set({
+    customBrowserType: !isMobile ? 'desktop' : 'web3' in window || 'ethereum' in window ? 'mobileWeb3' : 'mobileRegular'
+  })
+} else {
+  ReactGA.initialize('test', { testMode: true, debug: true })
 }
 
 window.addEventListener('error', error => {
@@ -67,20 +77,26 @@ ReactDOM.render(
     </Web3ReactProvider>
   </StrictMode>,
   document.getElementById('root')
-);
+)
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
-    navigator.serviceWorker.register('service-worker.js').then(function(registration) {
-      console.log('Worker registration successful', registration.scope);
-    }, function(err) {
-      console.log('Worker registration failed', err);
-    }).catch(function(err) {
-      console.log(err);
-    });
-  });
+    navigator.serviceWorker
+      .register('service-worker.js')
+      .then(
+        function(registration) {
+          console.log('Worker registration successful', registration.scope)
+        },
+        function(err) {
+          console.log('Worker registration failed', err)
+        }
+      )
+      .catch(function(err) {
+        console.log(err)
+      })
+  })
 } else {
-  console.log('Service Worker is not supported by browser.');
+  console.log('Service Worker is not supported by browser.')
 }
 
 // If you want your app to work offline and load faster, you can change
@@ -90,4 +106,3 @@ if ('serviceWorker' in navigator) {
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-
