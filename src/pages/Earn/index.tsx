@@ -77,7 +77,7 @@ export default function Earn() {
       </TopSection>
 
       <AutoColumn gap="lg" style={{ width: '100%', maxWidth: '720px' }}>
-        <DataRow style={{ alignItems: 'baseline' }}>
+        <DataRow style={{ alignItems: 'baseline', paddingLeft: '1rem', paddingRight: '1rem'}}>
           <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>Participating pools</TYPE.mediumHeader>
           <Countdown exactEnd={stakingInfos?.[0]?.periodFinish} />
         </DataRow>
