@@ -5,7 +5,7 @@ import { Field } from 'state/swap/actions'
 import { WrappedTokenInfo } from '../../state/lists/hooks'
 import { USDC } from '../../constants'
 export default function CryptoKek() {
-  var [tokenAddress, setTokenAddress] = useState('0x30bcd71b8d21fe830e493b30e90befba29de9114')
+  let [tokenAddress, setTokenAddress] = useState('0x30bcd71b8d21fe830e493b30e90befba29de9114')
   const { currencies } = useDerivedSwapInfo()
   let input = currencies[Field.INPUT]
   let output = currencies[Field.OUTPUT]
@@ -19,7 +19,7 @@ export default function CryptoKek() {
   } else if (output instanceof Currency && input instanceof WrappedTokenInfo && tokenAddress !== input.address) {
     setTokenAddress(input.address)
   } else if (input === undefined || input === null || output === undefined || output === null) {
-    var singleField: Currency = null
+    let singleField: Currency = null
     if (input instanceof Currency) {
       singleField = input
     }
