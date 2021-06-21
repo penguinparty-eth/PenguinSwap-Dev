@@ -25,16 +25,20 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
   const usdcOutputPrice = useUSDCPrice(outputToken)
   const usdcInputPrice = useUSDCPrice(inputToken)
 
+  // Calculate output USD amounts
   const totalInputUsdc =
     parseFloat(slippageAdjustedAmounts[Field.INPUT].toExact()) * parseFloat(usdcInputPrice.toSignificant())
-  console.log(slippageAdjustedAmounts[Field.INPUT].toExact())
-
   const totalOutputUsdc =
-    parseFloat(slippageAdjustedAmounts[Field.OUTPUT].toExact()) * parseFloat(usdcOutputPrice.toSignificant())
-  console.log(totalOutputUsdc)
+    parseFloat(slippageAdjustedAmounts.OUTPUT.toSignificant(4)) * parseFloat(usdcOutputPrice.toFixed(2))
 
+  // Calculate the arbitrage percentage and USD value
+  const arbitrageUsd = (totalOutputUsdc - totalInputUsdc).toFixed(2)
+  const arbitragePercentage = ((totalOutputUsdc / totalInputUsdc) * 100 - 100).toFixed(2)
+
+  // Calculate the router fees for the PenguinSwap exchange. Next step is to read this from the smart contract.
   const routerFeePercentage = 0.0025
   const routerFee = (totalInputUsdc * routerFeePercentage).toPrecision(2)
+
   //debugger
   return (
     <div style={{ borderTop: '2px dotted grey' }}>
@@ -95,7 +99,6 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
           </RowFixed>
           <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
         </RowBetween>
-
         <RowBetween>
           <RowFixed>
             <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
@@ -112,12 +115,44 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
             <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
               {'Router Fee'}
             </TYPE.black>
-            <QuestionHelper text="A portion of each trade (0.25%) goes to development of the platform." />
+            <QuestionHelper text="A portion of each trade (0.25%) goes to development of the platform. " />
           </RowFixed>
           <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
             {'$' + routerFee}
           </TYPE.black>
-        </RowBetween>
+        </RowBetween>{' '}
+        {inputToken === outputToken ? (
+          totalOutputUsdc > totalInputUsdc ? (
+            <div>
+              <RowBetween>
+                <RowFixed>
+                  <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
+                    {'Arbitrage percentage'}
+                  </TYPE.black>
+                  <QuestionHelper text="The approximate percentage gained from the arbitrage based on the minimum received amount." />
+                </RowFixed>
+                <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
+                  {arbitragePercentage + '%'}
+                </TYPE.black>
+              </RowBetween>
+              <RowBetween>
+                <RowFixed>
+                  <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
+                    {'Arbitrage USD amount'}
+                  </TYPE.black>
+                  <QuestionHelper text="The approximate USD value gained from the arbitrage based on the minimum received amount." />
+                </RowFixed>
+                <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
+                  {'$' + arbitrageUsd}
+                </TYPE.black>
+              </RowBetween>
+            </div>
+          ) : (
+            ''
+          )
+        ) : (
+          ''
+        )}
       </AutoColumn>
     </div>
   )
