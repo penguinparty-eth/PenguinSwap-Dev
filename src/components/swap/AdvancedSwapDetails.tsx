@@ -8,7 +8,6 @@ import { computeSlippageAdjustedAmounts, computeTradePriceBreakdown } from '../.
 import { AutoColumn } from '../Column'
 import QuestionHelper from '../QuestionHelper'
 import { RowBetween, RowFixed } from '../Row'
-import FormattedPriceImpact from './FormattedPriceImpact'
 import SwapRoute from './SwapRoute'
 // import { useActiveWeb3React } from '../../hooks'
 import useUSDCPrice from '../../utils/useUSDCPrice'
@@ -16,7 +15,7 @@ import useUSDCPrice from '../../utils/useUSDCPrice'
 
 function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippage: number }) {
   const theme = useContext(ThemeContext)
-  const { priceImpactWithoutFee, realizedLPFee } = computeTradePriceBreakdown(trade)
+  const { realizedLPFee } = computeTradePriceBreakdown(trade)
   const isExactIn = trade.tradeType === TradeType.EXACT_INPUT
   const slippageAdjustedAmounts = computeSlippageAdjustedAmounts(trade, allowedSlippage)
   // const { chainId } = useActiveWeb3React()
@@ -93,15 +92,6 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
         <RowBetween>
           <RowFixed>
             <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
-              {'Price Impact'}
-            </TYPE.black>
-            <QuestionHelper text="The difference between the market price and estimated price due to trade size." />
-          </RowFixed>
-          <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
-        </RowBetween>
-        <RowBetween>
-          <RowFixed>
-            <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
               {'Liquidity Provider Fee'}
             </TYPE.black>
             <QuestionHelper text="A portion of each trade (0.30%) goes to liquidity providers as a protocol incentive." />
@@ -131,7 +121,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
                   </TYPE.black>
                   <QuestionHelper text="The approximate percentage gained from the arbitrage based on the minimum received amount." />
                 </RowFixed>
-                <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
+                <TYPE.black fontSize={14} fontWeight={400} color="#1E67E1">
                   {arbitragePercentage + '%'}
                 </TYPE.black>
               </RowBetween>
@@ -142,7 +132,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
                   </TYPE.black>
                   <QuestionHelper text="The approximate USD value gained from the arbitrage based on the minimum received amount." />
                 </RowFixed>
-                <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
+                <TYPE.black fontSize={14} fontWeight={400} color="#1E67E1">
                   {'$' + arbitrageUsd}
                 </TYPE.black>
               </RowBetween>
