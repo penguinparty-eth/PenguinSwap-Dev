@@ -11,6 +11,7 @@ export { PRELOADED_PROPOSALS } from './proposals'
 type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
+
 export const VERSION = '5.8.7'
 export const DEFAULTTOKEN = '0x30bcd71b8d21fe830e493b30e90befba29de9114'
 export const FISH = new Token(
