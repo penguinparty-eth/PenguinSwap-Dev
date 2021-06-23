@@ -116,12 +116,6 @@ export default function ShowTeamPage() {
         <Devs className="devs">
           <div className="dev">
             <img className="team-photo" src={PinkLogo} alt="" />
-            <h3>Dwi</h3>
-            CTO/Sr. Dev.
-          </div>
-
-          <div className="dev">
-            <img className="team-photo" src={PinkLogo} alt="" />
             <h3>Summer</h3>
             COO / Project Manager
           </div>

@@ -35,14 +35,14 @@ export default function CryptoKek() {
   function kekFrame($token: string) {
     const CRYPTO_KEK_LINK = `https://keks.app/t/${$token}/chart`
     return {
-      __html: `<iframe src=${CRYPTO_KEK_LINK} width="100%" height="749px" frameBorder="0" allowFullScreen="true" scrolling="no" position='absolute'</iframe>`
+      __html: `<iframe src=${CRYPTO_KEK_LINK} width="100%" height="749px" frameBorder="0" allowFullScreen="true" scrolling="no" </iframe>`
     }
   }
 
   return (
     <div
       className="CryptoKek"
-      style={{ width: '100%', height: '100%' }}
+      style={{ width: '95%', height: '100%', maxWidth: '1200px', margin: 'auto' }}
       dangerouslySetInnerHTML={kekFrame(tokenAddress)}
     ></div>
   )

@@ -40,111 +40,108 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
 
   //debugger
   return (
-    <div style={{ borderTop: '2px dotted grey' }}>
-      <AutoColumn style={{ padding: '1rem 16px' }}>
-        <RowBetween>
-          <RowFixed>
-            <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
-              {'Rate'}
-            </TYPE.black>
-            <QuestionHelper text="This is the value of Token A as it relates to Token B" />
-          </RowFixed>
-          <RowFixed>
-            <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-              {'1 ' + inputToken.name + ' = ' + trade.executionPrice?.toFixed(2) + ' ' + outputToken.name}
-            </TYPE.black>
-          </RowFixed>
-        </RowBetween>
-        <RowBetween>
-          <RowFixed>
-            <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
-              {'USD Rate'}
-            </TYPE.black>
-            <QuestionHelper text="This is the value of token A in USDC" />
-          </RowFixed>
-          <RowFixed>
-            <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-              {'1 ' + inputToken.name + ' = $' + usdcInputPrice.toFixed(2)}
-            </TYPE.black>
-          </RowFixed>
-        </RowBetween>
-        <RowBetween>
-          <RowFixed>
-            <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
-              {isExactIn ? 'Minimum received' : 'Maximum sold'}
-            </TYPE.black>
-            <QuestionHelper text="Your transaction will revert if there is a large, unfavorable price movement before it is confirmed." />
-          </RowFixed>
-          <RowFixed>
-            <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-              {isExactIn
-                ? `${slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4)} ${
-                    trade.outputAmount.currency.symbol
-                  } ${'/ $' +
-                    (
-                      Number(slippageAdjustedAmounts.OUTPUT.toSignificant(4)) * Number(usdcOutputPrice.toFixed(2))
-                    ).toFixed(2)} ` ?? '-'
-                : `${slippageAdjustedAmounts[Field.INPUT]?.toSignificant(4)} ${trade.inputAmount.currency.symbol}` ??
-                  '-'}
-            </TYPE.black>
-          </RowFixed>
-        </RowBetween>
-        <RowBetween>
-          <RowFixed>
-            <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
-              {'Liquidity Provider Fee'}
-            </TYPE.black>
-            <QuestionHelper text="A portion of each trade (0.30%) goes to liquidity providers as a protocol incentive." />
-          </RowFixed>
-          <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-            {realizedLPFee ? `${realizedLPFee.toSignificant(4)} ${trade.inputAmount.currency.symbol}` : '-'}
+    <AutoColumn style={{ padding: '1rem 16px' }}>
+      <RowBetween>
+        <RowFixed>
+          <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
+            {'Rate'}
           </TYPE.black>
-        </RowBetween>
-        <RowBetween>
-          <RowFixed>
-            <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
-              {'Router Fee'}
-            </TYPE.black>
-            <QuestionHelper text="A portion of each trade (0.25%) goes to development of the platform. " />
-          </RowFixed>
+          <QuestionHelper text="This is the value of Token A as it relates to Token B" />
+        </RowFixed>
+        <RowFixed>
           <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-            {'$' + routerFee}
+            {'1 ' + inputToken.name + ' = ' + trade.executionPrice?.toFixed(2) + ' ' + outputToken.name}
           </TYPE.black>
-        </RowBetween>{' '}
-        {inputToken === outputToken ? (
-          totalOutputUsdc > totalInputUsdc ? (
-            <div>
-              <RowBetween>
-                <RowFixed>
-                  <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
-                    {'Arbitrage percentage'}
-                  </TYPE.black>
-                  <QuestionHelper text="The approximate percentage gained from the arbitrage based on the minimum received amount." />
-                </RowFixed>
-                <TYPE.black fontSize={14} fontWeight={400} color="#1E67E1">
-                  {arbitragePercentage + '%'}
+        </RowFixed>
+      </RowBetween>
+      <RowBetween>
+        <RowFixed>
+          <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
+            {'USD Rate'}
+          </TYPE.black>
+          <QuestionHelper text="This is the value of token A in USDC" />
+        </RowFixed>
+        <RowFixed>
+          <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
+            {'1 ' + inputToken.name + ' = $' + usdcInputPrice.toFixed(2)}
+          </TYPE.black>
+        </RowFixed>
+      </RowBetween>
+      <RowBetween>
+        <RowFixed>
+          <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
+            {isExactIn ? 'Minimum received' : 'Maximum sold'}
+          </TYPE.black>
+          <QuestionHelper text="Your transaction will revert if there is a large, unfavorable price movement before it is confirmed." />
+        </RowFixed>
+        <RowFixed>
+          <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
+            {isExactIn
+              ? `${slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4)} ${
+                  trade.outputAmount.currency.symbol
+                } ${'/ $' +
+                  (
+                    Number(slippageAdjustedAmounts.OUTPUT.toSignificant(4)) * Number(usdcOutputPrice.toFixed(2))
+                  ).toFixed(2)} ` ?? '-'
+              : `${slippageAdjustedAmounts[Field.INPUT]?.toSignificant(4)} ${trade.inputAmount.currency.symbol}` ?? '-'}
+          </TYPE.black>
+        </RowFixed>
+      </RowBetween>
+      <RowBetween>
+        <RowFixed>
+          <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
+            {'Liquidity Provider Fee'}
+          </TYPE.black>
+          <QuestionHelper text="A portion of each trade (0.30%) goes to liquidity providers as a protocol incentive." />
+        </RowFixed>
+        <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
+          {realizedLPFee ? `${realizedLPFee.toSignificant(4)} ${trade.inputAmount.currency.symbol}` : '-'}
+        </TYPE.black>
+      </RowBetween>
+      <RowBetween>
+        <RowFixed>
+          <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
+            {'Router Fee'}
+          </TYPE.black>
+          <QuestionHelper text="A portion of each trade (0.25%) goes to development of the platform. " />
+        </RowFixed>
+        <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
+          {'$' + routerFee}
+        </TYPE.black>
+      </RowBetween>{' '}
+      {inputToken === outputToken ? (
+        totalOutputUsdc > totalInputUsdc ? (
+          <div>
+            <RowBetween>
+              <RowFixed>
+                <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
+                  {'Arbitrage percentage'}
                 </TYPE.black>
-              </RowBetween>
-              <RowBetween>
-                <RowFixed>
-                  <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
-                    {'Arbitrage USD amount'}
-                  </TYPE.black>
-                  <QuestionHelper text="The approximate USD value gained from the arbitrage based on the minimum received amount." />
-                </RowFixed>
-                <TYPE.black fontSize={14} fontWeight={400} color="#1E67E1">
-                  {'$' + arbitrageUsd}
+                <QuestionHelper text="The approximate percentage gained from the arbitrage based on the minimum received amount." />
+              </RowFixed>
+              <TYPE.black fontSize={14} fontWeight={400} color="#1E67E1">
+                {arbitragePercentage + '%'}
+              </TYPE.black>
+            </RowBetween>
+            <RowBetween>
+              <RowFixed>
+                <TYPE.black fontSize={14} fontWeight={600} color={theme.text2}>
+                  {'Arbitrage USD amount'}
                 </TYPE.black>
-              </RowBetween>
-            </div>
-          ) : (
-            ''
-          )
+                <QuestionHelper text="The approximate USD value gained from the arbitrage based on the minimum received amount." />
+              </RowFixed>
+              <TYPE.black fontSize={14} fontWeight={400} color="#1E67E1">
+                {'$' + arbitrageUsd}
+              </TYPE.black>
+            </RowBetween>
+          </div>
         ) : (
           ''
-        )}
-      </AutoColumn>
-    </div>
+        )
+      ) : (
+        ''
+      )}
+    </AutoColumn>
   )
 }
 

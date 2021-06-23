@@ -31,6 +31,8 @@ import Vote from './Vote'
 import VotePage from './Vote/VotePage'
 import ShowTeamPage from './AboutTheTeam'
 import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
+import CryptoKek from 'components/CryptoKek'
+
 const AppWrapper = styled.div`
   display: flex;
   flex-flow: column;
@@ -64,7 +66,7 @@ const BodyWrapper = styled.div`
 `
 
 const Marginer = styled.div`
-  margin-top: 5rem;
+  margin-top: 1rem;
 `
 
 function TopLevelModals() {
@@ -118,6 +120,7 @@ export default function App() {
           <Marginer />
         </BodyWrapper>
       </AppWrapper>
+      <Route exact strict path="/swap" component={CryptoKek} />
     </Suspense>
   )
 }
