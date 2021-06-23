@@ -1,4 +1,4 @@
-import { Currency,CurrencyAmount, JSBI, Token, Trade } from '@uniswap/sdk'
+import { Currency, CurrencyAmount, JSBI, Token, Trade } from '@uniswap/sdk'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { ArrowDown } from 'react-feather'
 import ReactGA from 'react-ga'
@@ -105,6 +105,7 @@ export default function Swap() {
     currencies,
     inputError: swapInputError
   } = useDerivedSwapInfo()
+
   const { wrapType, execute: onWrap, inputError: wrapInputError } = useWrapCallback(
     currencies[Field.INPUT],
     currencies[Field.OUTPUT],
@@ -121,7 +122,7 @@ export default function Swap() {
   const defaultTrade = showWrap ? undefined : tradesByVersion[DEFAULT_VERSION]
 
   const betterTradeLinkV2: Version | undefined =
-   toggledVersion === Version.v1 && isTradeBetter(v1Trade, v2Trade) ? Version.v2 : undefined
+    toggledVersion === Version.v1 && isTradeBetter(v1Trade, v2Trade) ? Version.v2 : undefined
 
   const parsedAmounts = showWrap
     ? {
@@ -240,17 +241,17 @@ export default function Swap() {
           txHash: undefined
         })
       })
-    }, [
-      priceImpactWithoutFee,
-      swapCallback,
-      tradeToConfirm,
-      showConfirm,
-      recipient,
-      recipientAddress,
-      account,
-      trade,
-      singleHopOnly
-    ])
+  }, [
+    priceImpactWithoutFee,
+    swapCallback,
+    tradeToConfirm,
+    showConfirm,
+    recipient,
+    recipientAddress,
+    account,
+    trade,
+    singleHopOnly
+  ])
   // errors
   const [showInverted, setShowInverted] = useState<boolean>(false)
 
@@ -304,8 +305,8 @@ export default function Swap() {
       />
       <SwapPoolTabs active={'swap'} />
       <AppBody>
-      <SwapHeader />
-      {/* <Separator /> */}
+        <SwapHeader />
+        {/* <Separator /> */}
         <Wrapper id="swap-page">
           <ConfirmSwapModal
             isOpen={showConfirm}
@@ -407,11 +408,11 @@ export default function Swap() {
             )}
           </AutoColumn>
           <BottomGrouping>
-          {swapIsUnsupported ? (
-            <ButtonPrimary disabled={true}>
-              <TYPE.main mb="4px">Unsupported Asset</TYPE.main>
-            </ButtonPrimary>
-          ) : !account ? (
+            {swapIsUnsupported ? (
+              <ButtonPrimary disabled={true}>
+                <TYPE.main mb="4px">Unsupported Asset</TYPE.main>
+              </ButtonPrimary>
+            ) : !account ? (
               <ButtonLight onClick={toggleWalletModal}>Connect Wallet</ButtonLight>
             ) : showWrap ? (
               <ButtonPrimary disabled={Boolean(wrapInputError)} onClick={onWrap}>

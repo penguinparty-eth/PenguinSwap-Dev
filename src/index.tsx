@@ -17,6 +17,7 @@ import TransactionUpdater from './state/transactions/updater'
 import UserUpdater from './state/user/updater'
 import ThemeProvider, { FixedGlobalStyle, ThemedGlobalStyle } from './theme'
 import getLibrary from './utils/getLibrary'
+import { isMobile } from 'react-device-detect'
 
 //have to ignore all warnings from this line because it's an ephemeral file
 // @ts-ignore
