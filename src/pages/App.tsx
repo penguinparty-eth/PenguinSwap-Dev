@@ -31,7 +31,6 @@ import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, Redirec
 import Vote from './Vote'
 import VotePage from './Vote/VotePage'
 import ShowTeamPage from './AboutTheTeam'
-import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
 import CryptoKek from 'components/CryptoKek'
 
 const AppWrapper = styled.div`
